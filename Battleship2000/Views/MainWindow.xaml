@@ -10,10 +10,12 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Border>
-        <Border.Background>
+    <Border Background="Black">
+        <!--<Border.Background>
             <ImageBrush ImageSource="../Resources/blue.png" Stretch="None" TileMode="FlipX" Viewport="0,0,256,256" ViewportUnits="Absolute" />
-        </Border.Background>
+        </Border.Background>-->
+        <Grid>
+            <Image Source="../Resources/battleship1-1280x736.png" Stretch="UniformToFill" Opacity="0.6" />
         <StackPanel>
             <StackPanel Margin="0,50,0,50">
                 <TextBlock Text="{Binding ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
@@ -21,5 +23,6 @@
             </StackPanel>
             <Frame Source="pages/MainMenu.xaml" />
         </StackPanel>
+        </Grid>
     </Border>
 </Window>
