@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Battleship2000.Models;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,10 @@ namespace Tests
         }
 
         [Test]
-        public void Test1()
+        public void CellTest()
         {
+            Cell c = new();
+
 
         }
 

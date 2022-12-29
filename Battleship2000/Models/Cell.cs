@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Battleship2000.Models
 {
-    internal class Cell
+    public class Cell
     {
+        public enum CellStates
+        {
+            Unknown = 0,
+            Hit,
+            Empty,
+            Miss
+        }
 
+        public CellStates CellState { get; set; }
     }
 }
