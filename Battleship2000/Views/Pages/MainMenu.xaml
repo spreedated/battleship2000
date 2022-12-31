@@ -11,9 +11,15 @@
     <Page.DataContext>
         <vm:MainMenuViewModel />
     </Page.DataContext>
-    <StackPanel Orientation="Vertical">
-        <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Play" />
-        <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Start Dedicated Server" />
-        <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" />
+    <StackPanel>
+        <StackPanel Margin="0,50,0,50">
+            <TextBlock Text="{Binding ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            <TextBlock Text="{Binding ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical">
+            <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" />
+            <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Start Dedicated Server" />
+            <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" />
+        </StackPanel>
     </StackPanel>
 </Page>

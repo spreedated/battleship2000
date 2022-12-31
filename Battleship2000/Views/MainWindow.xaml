@@ -5,24 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Battleship2000.Views"
         xmlns:vm="clr-namespace:Battleship2000.ViewModels"
+        xmlns:vl="clr-namespace:Battleship2000.ViewLogic"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Border Background="Black">
-        <!--<Border.Background>
-            <ImageBrush ImageSource="../Resources/blue.png" Stretch="None" TileMode="FlipX" Viewport="0,0,256,256" ViewportUnits="Absolute" />
-        </Border.Background>-->
         <Grid>
-            <Image Source="../Resources/battleship1-1280x736.png" Stretch="UniformToFill" Opacity="0.6" />
-        <StackPanel>
-            <StackPanel Margin="0,50,0,50">
-                <TextBlock Text="{Binding ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
-                <TextBlock Text="{Binding ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
-            </StackPanel>
-            <Frame Source="pages/MainMenu.xaml" />
-        </StackPanel>
+            <Border d:Visibility="Hidden" Visibility="{Binding BackgroundVis}">
+                <Border.Background>
+                    <ImageBrush ImageSource="../Resources/blue.png" Stretch="None" TileMode="FlipX" Viewport="0,0,256,256" ViewportUnits="Absolute" />
+                </Border.Background>
+            </Border>
+            <Grid>
+                <Image d:Source="../Resources/battleship1-1280x736.png" Source="{Binding BackgroundImage}" Visibility="{Binding BackgroundVis,Converter={vl:VisibilityOppositeConverter}}" Stretch="UniformToFill" Opacity="0.6" />
+                <StackPanel>
+                    <Frame d:Source="pages/Playfield.xaml" Source="{Binding FrameSource}" NavigationUIVisibility="Hidden" />
+                </StackPanel>
+            </Grid>
         </Grid>
     </Border>
 </Window>

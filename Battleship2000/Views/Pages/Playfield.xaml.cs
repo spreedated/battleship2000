@@ -1,5 +1,4 @@
-﻿using Battleship2000.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Battleship2000.Views
+namespace Battleship2000.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Playfield.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Playfield : Page
     {
-        public static MainWindow Instance { get; private set; }
-        public static MainWindowViewModel InstanceVM { get; private set; }
-        public MainWindow()
+        public Playfield()
         {
             InitializeComponent();
-            Instance = this;
-            InstanceVM = (MainWindowViewModel)this.DataContext;
         }
     }
 }
