@@ -14,6 +14,10 @@ namespace Battleship2000.ViewModels
         {
             HelperFunctions.NavigateMainframeTo("connecttoserver");
         });
+        public ICommand DedicatedServerCommand { get; } = new RelayCommand((c) =>
+        {
+            HelperFunctions.NavigateMainframeTo("dedicatedserver");
+        });
         public ICommand ExitCommand { get; } = new RelayCommand((c) => { MainWindow.Instance.Close(); });
     }
 }

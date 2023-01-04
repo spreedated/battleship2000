@@ -11,22 +11,25 @@ namespace Battleship2000.Logic
         private readonly int port = 32485;
         private SimpleTcpClient client = null;
 
-        public bool ConnectTo(string server)
+        public bool IsConnected
+        {
+            get
+            {
+                if (this.client != null)
+                {
+                    return this.client.IsConnected;
+                }
+                return false;
+            }
+        }
+
+        public void ConnectTo(string server)
         {
             this.client = new(server, this.port);
             client.Events.DataReceived += this.DataReceived;
 
-            try
-            {
-                client.ConnectWithRetries(2250);
-                Debug.Print(client.LocalEndpoint.Address.ToString() + "-" + client.LocalEndpoint.Port.ToString());
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-
-            return true;
+            client.ConnectWithRetries(2250);
+            Debug.Print(client.LocalEndpoint.Address.ToString() + "-" + client.LocalEndpoint.Port.ToString());
         }
 
         private void DataReceived(object sender, NetPackage.TCP.DataReceivedEventArgs e)

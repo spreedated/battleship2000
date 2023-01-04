@@ -5,6 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Serilog;
+using Battleship2000.Models;
+using Battleship2000.Logic;
 
 namespace Battleship2000.ViewModels
 {
@@ -17,10 +20,35 @@ namespace Battleship2000.ViewModels
         public ICommand ConnectCommand { get; } = new RelayCommand(async (c) =>
         {
             ConnectToServer.Vm.ButtonEnabled = false;
-            Debug.Print(ConnectToServer.Vm.ConnectText);
-            await Task.Delay(1500);
-            ConnectToServer.Vm.ButtonEnabled = true;
+
+            Log.Information($"[ConnectToServerViewModel] Trying to connect to \"{ConnectToServer.Vm.ConnectText}\"");
+
+            await Task.Factory.StartNew(() =>
+            {
+                ConnectToServer.Vm.NetworkClient?.Dispose();
+                ConnectToServer.Vm.NetworkClient = new();
+
+                try
+                {
+                    ConnectToServer.Vm.NetworkClient.ConnectTo(ConnectToServer.Vm.ConnectText);
+                    Log.Information($"[ConnectToServerViewModel] Connected successfully to \"{ConnectToServer.Vm.ConnectText}\"");
+                }
+                catch (System.Exception ex)
+                {
+                    Log.Error(ex, $"[ConnectToServerViewModel] Connection failed to \"{ConnectToServer.Vm.ConnectText}\" - ");
+                }
+            });
+
+            if (!ConnectToServer.Vm.NetworkClient.IsConnected)
+            {
+                ConnectToServer.Vm.ButtonEnabled = true;
+                return;
+            }
+
+            HelperFunctions.NavigateMainframeTo("playfield");
         });
+
+        public NetworkClient NetworkClient { get; private set; }
 
         private bool _ButtonEnabled = true;
         public bool ButtonEnabled

@@ -32,6 +32,7 @@ namespace Battleship2000.Logic
             ObjectStorage.pages.Add(new ConnectToServer());
             ObjectStorage.pages.Add(new MainMenu());
             ObjectStorage.pages.Add(new Playfield());
+            ObjectStorage.pages.Add(new DedicatedServer());
             Log.Information("[Preload] Loading pages finished");
         }
     }
