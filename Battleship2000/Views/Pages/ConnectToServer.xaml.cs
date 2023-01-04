@@ -1,4 +1,5 @@
 ﻿using Battleship2000.ViewModels;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace Battleship2000.Views.Pages
             InitializeComponent();
             Instance = this;
             Vm = (ConnectToServerViewModel)this.DataContext;
+            Log.Verbose("[ConnectToServer] Page loaded");
         }
     }
 }

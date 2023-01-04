@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Battleship2000.Views.Pages
         public MainMenu()
         {
             InitializeComponent();
+            Log.Verbose("[MainMenu] Page loaded");
         }
     }
 }

@@ -1,21 +1,10 @@
-﻿using Battleship2000.Logic;
-using Battleship2000.ViewLogic;
+﻿using Battleship2000.ViewLogic;
 using Battleship2000.ViewModels;
+using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Battleship2000.Views.Pages
 {
@@ -29,6 +18,7 @@ namespace Battleship2000.Views.Pages
         {
             InitializeComponent();
             Vm = (PreloadViewModel)this.DataContext;
+            Log.Verbose("[Preload] Page loaded");
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -42,6 +32,7 @@ namespace Battleship2000.Views.Pages
         private void PreloadStepped(object sender, EventArgs e)
         {
             Vm.ProgressbarValue += 10.0d;
+            Log.Verbose($"[PreloadStepped] Step \"{Vm.ProgressbarValue}\"");
 #if DEBUG
             Thread.Sleep(1000);
 #endif
@@ -51,12 +42,14 @@ namespace Battleship2000.Views.Pages
         {
             Vm.ProgressbarValue = 100.0d;
             Vm.LoadingText = "Complete !";
+            Log.Information("[PreloadComplete] Loading completed");
 
             Thread.Sleep(1250);
 
             this.Dispatcher.Invoke(() =>
             {
                 HelperFunctions.NavigateMainframeTo("mainmenu");
+                Log.Verbose("[PreloadComplete] Navigating to main menu");
             });
         }
     }
