@@ -17,8 +17,8 @@ namespace Battleship2000.ViewModels
         public string ProjectVersion { get; } = $"v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
         public ICommand PlayCommand { get; } = new RelayCommand((c) =>
         {
-            MainWindow.InstanceVM.BackgroundVis = System.Windows.Visibility.Visible;
-            MainWindow.InstanceVM.FrameSource = new Uri("pack://application:,,,/" + "views/pages/Playfield.xaml");
+            //MainWindow.InstanceVM.BackgroundVis = System.Windows.Visibility.Visible;
+            MainWindow.InstanceVM.FrameSource = new Uri(HelperFunctions.GetXamlPath("connecttoserver"));
         });
         public ICommand ExitCommand { get; } = new RelayCommand((c) => { MainWindow.Instance.Close(); });
     }

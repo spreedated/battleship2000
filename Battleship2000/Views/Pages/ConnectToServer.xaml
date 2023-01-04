@@ -4,11 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Battleship2000.Views.Pages"
+      xmlns:vm="clr-namespace:Battleship2000.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ConnectToServer">
-
+    <Page.DataContext>
+        <vm:ConnectToServerViewModel />
+    </Page.DataContext>
     <Grid>
-        
+        <StackPanel Orientation="Vertical">
+            <StackPanel Margin="0,50,0,50">
+                <TextBlock Text="{Binding ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+                <TextBlock Text="{Binding ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Server:" Style="{StaticResource TextStyle}" MaxHeight="26" Margin="0,0,15,0"/>
+                <TextBox Margin="0,0,15,0" Style="{StaticResource TextBoxStyle}" MinWidth="240" MaxHeight="24" Text="{Binding ConnectText, Mode=TwoWay}"/>
+                <Button Style="{StaticResource ButtonMenu}" Content="Connect" Width="160" Margin="0,0,0,0" Command="{Binding ConnectCommand}" IsEnabled="{Binding ButtonEnabled}" />
+            </StackPanel>
+            <Button Style="{StaticResource ButtonMenu}" Content="Back" Width="80" IsEnabled="{Binding ButtonEnabled}" Margin="0,50,0,0" HorizontalAlignment="Center" Command="{Binding BackCommand}" />
+        </StackPanel>
     </Grid>
 </Page>

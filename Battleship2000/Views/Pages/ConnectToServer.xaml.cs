@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Battleship2000.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace Battleship2000.Views.Pages
     /// </summary>
     public partial class ConnectToServer : Page
     {
+        public static ConnectToServer Instance { get; private set; }
+        public static ConnectToServerViewModel Vm { get; private set; }
         public ConnectToServer()
         {
             InitializeComponent();
+            Instance = this;
+            Vm = (ConnectToServerViewModel)this.DataContext;
         }
     }
 }
