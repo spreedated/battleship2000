@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Battleship2000.Views.Pages"
+      xmlns:logic="clr-namespace:Battleship2000.Logic"
       xmlns:vm="clr-namespace:Battleship2000.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -13,8 +14,8 @@
     </Page.DataContext>
     <StackPanel>
         <StackPanel Margin="0,50,0,50">
-            <TextBlock Text="{Binding ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
-            <TextBlock Text="{Binding ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
         </StackPanel>
         <StackPanel Orientation="Vertical">
             <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" />

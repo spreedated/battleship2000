@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:Battleship2000.ViewModels" 
       xmlns:local="clr-namespace:Battleship2000.Views.Pages"
+      xmlns:logic="clr-namespace:Battleship2000.Logic"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DedicatedServer">
@@ -13,8 +14,8 @@
     </Page.DataContext>
     <StackPanel>
         <StackPanel Margin="0,50,0,20">
-            <TextBlock Text="{Binding ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
-            <TextBlock Text="{Binding ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
         </StackPanel>
         <StackPanel>
             <TextBlock Text="Dedicated Server" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" Margin="0,0,0,10" FontSize="32" />

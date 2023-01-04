@@ -6,9 +6,6 @@ namespace Battleship2000.ViewModels
 {
     public class PreloadViewModel : ViewModelBase
     {
-        public string ProjectName { get; } = $"{((AssemblyTitleAttribute)typeof(MainWindowViewModel).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title}";
-        public string ProjectVersion { get; } = $"v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
-
         private double _ProgressbarValue = 0.0d;
         public double ProgressbarValue
         {

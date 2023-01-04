@@ -13,9 +13,6 @@ namespace Battleship2000.ViewModels
 {
     public class ConnectToServerViewModel : ViewModelBase
     {
-        public string ProjectName { get; } = $"{((AssemblyTitleAttribute)typeof(MainWindowViewModel).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title}";
-        public string ProjectVersion { get; } = $"v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
-
         public ICommand BackCommand { get; } = new RelayCommand((c) => { HelperFunctions.NavigateMainframeTo("mainmenu"); });
         public ICommand ConnectCommand { get; } = new RelayCommand(async (c) =>
         {
