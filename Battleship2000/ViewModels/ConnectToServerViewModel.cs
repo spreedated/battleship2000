@@ -20,7 +20,7 @@ namespace Battleship2000.ViewModels
         public string ProjectName { get; } = $"{((AssemblyTitleAttribute)typeof(MainWindowViewModel).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title}";
         public string ProjectVersion { get; } = $"v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
 
-        public ICommand BackCommand { get; } = new RelayCommand((c) => { MainWindow.Instance.MainFrame.Navigate(ObjectStorage.pages.First(x => x.Name.Contains("MainMenu"))); });
+        public ICommand BackCommand { get; } = new RelayCommand((c) => { HelperFunctions.NavigateMainframeTo("mainmenu"); });
         public ICommand ConnectCommand { get; } = new RelayCommand(async (c) =>
         {
             ConnectToServer.Vm.ButtonEnabled = false;
