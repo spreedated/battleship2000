@@ -30,6 +30,8 @@ namespace Battleship2000
                 .CreateLogger();
 
             Log.Debug("[OnStartup] Log initialize");
+
+            Logic.Configuration.Load();
         }
     }
 }
