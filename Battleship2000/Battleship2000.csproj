@@ -28,10 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logic\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Resources\battleship1-1280x736.png" />
     <Resource Include="Resources\blue.png" />
   </ItemGroup>

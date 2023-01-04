@@ -16,20 +16,6 @@ namespace Battleship2000.ViewModels
     {
         public string WindowTitle { get; } = $"{((AssemblyTitleAttribute)typeof(MainWindowViewModel).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title} v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
 
-        private Uri _FrameSource = new Uri("pack://application:,,,/views/pages/MainMenu.xaml");
-        public Uri FrameSource
-        {
-            get
-            {
-                return _FrameSource;
-            }
-            set
-            {
-                _FrameSource = value;
-                base.OnPropertyChanged(nameof(FrameSource));
-            }
-        }
-
         private ImageSource _BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/battleship1-1280x736.png"));
         public ImageSource BackgroundImage
         {

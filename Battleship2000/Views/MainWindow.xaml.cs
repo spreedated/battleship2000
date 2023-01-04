@@ -1,4 +1,5 @@
-﻿using Battleship2000.ViewModels;
+﻿using Battleship2000.Logic;
+using Battleship2000.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

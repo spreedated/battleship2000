@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Battleship2000.Logic;
+using Battleship2000.Views;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace Battleship2000
 {
@@ -13,5 +17,10 @@ namespace Battleship2000
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            //TODO: Log here
+            base.OnStartup(e);
+        }
     }
 }

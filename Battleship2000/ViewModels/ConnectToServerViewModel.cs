@@ -1,4 +1,5 @@
-﻿using Battleship2000.ViewLogic;
+﻿using Battleship2000.Logic;
+using Battleship2000.ViewLogic;
 using Battleship2000.Views;
 using Battleship2000.Views.Pages;
 using System;
@@ -19,7 +20,7 @@ namespace Battleship2000.ViewModels
         public string ProjectName { get; } = $"{((AssemblyTitleAttribute)typeof(MainWindowViewModel).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title}";
         public string ProjectVersion { get; } = $"v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
 
-        public ICommand BackCommand { get; } = new RelayCommand((c) => { MainWindow.InstanceVM.FrameSource = new Uri(HelperFunctions.GetXamlPath("mainmenu")); });
+        public ICommand BackCommand { get; } = new RelayCommand((c) => { MainWindow.Instance.MainFrame.Navigate(ObjectStorage.pages.First(x => x.Name.Contains("MainMenu"))); });
         public ICommand ConnectCommand { get; } = new RelayCommand(async (c) =>
         {
             ConnectToServer.Vm.ButtonEnabled = false;
