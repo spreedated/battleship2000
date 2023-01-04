@@ -13,11 +13,11 @@ namespace Battleship2000
     public partial class App : Application
     {
 #if DEBUG
-        private LogEventLevel level = LogEventLevel.Verbose;
+        private readonly LogEventLevel level = LogEventLevel.Verbose;
 #else
-        private LogEventLevel level = LogEventLevel.Information;
+        private readonly LogEventLevel level = LogEventLevel.Information;
 #endif
-        private DateTime ApplicationStartupDate = DateTime.Now;
+        private readonly DateTime ApplicationStartupDate = DateTime.Now;
 
         protected override void OnStartup(StartupEventArgs e)
         {

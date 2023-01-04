@@ -33,7 +33,7 @@ namespace Battleship2000.Logic
 
         private void DataReceived(object sender, NetPackage.TCP.DataReceivedEventArgs e)
         {
-            Debug.Print($"Server -> [{e.IpPort}] {Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count)}");
+            Log.Verbose($"[NetworkServer] Server received -> [{e.IpPort}] {Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count)}");
         }
 
         private void ClientDisconnected(object sender, NetPackage.TCP.ConnectionEventArgs e)
