@@ -1,5 +1,6 @@
 ﻿using Serilog;
 using Serilog.Events;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -16,6 +17,8 @@ namespace Battleship2000
 #else
         private LogEventLevel level = LogEventLevel.Information;
 #endif
+        private DateTime ApplicationStartupDate = DateTime.Now;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -29,9 +32,18 @@ namespace Battleship2000
                 .WriteTo.File(logfilepath, restrictedToMinimumLevel: level, rollOnFileSizeLimit: true, fileSizeLimitBytes: 1048576)
                 .CreateLogger();
 
-            Log.Debug("[OnStartup] Log initialize");
+            Log.Debug("[App] Log initialize");
 
             Logic.Configuration.Load();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+
+            Log.Information($"[App] Shuttung down application ... good bye!");
+            Log.Information($"[App] You've wasted {DateTime.Now - ApplicationStartupDate}");
+            Log.CloseAndFlush();
         }
     }
 }
