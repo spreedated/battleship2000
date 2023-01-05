@@ -11,12 +11,19 @@ namespace Battleship2000.Logic
     public class NetworkServer : IDisposable
     {
         private bool disposed;
-        private readonly int port = 32485;
+        private readonly uint port;
         private SimpleTcpServer server = null;
+        private readonly string bindingInterface = null;
+
+        public NetworkServer(string bindingInterface, uint port = 32485)
+        {
+            this.bindingInterface = bindingInterface;
+            this.port = port;
+        }
 
         public bool StartServer()
         {
-            this.server = new("0.0.0.0", this.port);
+            this.server = new(this.bindingInterface, (int)this.port);
             server.Events.DataReceived += this.DataReceived;
             server.Events.ClientDisconnected += this.ClientDisconnected;
             server.Events.ClientConnected += this.ClientConnected;
@@ -24,6 +31,7 @@ namespace Battleship2000.Logic
             try
             {
                 server.Start();
+                Log.Information($"[NetworkServer] Server running, bound to \"{this.bindingInterface}:{this.port}\"");
             }
             catch (Exception ex)
             {

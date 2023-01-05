@@ -65,7 +65,7 @@ namespace Battleship2000.ViewModels
         public async Task<bool> NetworkServerStart()
         {
             this.networkserver?.Dispose();
-            this.networkserver = new();
+            this.networkserver = new(ObjectStorage.Config.Network.Interface, ObjectStorage.Config.Network.Port);
             return await this.networkserver.StartServerAsync();
         }
 

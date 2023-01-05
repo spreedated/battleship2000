@@ -21,7 +21,7 @@ namespace Tests
         [Test]
         public void ConnectionTests()
         {
-            NetworkServer s = new();
+            NetworkServer s = new("0.0.0.0");
             s.StartServer();
 
             Thread.Sleep(2000);
