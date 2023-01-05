@@ -20,7 +20,7 @@
         <StackPanel>
             <TextBlock Text="Dedicated Server" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" Margin="0,0,0,10" FontSize="32" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="{Binding StatusTextVisibility}" d:Visibility="Visible">
-                <Border ClipToBounds="True" CornerRadius="32" Width="32" Height="32" Background="Green" Margin="0,0,20,0">
+                <Border ClipToBounds="True" CornerRadius="32" Width="32" Height="32" Background="{Binding StatusColor}" d:Background="Green" Margin="0,0,20,0">
                     <Canvas Width="32" Height="32" Background="Transparent" />
                 </Border>
                 <TextBlock d:Text="Starting ..." Text="{Binding StatusText}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" FontSize="32" />

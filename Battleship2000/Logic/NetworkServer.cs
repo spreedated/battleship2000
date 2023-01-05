@@ -3,6 +3,8 @@ using Serilog;
 using System;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Battleship2000.Logic
 {
@@ -23,12 +25,56 @@ namespace Battleship2000.Logic
             {
                 server.Start();
             }
+            catch (Exception ex)
+            {
+                Log.Error(ex, $"[NetworkServer] Server start error  - ");
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool StopServer()
+        {
+            try
+            {
+                this.server.Stop();
+                foreach (string c in server.GetClients())
+                {
+                    try
+                    {
+                        this.server.DisconnectClient(c);
+                        Log.Information($"[NetworkServer] Client disconnected \"{c}\"");
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, $"[NetworkServer] Client disconnection error  - ");
+                    }
+                }
+                this.server.Dispose();
+            }
             catch (Exception)
             {
                 return false;
             }
 
             return true;
+        }
+
+        public Task<bool> StartServerAsync()
+        {
+            return Task<bool>.Factory.StartNew(() =>
+            {
+                return this.StartServer();
+            });
+        }
+
+        public Task<bool> StopServerAsync()
+        {
+            return Task<bool>.Factory.StartNew(() =>
+            {
+                return this.StopServer();
+            });
         }
 
         private void DataReceived(object sender, NetPackage.TCP.DataReceivedEventArgs e)

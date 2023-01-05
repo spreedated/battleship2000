@@ -10,6 +10,7 @@ using Battleship2000.Models;
 using Battleship2000.Logic;
 using System.Windows;
 using System.Timers;
+using System.Windows.Media;
 
 namespace Battleship2000.ViewModels
 {
@@ -61,42 +62,85 @@ namespace Battleship2000.ViewModels
             }
         }
 
-        public void NetworkServerStart()
+        public async Task<bool> NetworkServerStart()
         {
             this.networkserver?.Dispose();
             this.networkserver = new();
-            this.networkserver.StartServer();
+            return await this.networkserver.StartServerAsync();
         }
 
-        public void NetworkServerStop()
+        public async Task<bool> NetworkServerStop()
         {
-            this.networkserver?.Dispose();
+            return await this.networkserver.StopServerAsync();
         }
 
         public ICommand StartCommand { get; } = new RelayCommand((c) =>
         {
-            DedicatedServer.Vm.StartButtonVisibility = Visibility.Collapsed;
-            DedicatedServer.Vm.StopButtonVisibility = Visibility.Visible;
-            DedicatedServer.Vm.BackButtonEnabled = false;
-            DedicatedServer.Vm.StatusTextVisibility = Visibility.Visible;
-
             DedicatedServer.Vm.StatusText = "Starting ...";
             DedicatedServer.Vm.AnimationStart();
 
-            DedicatedServer.Vm.NetworkServerStart();
-            DedicatedServer.Vm.StatusText = "Ready for connections";
+            Task.Factory.StartNew(async () =>
+            {
+                bool res = await DedicatedServer.Vm.NetworkServerStart();
+
+                if (res)
+                {
+                    DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                    {
+                        DedicatedServer.Vm.StatusColor = Brushes.Green;
+                        DedicatedServer.Vm.StatusText = "Ready for connections";
+                    });
+                }
+                else
+                {
+                    DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                    {
+                        DedicatedServer.Vm.StatusColor = Brushes.Red;
+                        DedicatedServer.Vm.StatusText = "Error, try again";
+                    });
+                    await Task.Delay(2000);
+                    DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                    {
+                        DedicatedServer.Vm.StopCommand.Execute(null);
+                    });
+                }
+
+                DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                {
+                    DedicatedServer.Vm.StartButtonVisibility = Visibility.Collapsed;
+                    DedicatedServer.Vm.StopButtonVisibility = Visibility.Visible;
+                    DedicatedServer.Vm.BackButtonEnabled = false;
+                    DedicatedServer.Vm.StatusTextVisibility = Visibility.Visible;
+                });
+            });
         });
+
         public ICommand StopCommand { get; } = new RelayCommand((c) =>
         {
             DedicatedServer.Vm.StatusText = "Closing ...";
-            DedicatedServer.Vm.NetworkServerStop();
 
-            DedicatedServer.Vm.AnimationStop();
+            Task.Factory.StartNew(async () =>
+            {
+                bool res = await DedicatedServer.Vm.NetworkServerStop();
 
-            DedicatedServer.Vm.StartButtonVisibility = Visibility.Visible;
-            DedicatedServer.Vm.StopButtonVisibility = Visibility.Collapsed;
-            DedicatedServer.Vm.BackButtonEnabled = true;
-            DedicatedServer.Vm.StatusTextVisibility = Visibility.Hidden;
+                if (res)
+                {
+                    DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                    {
+                        DedicatedServer.Vm.StatusColor = Brushes.Yellow;
+                        DedicatedServer.Vm.StatusText = "Stopped";
+                    });
+                }
+
+                DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                {
+                    DedicatedServer.Vm.AnimationStop();
+                    DedicatedServer.Vm.StartButtonVisibility = Visibility.Visible;
+                    DedicatedServer.Vm.StopButtonVisibility = Visibility.Collapsed;
+                    DedicatedServer.Vm.BackButtonEnabled = true;
+                    DedicatedServer.Vm.StatusTextVisibility = Visibility.Hidden;
+                });
+            });
         });
         public ICommand BackCommand { get; } = new RelayCommand((c) => { HelperFunctions.NavigateMainframeTo("mainmenu"); });
 
@@ -164,6 +208,19 @@ namespace Battleship2000.ViewModels
             {
                 _StatusTextVisibility = value;
                 this.OnPropertyChanged(nameof(StatusTextVisibility));
+            }
+        }
+        private Brush _StatusColor = Brushes.Green;
+        public Brush StatusColor
+        {
+            get
+            {
+                return _StatusColor;
+            }
+            set
+            {
+                _StatusColor = value;
+                this.OnPropertyChanged(nameof(StatusColor));
             }
         }
     }
