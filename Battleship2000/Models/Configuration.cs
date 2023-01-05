@@ -32,6 +32,6 @@ namespace Battleship2000.Models
     internal class Appearance
     {
         [JsonProperty("background")]
-        public string Background { get; set; } = "Oldschool";
+        public string Background { get; set; } = "Blue";
     }
 }
