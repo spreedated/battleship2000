@@ -67,7 +67,7 @@ namespace Battleship2000.Logic
         {
             try
             {
-                JObject v = JObject.Parse(json);
+                JObject.Parse(json);
             }
             catch (System.Exception)
             {

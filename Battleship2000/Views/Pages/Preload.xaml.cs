@@ -33,15 +33,12 @@ namespace Battleship2000.Views.Pages
         {
             Vm.ProgressbarValue += 10.0d;
             Log.Verbose($"[PreloadStepped] Step \"{Vm.ProgressbarValue}\"");
-#if DEBUG
-            Thread.Sleep(1000);
-#endif
         }
 
         private void PreloadComplete(object sender, EventArgs e)
         {
             Vm.ProgressbarValue = 100.0d;
-            Vm.LoadingText = "Complete !";
+            Vm.LoadingText = "Loading Complete";
             Log.Information("[PreloadComplete] Loading completed");
 
             Thread.Sleep(1250);

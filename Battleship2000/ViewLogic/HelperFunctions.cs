@@ -54,5 +54,20 @@ namespace Battleship2000.ViewLogic
 
             Log.Information($"[HelperFunctions][NavigateMainframeTo] Navigated to \"{pagename}\" page");
         }
+
+        public static void NavigateSettingsframeTo(string pagename)
+        {
+            Page p = ObjectStorage.pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
+
+            if (p == null)
+            {
+                Log.Warning($"[HelperFunctions][NavigateSettingsframeTo] Cannot find page \"{pagename}\"");
+                return;
+            }
+
+            Views.Pages.Settings.Instance.SettingsFrame.Navigate(p);
+
+            Log.Information($"[HelperFunctions][NavigateSettingsframeTo] Navigated to \"{pagename}\" page");
+        }
     }
 }

@@ -25,6 +25,7 @@
   <ItemGroup>
     <None Remove="Resources\battleship1-1280x736.png" />
     <None Remove="Resources\blue.png" />
+    <None Remove="Resources\floppy.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +49,7 @@
     <Resource Include="Icons.xaml" />
     <Resource Include="Resources\battleship1-1280x736.png" />
     <Resource Include="Resources\blue.png" />
+    <Resource Include="Resources\floppy.png" />
   </ItemGroup>
 
 </Project>

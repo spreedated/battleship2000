@@ -23,7 +23,7 @@
             <Button Style="{StaticResource ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-20,20,0">
-            <Button Style="{StaticResource ButtonCog}"/>
+            <Button Style="{StaticResource ButtonCog}" Command="{Binding SettingsCommand}"/>
         </StackPanel>
     </StackPanel>
 </Page>

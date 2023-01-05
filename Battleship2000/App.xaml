@@ -20,6 +20,16 @@
                 <Setter Property="BorderThickness" Value="0" />
             </Style>
 
+            <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+                <Setter Property="FontFamily" Value="Consolas" />
+                <Setter Property="FontSize" Value="16px" />
+                <Setter Property="Foreground" Value="WhiteSmoke" />
+                <Setter Property="Background" Value="#333" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+
             <DropShadowEffect x:Key="TextStyleDropShadow" ShadowDepth="3" BlurRadius="1" Opacity="1" Direction="310" Color="#888" />
             <Style x:Key="TextStyle" TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="Consolas" />
