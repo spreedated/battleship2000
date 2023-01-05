@@ -1,14 +1,11 @@
 ﻿using Battleship2000.Logic;
-using Battleship2000.ViewLogic;
-using Battleship2000.Views.Pages;
-using System;
-using System.Linq;
-using System.Collections.ObjectModel;
-using System.Net.NetworkInformation;
-using System.Threading.Tasks;
-using System.Net;
 using Battleship2000.Models;
+using Battleship2000.ViewLogic;
 using Battleship2000.Views;
+using Battleship2000.Views.Pages;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Battleship2000.ViewModels
 {

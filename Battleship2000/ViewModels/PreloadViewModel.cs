@@ -1,6 +1,4 @@
 ﻿using Battleship2000.ViewLogic;
-using System.Linq;
-using System.Reflection;
 
 namespace Battleship2000.ViewModels
 {

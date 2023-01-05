@@ -1,9 +1,5 @@
 ﻿using Battleship2000.ViewLogic;
 using Battleship2000.Views.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -155,7 +151,7 @@ namespace Battleship2000.ViewModels
                 base.OnPropertyChanged(nameof(NetworkArrowVisibility));
             }
         }
-        
+
         private Visibility _AppearanceArrowVisibility = Visibility.Hidden;
         public Visibility AppearanceArrowVisibility
         {

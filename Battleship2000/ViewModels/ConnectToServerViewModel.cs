@@ -1,13 +1,9 @@
-﻿using Battleship2000.ViewLogic;
+﻿using Battleship2000.Logic;
+using Battleship2000.ViewLogic;
 using Battleship2000.Views.Pages;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
+using Serilog;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Serilog;
-using Battleship2000.Models;
-using Battleship2000.Logic;
 
 namespace Battleship2000.ViewModels
 {

@@ -1,11 +1,11 @@
 ﻿using Battleship2000.Logic;
+using Serilog;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Windows.Controls;
-using Serilog;
 
 namespace Battleship2000.ViewLogic
 {

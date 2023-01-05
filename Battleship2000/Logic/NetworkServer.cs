@@ -1,9 +1,7 @@
 ﻿using NetPackage.TCP;
 using Serilog;
 using System;
-using System.Diagnostics;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Battleship2000.Logic

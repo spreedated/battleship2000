@@ -1,6 +1,5 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
-using Battleship2000.Views.Pages;
 
 namespace Battleship2000.ViewModels
 {

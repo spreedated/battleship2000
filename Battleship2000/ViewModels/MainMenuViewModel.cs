@@ -1,7 +1,5 @@
 ﻿using Battleship2000.ViewLogic;
 using Battleship2000.Views;
-using System.Linq;
-using System.Reflection;
 using System.Windows.Input;
 
 namespace Battleship2000.ViewModels
