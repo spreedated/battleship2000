@@ -36,6 +36,10 @@
                     <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Network" Margin="0" HorizontalAlignment="Left" Command="{Binding NetworkCommand}" />
                     <elem:SelectionArrow Visibility="{Binding NetworkArrowVisibility}" />
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Appearance" Margin="0" HorizontalAlignment="Left" Command="{Binding AppearanceCommand}" />
+                    <elem:SelectionArrow Visibility="{Binding AppearanceArrowVisibility}" />
+                </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <Frame x:Name="SettingsFrame" NavigationUIVisibility="Hidden" />

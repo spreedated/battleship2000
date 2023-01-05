@@ -15,11 +15,11 @@
         <Grid>
             <Border d:Visibility="Hidden" Visibility="{Binding BackgroundVis}">
                 <Border.Background>
-                    <ImageBrush ImageSource="../Resources/blue.png" Stretch="None" TileMode="FlipX" Viewport="0,0,256,256" ViewportUnits="Absolute" />
+                    <ImageBrush ImageSource="{Binding BackgroundImage}" Stretch="None" TileMode="FlipX" Viewport="0,0,256,256" ViewportUnits="Absolute" />
                 </Border.Background>
             </Border>
             <Grid>
-                <Image d:Source="../Resources/battleship1-1280x736.png" Source="{Binding BackgroundImage}" Visibility="{Binding BackgroundVis,Converter={vl:VisibilityOppositeConverter}}" Stretch="UniformToFill" Opacity="0.6" />
+                <Image Source="../Resources/battleship1-1280x736.png" Visibility="{Binding BackgroundVis,Converter={vl:VisibilityOppositeConverter}}" Stretch="UniformToFill" Opacity="0.6" />
                 <StackPanel>
                     <Frame x:Name="MainFrame" d:Source="pages/Playfield.xaml" Source="pages/Preload.xaml" NavigationUIVisibility="Hidden" />
                 </StackPanel>

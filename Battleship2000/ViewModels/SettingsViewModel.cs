@@ -63,13 +63,15 @@ namespace Battleship2000.ViewModels
         {
             None = 0,
             Player,
-            Network
+            Network,
+            Appearance
         }
 
         public void SetArrow(MenuItems menuItem)
         {
             this.PlayerArrowVisibility = Visibility.Hidden;
             this.NetworkArrowVisibility = Visibility.Hidden;
+            this.AppearanceArrowVisibility = Visibility.Hidden;
 
             switch (menuItem)
             {
@@ -78,6 +80,9 @@ namespace Battleship2000.ViewModels
                     break;
                 case MenuItems.Network:
                     this.NetworkArrowVisibility = Visibility.Visible;
+                    break;
+                case MenuItems.Appearance:
+                    this.AppearanceArrowVisibility = Visibility.Visible;
                     break;
             }
         }
@@ -91,6 +96,11 @@ namespace Battleship2000.ViewModels
         {
             HelperFunctions.NavigateSettingsframeTo("settings_network");
             Views.Pages.Settings.Vm.SetArrow(MenuItems.Network);
+        });
+        public ICommand AppearanceCommand { get; } = new RelayCommand((c) =>
+        {
+            HelperFunctions.NavigateSettingsframeTo("settings_appearance");
+            Views.Pages.Settings.Vm.SetArrow(MenuItems.Appearance);
         });
         public ICommand BackCommand { get; } = new RelayCommand((c) =>
         {
@@ -143,6 +153,20 @@ namespace Battleship2000.ViewModels
             {
                 _NetworkArrowVisibility = value;
                 base.OnPropertyChanged(nameof(NetworkArrowVisibility));
+            }
+        }
+        
+        private Visibility _AppearanceArrowVisibility = Visibility.Hidden;
+        public Visibility AppearanceArrowVisibility
+        {
+            get
+            {
+                return _AppearanceArrowVisibility;
+            }
+            set
+            {
+                _AppearanceArrowVisibility = value;
+                base.OnPropertyChanged(nameof(AppearanceArrowVisibility));
             }
         }
 

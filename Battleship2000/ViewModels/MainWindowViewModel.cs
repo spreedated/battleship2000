@@ -12,7 +12,7 @@ namespace Battleship2000.ViewModels
     {
         public string WindowTitle { get; } = $"{((AssemblyTitleAttribute)typeof(MainWindowViewModel).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title} v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
 
-        private ImageSource _BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/battleship1-1280x736.png"));
+        private ImageSource _BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
         public ImageSource BackgroundImage
         {
             get
