@@ -2,8 +2,8 @@
 using Serilog;
 using System;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 
 namespace Battleship2000.Logic
