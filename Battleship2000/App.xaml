@@ -5,72 +5,120 @@
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
 
-        <Style x:Key="TextBoxStyle" TargetType="TextBox">
-            <Setter Property="FontFamily" Value="Consolas" />
-            <Setter Property="FontSize" Value="16px" />
-            <Setter Property="Foreground" Value="WhiteSmoke" />
-            <Setter Property="Background" Value="#333" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="IconsDictionary" Source="Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
 
-        <DropShadowEffect x:Key="TextStyleDropShadow" ShadowDepth="3" BlurRadius="1" Opacity="1" Direction="310" Color="#888" />
-        <Style x:Key="TextStyle" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Consolas" />
-            <Setter Property="FontSize" Value="24px" />
-            <Setter Property="Foreground" Value="WhiteSmoke" />
-            <Setter Property="Effect" Value="{StaticResource TextStyleDropShadow}" />
-        </Style>
+            <Style x:Key="TextBoxStyle" TargetType="TextBox">
+                <Setter Property="FontFamily" Value="Consolas" />
+                <Setter Property="FontSize" Value="16px" />
+                <Setter Property="Foreground" Value="WhiteSmoke" />
+                <Setter Property="Background" Value="#333" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
 
-        <DropShadowEffect x:Key="TextHeadlineDropShadow" ShadowDepth="4" BlurRadius="0" Opacity="1" Direction="310" Color="#bbb" />
-        <Style x:Key="TextHeadline" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Consolas" />
-            <Setter Property="FontSize" Value="48px" />
-            <Setter Property="Foreground" Value="WhiteSmoke" />
-            <Setter Property="Effect" Value="{StaticResource TextHeadlineDropShadow}" />
-        </Style>
+            <DropShadowEffect x:Key="TextStyleDropShadow" ShadowDepth="3" BlurRadius="1" Opacity="1" Direction="310" Color="#888" />
+            <Style x:Key="TextStyle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Consolas" />
+                <Setter Property="FontSize" Value="24px" />
+                <Setter Property="Foreground" Value="WhiteSmoke" />
+                <Setter Property="Effect" Value="{StaticResource TextStyleDropShadow}" />
+            </Style>
 
-        <DropShadowEffect x:Key="ButtonMenuDropShadow" ShadowDepth="2" BlurRadius="0" Opacity="0.8" Direction="330" />
-        <Style x:Key="ButtonMenu" TargetType="Button">
-            <Setter Property="Width" Value="260"/>
-            <Setter Property="Height" Value="32"/>
-            <Setter Property="Margin" Value="0,20,0,0" />
+            <DropShadowEffect x:Key="TextHeadlineDropShadow" ShadowDepth="4" BlurRadius="0" Opacity="1" Direction="310" Color="#bbb" />
+            <Style x:Key="TextHeadline" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Consolas" />
+                <Setter Property="FontSize" Value="48px" />
+                <Setter Property="Foreground" Value="WhiteSmoke" />
+                <Setter Property="Effect" Value="{StaticResource TextHeadlineDropShadow}" />
+            </Style>
 
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="bBorder" Background="#777777" BorderThickness="2" BorderBrush="Black">
-                            <Border x:Name="bBorderFirstFrame" BorderThickness="3,3,0,0" BorderBrush="#999999">
-                                <Border x:Name="bBorderSecondFrame" BorderThickness="0,0,3,3" BorderBrush="#444444">
-                                    <Grid>
-                                        <TextBlock x:Name="txtBlock" Text="{TemplateBinding Content}" FontFamily="Consolas" Foreground="WhiteSmoke" FontSize="18px" HorizontalAlignment="Center" VerticalAlignment="Center" Effect="{StaticResource ButtonMenuDropShadow}" />
-                                    </Grid>
+            <DropShadowEffect x:Key="ButtonMenuDropShadow" ShadowDepth="2" BlurRadius="0" Opacity="0.8" Direction="330" />
+            <Style x:Key="ButtonMenu" TargetType="Button">
+                <Setter Property="Width" Value="260"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Margin" Value="0,20,0,0" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="bBorder" Background="#777777" BorderThickness="2" BorderBrush="Black">
+                                <Border x:Name="bBorderFirstFrame" BorderThickness="3,3,0,0" BorderBrush="#999999">
+                                    <Border x:Name="bBorderSecondFrame" BorderThickness="0,0,3,3" BorderBrush="#444444">
+                                        <Grid>
+                                            <TextBlock x:Name="txtBlock" Text="{TemplateBinding Content}" FontFamily="Consolas" Foreground="WhiteSmoke" FontSize="18px" HorizontalAlignment="Center" VerticalAlignment="Center" Effect="{StaticResource ButtonMenuDropShadow}" />
+                                        </Grid>
+                                    </Border>
                                 </Border>
                             </Border>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="bBorder" Value="#999999" />
-                                <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0,0,3,3" />
-                                <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
-                                <Setter Property="Cursor" Value="Hand"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" TargetName="bBorder" Value="#333333" />
-                                <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0,0,3,3" />
-                                <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" TargetName="txtBlock" Value="#222" />
-                                <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0" />
-                                <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="0" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" TargetName="bBorder" Value="#999999" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0,0,3,3" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="bBorder" Value="#333333" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0,0,3,3" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Foreground" TargetName="txtBlock" Value="#222" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="0" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ButtonCog" TargetType="Button">
+                <Setter Property="Width" Value="46"/>
+                <Setter Property="Height" Value="46"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="bBorder" Background="#777777" BorderThickness="2" BorderBrush="Black">
+                                <Border x:Name="bBorderFirstFrame" BorderThickness="3,3,0,0" BorderBrush="#999999">
+                                    <Border x:Name="bBorderSecondFrame" BorderThickness="0,0,3,3" BorderBrush="#444444">
+                                        <Grid>
+                                            <Rectangle Width="28" Height="28" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="WhiteSmoke" Effect="{StaticResource ButtonMenuDropShadow}">
+                                                <Rectangle.OpacityMask>
+                                                    <VisualBrush Stretch="Fill" Visual="{StaticResource SettingsIcon}"/>
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" TargetName="bBorder" Value="#999999" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0,0,3,3" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="bBorder" Value="#333333" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0,0,3,3" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="0" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

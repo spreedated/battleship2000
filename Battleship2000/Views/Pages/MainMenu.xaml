@@ -18,9 +18,12 @@
             <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
         </StackPanel>
         <StackPanel Orientation="Vertical">
-            <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" />
-            <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Start Dedicated Server" Command="{Binding DedicatedServerCommand}" />
-            <Button Style="{StaticResource ResourceKey=ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" />
+            <Button Style="{StaticResource ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" />
+            <Button Style="{StaticResource ButtonMenu}" Content="Start Dedicated Server" Command="{Binding DedicatedServerCommand}" />
+            <Button Style="{StaticResource ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-20,20,0">
+            <Button Style="{StaticResource ButtonCog}"/>
         </StackPanel>
     </StackPanel>
 </Page>
