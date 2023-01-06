@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Battleship2000.Logic;
+using Serilog;
 using Serilog.Events;
 using System;
 using System.IO;
@@ -44,6 +45,11 @@ namespace Battleship2000
             Log.Information($"[App] Shuttung down application ... good bye!");
             Log.Information($"[App] You've wasted {DateTime.Now - ApplicationStartupDate}");
             Log.CloseAndFlush();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AudioEngine.PlaySoundEffect("button-pressed");
         }
     }
 }

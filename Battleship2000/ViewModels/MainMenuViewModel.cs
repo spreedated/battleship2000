@@ -1,4 +1,5 @@
-﻿using Battleship2000.ViewLogic;
+﻿using Battleship2000.Logic;
+using Battleship2000.ViewLogic;
 using Battleship2000.Views;
 using System.Windows.Input;
 

@@ -55,30 +55,35 @@ namespace Battleship2000.ViewModels
             }
         }
 
-        public enum MenuItems
+        public enum MenuCategories
         {
             None = 0,
             Player,
             Network,
-            Appearance
+            Appearance,
+            Audio
         }
 
-        public void SetArrow(MenuItems menuItem)
+        public void SetArrow(MenuCategories menuItem)
         {
             this.PlayerArrowVisibility = Visibility.Hidden;
             this.NetworkArrowVisibility = Visibility.Hidden;
             this.AppearanceArrowVisibility = Visibility.Hidden;
+            this.AudioArrowVisibility = Visibility.Hidden;
 
             switch (menuItem)
             {
-                case MenuItems.Player:
+                case MenuCategories.Player:
                     this.PlayerArrowVisibility = Visibility.Visible;
                     break;
-                case MenuItems.Network:
+                case MenuCategories.Network:
                     this.NetworkArrowVisibility = Visibility.Visible;
                     break;
-                case MenuItems.Appearance:
+                case MenuCategories.Appearance:
                     this.AppearanceArrowVisibility = Visibility.Visible;
+                    break;
+                case MenuCategories.Audio:
+                    this.AudioArrowVisibility = Visibility.Visible;
                     break;
             }
         }
@@ -86,17 +91,22 @@ namespace Battleship2000.ViewModels
         public ICommand PlayerCommand { get; } = new RelayCommand((c) =>
         {
             HelperFunctions.NavigateSettingsframeTo("settings_player");
-            Views.Pages.Settings.Vm.SetArrow(MenuItems.Player);
+            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Player);
         });
         public ICommand NetworkCommand { get; } = new RelayCommand((c) =>
         {
             HelperFunctions.NavigateSettingsframeTo("settings_network");
-            Views.Pages.Settings.Vm.SetArrow(MenuItems.Network);
+            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Network);
         });
         public ICommand AppearanceCommand { get; } = new RelayCommand((c) =>
         {
             HelperFunctions.NavigateSettingsframeTo("settings_appearance");
-            Views.Pages.Settings.Vm.SetArrow(MenuItems.Appearance);
+            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Appearance);
+        });
+        public ICommand AudioCommand { get; } = new RelayCommand((c) =>
+        {
+            HelperFunctions.NavigateSettingsframeTo("settings_audio");
+            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Audio);
         });
         public ICommand BackCommand { get; } = new RelayCommand((c) =>
         {
@@ -163,6 +173,20 @@ namespace Battleship2000.ViewModels
             {
                 _AppearanceArrowVisibility = value;
                 base.OnPropertyChanged(nameof(AppearanceArrowVisibility));
+            }
+        }
+
+        private Visibility _AudioArrowVisibility = Visibility.Hidden;
+        public Visibility AudioArrowVisibility
+        {
+            get
+            {
+                return _AudioArrowVisibility;
+            }
+            set
+            {
+                _AudioArrowVisibility = value;
+                base.OnPropertyChanged(nameof(AudioArrowVisibility));
             }
         }
 

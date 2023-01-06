@@ -13,6 +13,9 @@ namespace Battleship2000.Models
 
         [JsonProperty("appearance")]
         public Appearance Appearance { get; set; } = new();
+
+        [JsonProperty("audio")]
+        public Audio Audio { get; set; } = new();
     }
 
     internal class Network
@@ -33,5 +36,14 @@ namespace Battleship2000.Models
     {
         [JsonProperty("background")]
         public string Background { get; set; } = "Blue";
+    }
+
+    internal class Audio
+    {
+        [JsonProperty("musicvolume")]
+        public float MusicVolume { get; set; } = 0.4f;
+
+        [JsonProperty("effectvolume")]
+        public float EffectVolume { get; set; } = 0.8f;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Battleship2000.ViewModels;
+﻿using Battleship2000.Models;
+using Battleship2000.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -14,5 +15,7 @@ namespace Battleship2000.Logic
         internal static Models.Configuration Config { get; set; } = new();
         internal readonly static List<Page> pages = new();
         internal readonly static List<Window> windows = new();
+        internal readonly static LinkedList<Music> musics = new();
+        internal readonly static List<EffectSound> sounds = new();
     }
 }

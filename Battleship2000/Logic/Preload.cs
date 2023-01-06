@@ -1,6 +1,8 @@
 ﻿using Battleship2000.Views.Pages;
 using Serilog;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -31,6 +33,14 @@ namespace Battleship2000.Logic
                 LoadBackgrounds();
                 PreloadStep?.Invoke(null, EventArgs.Empty);
 
+                LoadAudioFiles();
+                PreloadStep?.Invoke(null, EventArgs.Empty);
+
+                if (ObjectStorage.Config.Audio.MusicVolume > 0.0f)
+                {
+                    AudioEngine.PlayMusic();
+                }
+
                 PreloadComplete?.Invoke(null, EventArgs.Empty);
             });
         }
@@ -46,7 +56,47 @@ namespace Battleship2000.Logic
             ObjectStorage.pages.Add(new Settings_Player());
             ObjectStorage.pages.Add(new Settings_Network());
             ObjectStorage.pages.Add(new Settings_Appearance());
+            ObjectStorage.pages.Add(new Settings_Audio());
             Log.Information("[Preload] Loading pages finished");
+        }
+
+        private static void LoadAudioFiles()
+        {
+            IEnumerable<string> soundlist = typeof(Preload).Assembly.GetManifestResourceNames().Where(x => x.ToLower().EndsWith("mp3"));
+
+            Log.Information($"[Preload] Loading {soundlist.Count()} sounds");
+
+            foreach (string snd in soundlist)
+            {
+                string[] sndplit = snd.Split('.');
+                string soundname = $"{sndplit[sndplit.Length - 2]}.{sndplit[sndplit.Length-1]}";
+
+                using (Stream s = typeof(Preload).Assembly.GetManifestResourceStream(snd))
+                {
+                    if (snd.Contains("snd_effects"))
+                    {
+                        ObjectStorage.sounds.Add(new()
+                        {
+                            Name = soundname,
+                            Payload = new byte[s.Length]
+                        });
+                        s.Read(ObjectStorage.sounds.Last().Payload, 0, ObjectStorage.sounds.Last().Payload.Length);
+                    }
+                    if (snd.Contains("snd_music"))
+                    {
+                        ObjectStorage.musics.AddLast(new Models.Music()
+                        {
+                            Name = soundname,
+                            Payload = new byte[s.Length]
+                        });
+                        s.Read(ObjectStorage.musics.Last().Payload, 0, ObjectStorage.musics.Last().Payload.Length);
+                    }
+                }
+
+                Log.Information($"[Preload] Sound \"{soundname}\" loaded");
+            }
+
+            Log.Information($"[Preload] Loaded successfully {soundlist.Count()} soundfiles. {ObjectStorage.musics.Count} Music files, {ObjectStorage.sounds.Count} Effect files.");
         }
 
         private static void LoadNetworkInterfaces()

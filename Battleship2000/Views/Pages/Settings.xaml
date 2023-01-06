@@ -33,6 +33,10 @@
                     <elem:SelectionArrow Visibility="{Binding PlayerArrowVisibility}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Audio" Margin="0" HorizontalAlignment="Left" Command="{Binding AudioCommand}" />
+                    <elem:SelectionArrow Visibility="{Binding AudioArrowVisibility}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Network" Margin="0" HorizontalAlignment="Left" Command="{Binding NetworkCommand}" />
                     <elem:SelectionArrow Visibility="{Binding NetworkArrowVisibility}" />
                 </StackPanel>
