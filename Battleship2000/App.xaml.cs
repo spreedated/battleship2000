@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Battleship2000
 {
@@ -49,6 +50,10 @@ namespace Battleship2000
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(sender != null && ((Button)sender).Content != null && ((Button)sender).Content.ToString().ToLower().Contains("test"))
+            {
+                return;
+            }
             AudioEngine.PlaySoundEffect("button-pressed");
         }
     }
