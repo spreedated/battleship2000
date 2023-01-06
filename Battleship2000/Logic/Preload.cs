@@ -70,7 +70,7 @@ namespace Battleship2000.Logic
             foreach (string snd in soundlist)
             {
                 string[] sndplit = snd.Split('.');
-                string soundname = $"{sndplit[sndplit.Length - 2]}.{sndplit[sndplit.Length-1]}";
+                string soundname = $"{sndplit[sndplit.Length - 2]}.{sndplit[sndplit.Length - 1]}";
 
                 using (Stream s = typeof(Preload).Assembly.GetManifestResourceStream(snd))
                 {

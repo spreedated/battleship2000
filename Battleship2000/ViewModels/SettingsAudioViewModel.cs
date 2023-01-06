@@ -1,11 +1,6 @@
 ﻿using Battleship2000.Logic;
-using Battleship2000.Models;
 using Battleship2000.ViewLogic;
-using Battleship2000.Views;
-using Battleship2000.Views.Pages;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
-using System.Linq;
 
 namespace Battleship2000.ViewModels
 {
@@ -15,7 +10,7 @@ namespace Battleship2000.ViewModels
         {
             AudioEngine.PlaySoundEffect(ObjectStorage.sounds.GetRandomElement().Name);
         });
-        
+
         public ICommand PlayNextCommand { get; } = new RelayCommand((c) =>
         {
             AudioEngine.NextTrack();

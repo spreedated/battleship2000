@@ -11,7 +11,7 @@ namespace Battleship2000.Logic
         public static T GetRandomElement<T>(this IEnumerable<T> l)
         {
             Random rnd = new(BitConverter.ToInt32(Guid.NewGuid().ToByteArray()));
-            return l.ToArray()[rnd.Next(0,l.Count())];
+            return l.ToArray()[rnd.Next(0, l.Count())];
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Battleship2000.ViewLogic;
+﻿#pragma warning disable S1075
+
+using Battleship2000.ViewLogic;
 using System;
 using System.Linq;
 using System.Reflection;

@@ -99,7 +99,7 @@ namespace Battleship2000.Logic
                         using (WaveOut w = new())
                         {
                             string[] sndsplit = CurrentTrack.Value.Name.Split('.').ToArray();
-                            string soundname = $"{sndsplit[sndsplit.Count()-2]}.{sndsplit[sndsplit.Count() - 1]}";
+                            string soundname = $"{sndsplit[sndsplit.Count() - 2]}.{sndsplit[sndsplit.Count() - 1]}";
 
                             w.Volume = ObjectStorage.Config.Audio.MusicVolume;
 

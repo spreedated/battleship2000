@@ -1,4 +1,6 @@
-﻿using Battleship2000.ViewLogic;
+﻿#pragma warning disable CA1822
+
+using Battleship2000.ViewLogic;
 
 namespace Battleship2000.ViewModels
 {
