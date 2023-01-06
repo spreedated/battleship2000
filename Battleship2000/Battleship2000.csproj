@@ -26,6 +26,10 @@
     <None Remove="Resources\battleship1-1280x736.png" />
     <None Remove="Resources\blue.png" />
     <None Remove="Resources\floppy.png" />
+    <None Remove="Resources\naudio_logo_white.png" />
+    <None Remove="Resources\net6_logo.png" />
+    <None Remove="Resources\newtonsoft_json_logo_white.png" />
+    <None Remove="Resources\serilog_logo.png" />
     <None Remove="Resources\snd_effects\button-124476.mp3" />
     <None Remove="Resources\snd_effects\button-pressed-38129.mp3" />
     <None Remove="Resources\snd_music\happy-day-113985.mp3" />
@@ -66,6 +70,10 @@
     <Resource Include="Resources\battleship1-1280x736.png" />
     <Resource Include="Resources\blue.png" />
     <Resource Include="Resources\floppy.png" />
+    <Resource Include="Resources\naudio_logo_white.png" />
+    <Resource Include="Resources\net6_logo.png" />
+    <Resource Include="Resources\newtonsoft_json_logo_white.png" />
+    <Resource Include="Resources\serilog_logo.png" />
   </ItemGroup>
 
 </Project>

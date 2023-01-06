@@ -3,6 +3,7 @@ using Battleship2000.ViewLogic;
 using Battleship2000.Views.Pages;
 using Serilog;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Battleship2000.ViewModels
@@ -13,10 +14,12 @@ namespace Battleship2000.ViewModels
         public ICommand ConnectCommand { get; } = new RelayCommand(async (c) =>
         {
             ConnectToServer.Vm.ButtonEnabled = false;
+            ConnectToServer.Vm.StatusText = "Connecting ...";
+            ConnectToServer.Vm.StatusTextVisibility = Visibility.Visible;
 
             Log.Information($"[ConnectToServerViewModel] Trying to connect to \"{ConnectToServer.Vm.ConnectText}\"");
 
-            await Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(async () =>
             {
                 ConnectToServer.Vm.NetworkClient?.Dispose();
                 ConnectToServer.Vm.NetworkClient = new();
@@ -29,6 +32,16 @@ namespace Battleship2000.ViewModels
                 catch (System.Exception ex)
                 {
                     Log.Error(ex, $"[ConnectToServerViewModel] Connection failed to \"{ConnectToServer.Vm.ConnectText}\" - ");
+
+                    ConnectToServer.Instance.Dispatcher.Invoke(() =>
+                    {
+                        ConnectToServer.Vm.StatusText = "Connection error";
+                    });
+                    await Task.Delay(1500);
+                    ConnectToServer.Instance.Dispatcher.Invoke(() =>
+                    {
+                        ConnectToServer.Vm.StatusTextVisibility = Visibility.Hidden;
+                    });
                 }
             });
 
@@ -37,6 +50,11 @@ namespace Battleship2000.ViewModels
                 ConnectToServer.Vm.ButtonEnabled = true;
                 return;
             }
+
+            ConnectToServer.Vm.StatusText = "Connection established!";
+            await Task.Delay(1500);
+
+            ConnectToServer.Vm.StatusTextVisibility = Visibility.Hidden;
 
             HelperFunctions.NavigateMainframeTo("playfield");
         });
@@ -68,6 +86,34 @@ namespace Battleship2000.ViewModels
             {
                 _ConnectText = value;
                 base.OnPropertyChanged(nameof(ConnectText));
+            }
+        }
+
+        private string _StatusText = "Connecting ...";
+        public string StatusText
+        {
+            get
+            {
+                return _StatusText;
+            }
+            set
+            {
+                _StatusText = value;
+                base.OnPropertyChanged(nameof(StatusText));
+            }
+        }
+
+        private Visibility _StatusTextVisibility = Visibility.Hidden;
+        public Visibility StatusTextVisibility
+        {
+            get
+            {
+                return _StatusTextVisibility;
+            }
+            set
+            {
+                _StatusTextVisibility = value;
+                base.OnPropertyChanged(nameof(StatusTextVisibility));
             }
         }
     }

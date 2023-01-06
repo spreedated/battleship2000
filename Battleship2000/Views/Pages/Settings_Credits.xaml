@@ -1,0 +1,48 @@
+﻿<Page x:Class="Battleship2000.Views.Pages.Settings_Credits"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Battleship2000.Views.Pages"
+      xmlns:vm="clr-namespace:Battleship2000.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Settings_Credits">
+    <Page.DataContext>
+        <vm:SettingsCreditsViewModel />
+    </Page.DataContext>
+    <StackPanel Margin="10,0,10,10">
+        <StackPanel Orientation="Vertical">
+            <StackPanel>
+                <TextBlock Grid.Column="0" Text="Credit where credit's due" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="18" Margin="0,0,0,15"/>
+                <TextBlock Grid.Column="0" Text="Powered by open source software" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="18" TextDecorations="Underline" Margin="0,0,0,10"/>
+                <StackPanel Orientation="Horizontal" Height="72" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Vertical" Margin="0,0,40,0">
+                        <Image Source="../../resources/naudio_logo_white.png" Width="64" Height="48" Stretch="Uniform" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource TextStyle}" FontSize="12" Text="nAudio Sound Engine" HorizontalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,0,40,0">
+                        <Image Source="../../resources/newtonsoft_json_logo_white.png" Width="64" Height="48" Stretch="Uniform" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource TextStyle}" FontSize="12" Text="Newtonsoft JSON Libary" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="72" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <StackPanel Orientation="Vertical" Margin="0,0,40,0">
+                        <Image Source="../../resources/serilog_logo.png" Width="64" Height="48" Stretch="Uniform" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource TextStyle}" FontSize="12" Text="Serilog Framework" HorizontalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,0,40,0">
+                        <Image Source="../../resources/net6_logo.png" Width="64" Height="48" Stretch="Uniform" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource TextStyle}" FontSize="12" Text=".NET 6 Framework" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock Grid.Column="0" Text="Sounds" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="18" TextDecorations="Underline" Margin="0,15,0,10"/>
+                <TextBlock Grid.Column="0" Text="{Binding SoundCredits}" d:Text="Lorem Ipsum&#10;dolor sit amet" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="14"/>
+                <TextBlock Grid.Column="0" Text="Music" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="18" TextDecorations="Underline" Margin="0,10,0,10"/>
+                <TextBlock Grid.Column="0" Text="{Binding MusicCredits}" d:Text="Lorem Ipsum&#10;dolor sit amet" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="14"/>
+                <TextBlock Grid.Column="0" Text="Battleship 2000" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="18" TextDecorations="Underline" Margin="0,10,0,10"/>
+                <TextBlock Grid.Column="0" Text="{Binding BattleshipCredits}" d:Text="Lorem Ipsum&#10;dolor sit amet" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="14"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Page>

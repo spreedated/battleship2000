@@ -18,11 +18,12 @@
                 <TextBlock Text="{x:Static logic:ObjectStorage.ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
                 <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
                 <TextBlock Text="Server:" Style="{StaticResource TextStyle}" MaxHeight="26" Margin="0,0,15,0"/>
                 <TextBox Margin="0,0,15,0" Style="{StaticResource TextBoxStyle}" MinWidth="240" MaxHeight="24" Text="{Binding ConnectText, Mode=TwoWay}"/>
                 <Button Style="{StaticResource ButtonMenu}" Content="Connect" Width="160" Margin="0,0,0,0" Command="{Binding ConnectCommand}" IsEnabled="{Binding ButtonEnabled}" />
             </StackPanel>
+            <TextBlock Text="{Binding StatusText}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextStyle}" d:Visibility="Visible" Visibility="{Binding StatusTextVisibility}" />
             <Button Style="{StaticResource ButtonMenu}" Content="Back" Width="80" IsEnabled="{Binding ButtonEnabled}" Margin="0,50,0,0" HorizontalAlignment="Center" Command="{Binding BackCommand}" />
         </StackPanel>
     </Grid>

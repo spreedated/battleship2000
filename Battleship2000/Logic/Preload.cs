@@ -57,6 +57,7 @@ namespace Battleship2000.Logic
             ObjectStorage.pages.Add(new Settings_Network());
             ObjectStorage.pages.Add(new Settings_Appearance());
             ObjectStorage.pages.Add(new Settings_Audio());
+            ObjectStorage.pages.Add(new Settings_Credits());
             Log.Information("[Preload] Loading pages finished");
         }
 

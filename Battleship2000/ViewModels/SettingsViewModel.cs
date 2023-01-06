@@ -61,7 +61,8 @@ namespace Battleship2000.ViewModels
             Player,
             Network,
             Appearance,
-            Audio
+            Audio,
+            Credits
         }
 
         public void SetArrow(MenuCategories menuItem)
@@ -70,6 +71,7 @@ namespace Battleship2000.ViewModels
             this.NetworkArrowVisibility = Visibility.Hidden;
             this.AppearanceArrowVisibility = Visibility.Hidden;
             this.AudioArrowVisibility = Visibility.Hidden;
+            this.CreditsArrowVisibility = Visibility.Hidden;
 
             switch (menuItem)
             {
@@ -84,6 +86,9 @@ namespace Battleship2000.ViewModels
                     break;
                 case MenuCategories.Audio:
                     this.AudioArrowVisibility = Visibility.Visible;
+                    break;
+                case MenuCategories.Credits:
+                    this.CreditsArrowVisibility = Visibility.Visible;
                     break;
             }
         }
@@ -107,6 +112,11 @@ namespace Battleship2000.ViewModels
         {
             HelperFunctions.NavigateSettingsframeTo("settings_audio");
             Views.Pages.Settings.Vm.SetArrow(MenuCategories.Audio);
+        });
+        public ICommand CreditsCommand { get; } = new RelayCommand((c) =>
+        {
+            HelperFunctions.NavigateSettingsframeTo("settings_credits");
+            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Credits);
         });
         public ICommand BackCommand { get; } = new RelayCommand((c) =>
         {
@@ -187,6 +197,20 @@ namespace Battleship2000.ViewModels
             {
                 _AudioArrowVisibility = value;
                 base.OnPropertyChanged(nameof(AudioArrowVisibility));
+            }
+        }
+
+        private Visibility _CreditsArrowVisibility = Visibility.Hidden;
+        public Visibility CreditsArrowVisibility
+        {
+            get
+            {
+                return _CreditsArrowVisibility;
+            }
+            set
+            {
+                _CreditsArrowVisibility = value;
+                base.OnPropertyChanged(nameof(CreditsArrowVisibility));
             }
         }
 

@@ -14,7 +14,7 @@
         <vm:SettingsViewModel/>
     </Page.DataContext>
     <Grid>
-        <Grid Margin="20,0,20,0">
+        <Grid Margin="20,0,20,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="64"/>
                 <RowDefinition Height="*" MinHeight="300"/>
@@ -45,9 +45,15 @@
                     <elem:SelectionArrow Visibility="{Binding AppearanceArrowVisibility}" />
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Grid.RowSpan="2">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Credits" Margin="0" HorizontalAlignment="Left" Command="{Binding CreditsCommand}" />
+                    <elem:SelectionArrow Visibility="{Binding CreditsArrowVisibility}" />
+                </StackPanel>
+            </Grid>
+            <ScrollViewer Grid.Row="1" Grid.Column="1" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
                 <Frame x:Name="SettingsFrame" NavigationUIVisibility="Hidden" />
-            </StackPanel>
+            </ScrollViewer>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                 <Button Style="{StaticResource ButtonMenu}" Width="80" Content="Back" Command="{Binding BackCommand}" Margin="0,0,50,0" />
                 <Button Style="{StaticResource ButtonMenu}" Width="140" Content="Save to Disk" Command="{Binding SaveToDiskCommand}" Margin="0,0,10,0" IsEnabled="{Binding ButtonSaveToDiskEnabled}" />
@@ -55,7 +61,7 @@
             </StackPanel>
         </Grid>
         <StackPanel VerticalAlignment="Bottom" Margin="0,0,20,10">
-            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" FontSize="16" Style="{StaticResource TextHeadline}" />
+            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" FontSize="16" Style="{StaticResource TextStyle}" />
         </StackPanel>
     </Grid>
     

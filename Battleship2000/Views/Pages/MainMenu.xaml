@@ -12,18 +12,20 @@
     <Page.DataContext>
         <vm:MainMenuViewModel />
     </Page.DataContext>
-    <StackPanel>
-        <StackPanel Margin="0,50,0,50">
-            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
-            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+    <Grid>
+        <StackPanel>
+            <StackPanel Margin="0,50,0,50">
+                <TextBlock Text="{x:Static logic:ObjectStorage.ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+                <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Button Style="{StaticResource ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" />
+                <Button Style="{StaticResource ButtonMenu}" Content="Start Dedicated Server" Command="{Binding DedicatedServerCommand}" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Vertical">
-            <Button Style="{StaticResource ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" />
-            <Button Style="{StaticResource ButtonMenu}" Content="Start Dedicated Server" Command="{Binding DedicatedServerCommand}" />
-            <Button Style="{StaticResource ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-20,20,0">
+        <Button VerticalAlignment="Bottom" Style="{StaticResource ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" Margin="0,0,0,40" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20">
             <Button Style="{StaticResource ButtonCog}" Command="{Binding SettingsCommand}" />
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Page>
