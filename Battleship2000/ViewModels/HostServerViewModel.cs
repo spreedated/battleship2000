@@ -1,6 +1,8 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
+using Battleship2000.Views;
 using Battleship2000.Views.Pages;
+using System;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -13,7 +15,7 @@ namespace Battleship2000.ViewModels
     {
         private readonly Timer animationTimer = null;
         private bool animationRunning = false;
-        private NetworkServer networkserver = null;
+        public NetworkServer NetworkServer { get; private set; } = null;
         public HostServerViewModel()
         {
             this.animationTimer = new()
@@ -59,14 +61,16 @@ namespace Battleship2000.ViewModels
 
         public async Task<bool> NetworkServerStart()
         {
-            this.networkserver?.Dispose();
-            this.networkserver = new(ObjectStorage.Config.Network.Interface, ObjectStorage.Config.Network.Port);
-            return await this.networkserver.StartServerAsync();
+            this.NetworkServer?.Dispose();
+            this.NetworkServer = new(ObjectStorage.Config.Network.Interface, ObjectStorage.Config.Network.Port);
+            this.NetworkServer.BsClientConnected += OnBsClientConnected;
+            return await this.NetworkServer.StartServerAsync();
         }
 
         public async Task<bool> NetworkServerStop()
         {
-            return await this.networkserver.StopServerAsync();
+            this.NetworkServer.BsClientConnected -= OnBsClientConnected;
+            return await this.NetworkServer.StopServerAsync();
         }
 
         public ICommand StartCommand { get; } = new RelayCommand((c) =>
@@ -83,7 +87,7 @@ namespace Battleship2000.ViewModels
                     HostServer.Instance.Dispatcher.Invoke(() =>
                     {
                         HostServer.Vm.StatusColor = Brushes.Green;
-                        HostServer.Vm.StatusText = "Ready for connections";
+                        HostServer.Vm.StatusText = $"Waiting for client on port {ObjectStorage.Config.Network.Port}";
                     });
                 }
                 else
@@ -109,6 +113,30 @@ namespace Battleship2000.ViewModels
                 });
             });
         });
+
+        private void OnBsClientConnected(object sender, EventArgs e)
+        {
+            this.AnimationStop();
+            this.StatusTextVisibility = Visibility.Visible;
+            this.StartButtonVisibility = Visibility.Hidden;
+            this.StopButtonVisibility = Visibility.Hidden;
+            this.StatusText = $"Player \"{this.NetworkServer.ConnectedClient.Playername}\" connected";
+
+            System.Threading.Thread.Sleep(1750);
+
+            MainWindow.Instance.Dispatcher.Invoke(() =>
+            {
+                HelperFunctions.NavigateMainframeTo("shipplacement");
+            });
+        }
+
+        public void ResetButtonStates()
+        {
+            this.BackButtonEnabled = true;
+            this.StatusTextVisibility = Visibility.Hidden;
+            this.StartButtonVisibility = Visibility.Visible;
+            this.StopButtonVisibility = Visibility.Collapsed;
+        }
 
         public ICommand StopCommand { get; } = new RelayCommand((c) =>
         {

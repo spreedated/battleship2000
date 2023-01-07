@@ -20,7 +20,7 @@
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Button Style="{StaticResource ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" />
-                <Button Style="{StaticResource ButtonMenu}" Content="Start Dedicated Server" Command="{Binding DedicatedServerCommand}" />
+                <Button Style="{StaticResource ButtonMenu}" Content="Host Server" Command="{Binding HostServerCommand}" />
             </StackPanel>
         </StackPanel>
         <Button VerticalAlignment="Bottom" Style="{StaticResource ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" Margin="0,0,0,40" />

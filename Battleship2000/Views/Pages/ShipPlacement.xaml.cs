@@ -29,5 +29,10 @@ namespace Battleship2000.Views.Pages
             Instance = this;
             Vm = (ShipPlacementViewModel)this.DataContext;
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.TXT_Playername.GetBindingExpression(TextBlock.TextProperty).UpdateTarget();
+        }
     }
 }

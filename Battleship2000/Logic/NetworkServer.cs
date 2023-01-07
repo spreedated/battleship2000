@@ -1,8 +1,12 @@
-﻿using NetPackage.TCP;
+﻿using Battleship2000.Models;
+using NetPackage.TCP;
+using Newtonsoft.Json;
 using Serilog;
 using System;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Battleship2000.Logic
 {
@@ -12,6 +16,10 @@ namespace Battleship2000.Logic
         private readonly uint port;
         private SimpleTcpServer server = null;
         private readonly string bindingInterface = null;
+
+        public event EventHandler BsClientConnected;
+
+        public NwoConnectedClient ConnectedClient { get; private set; }
 
         public NetworkServer(string bindingInterface, uint port = 32485)
         {
@@ -79,24 +87,101 @@ namespace Battleship2000.Logic
         {
             return Task<bool>.Factory.StartNew(() =>
             {
+                this.ConnectedClient = null;
                 return this.StopServer();
             });
         }
 
-        private void DataReceived(object sender, NetPackage.TCP.DataReceivedEventArgs e)
+        private void DataReceived(object sender, DataReceivedEventArgs e)
         {
-            Log.Verbose($"[NetworkServer] Server received -> [{e.IpPort}] {Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count)}");
+            string data = Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count);
+
+            Log.Verbose($"[NetworkServer] Server received -> [{e.IpPort}] {data}");
+
+            if (this.ConnectedClient == null)
+            {
+                if(!WaitingOnConnectionDataProcess(data, e))
+                {
+                    return;
+                }
+            }
+
+            if (this.ConnectedClient != null)
+            {
+
+            }
         }
 
-        private void ClientDisconnected(object sender, NetPackage.TCP.ConnectionEventArgs e)
+        private bool WaitingOnConnectionDataProcess(string data, DataReceivedEventArgs e)
+        {
+            NwoClientConnected n = null;
+
+            try
+            {
+                n = JsonConvert.DeserializeObject<NwoClientConnected>(data);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, $"[NetworkServer] Message parsing error");
+                return false;
+            }
+
+            bool[] conditions = new bool[2];
+
+            if (n.AppName == typeof(NetworkServer).Assembly.GetName().Name)
+            {
+                conditions[0] = true;
+            }
+            else
+            {
+                Log.Debug($"[NetworkServer] Client appname mismatch \"{n.AppName}\"");
+            }
+
+            if (n.Version == typeof(NetworkServer).Assembly.GetName().Version)
+            {
+                conditions[1] = true;
+            }
+            else
+            {
+                Log.Debug($"[NetworkServer] Client version mismatch \"{n.Version}\"");
+            }
+
+            if (conditions.Any(x => !x))
+            {
+                Log.Warning($"[NetworkServer] Client sent wrong information");
+                return false;
+            }
+
+            Log.Information($"[NetworkServer] Client connected! - Playername \"{n.Playername}\"");
+
+            this.ConnectedClient = new()
+            {
+                IpPort = e.IpPort,
+                Playername = n.Playername,
+                Version = n.Version
+            };
+
+            this.BsClientConnected?.Invoke(this, EventArgs.Empty);
+
+            return true;
+        }
+
+        private void ClientDisconnected(object sender, ConnectionEventArgs e)
         {
             Log.Verbose($"[NetworkServer] Client ({e.IpPort}) disconnected - reason: \"{e.Reason}\"");
         }
 
-        private void ClientConnected(object sender, NetPackage.TCP.ConnectionEventArgs e)
+        private void ClientConnected(object sender, ConnectionEventArgs e)
         {
             Log.Verbose($"[NetworkServer] Client ({e.IpPort}) connected - reason: \"{e.Reason}\"");
-            this.server.Send(e.IpPort, "Welcome to Battleship 2000");
+
+            NwoClientConnected n = new()
+            {
+                Playername = ObjectStorage.Config.Player.Playername,
+                Version = typeof(NetworkServer).Assembly.GetName().Version
+            };
+
+            this.server.Send(e.IpPort, n.JsonString);
         }
 
         protected virtual void Dispose(bool disposing)
