@@ -9,12 +9,12 @@ using System.Windows.Media;
 
 namespace Battleship2000.ViewModels
 {
-    public class DedicatedServerViewModel : ViewModelBase
+    public class HostServerViewModel : ViewModelBase
     {
         private readonly Timer animationTimer = null;
         private bool animationRunning = false;
         private NetworkServer networkserver = null;
-        public DedicatedServerViewModel()
+        public HostServerViewModel()
         {
             this.animationTimer = new()
             {
@@ -25,15 +25,15 @@ namespace Battleship2000.ViewModels
 
         private void AnimationTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            DedicatedServer.Instance.Dispatcher.Invoke(() =>
+            HostServer.Instance.Dispatcher.Invoke(() =>
             {
-                switch (DedicatedServer.Vm.StatusTextVisibility)
+                switch (HostServer.Vm.StatusTextVisibility)
                 {
                     case Visibility.Visible:
-                        DedicatedServer.Vm.StatusTextVisibility = Visibility.Hidden;
+                        HostServer.Vm.StatusTextVisibility = Visibility.Hidden;
                         break;
                     case Visibility.Hidden:
-                        DedicatedServer.Vm.StatusTextVisibility = Visibility.Visible;
+                        HostServer.Vm.StatusTextVisibility = Visibility.Visible;
                         break;
                 }
             });
@@ -71,69 +71,69 @@ namespace Battleship2000.ViewModels
 
         public ICommand StartCommand { get; } = new RelayCommand((c) =>
         {
-            DedicatedServer.Vm.StatusText = "Starting ...";
-            DedicatedServer.Vm.AnimationStart();
+            HostServer.Vm.StatusText = "Starting ...";
+            HostServer.Vm.AnimationStart();
 
             Task.Factory.StartNew(async () =>
             {
-                bool res = await DedicatedServer.Vm.NetworkServerStart();
+                bool res = await HostServer.Vm.NetworkServerStart();
 
                 if (res)
                 {
-                    DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                    HostServer.Instance.Dispatcher.Invoke(() =>
                     {
-                        DedicatedServer.Vm.StatusColor = Brushes.Green;
-                        DedicatedServer.Vm.StatusText = "Ready for connections";
+                        HostServer.Vm.StatusColor = Brushes.Green;
+                        HostServer.Vm.StatusText = "Ready for connections";
                     });
                 }
                 else
                 {
-                    DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                    HostServer.Instance.Dispatcher.Invoke(() =>
                     {
-                        DedicatedServer.Vm.StatusColor = Brushes.Red;
-                        DedicatedServer.Vm.StatusText = "Error, try again";
+                        HostServer.Vm.StatusColor = Brushes.Red;
+                        HostServer.Vm.StatusText = "Error, try again";
                     });
                     await Task.Delay(2000);
-                    DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                    HostServer.Instance.Dispatcher.Invoke(() =>
                     {
-                        DedicatedServer.Vm.StopCommand.Execute(null);
+                        HostServer.Vm.StopCommand.Execute(null);
                     });
                 }
 
-                DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                HostServer.Instance.Dispatcher.Invoke(() =>
                 {
-                    DedicatedServer.Vm.StartButtonVisibility = Visibility.Collapsed;
-                    DedicatedServer.Vm.StopButtonVisibility = Visibility.Visible;
-                    DedicatedServer.Vm.BackButtonEnabled = false;
-                    DedicatedServer.Vm.StatusTextVisibility = Visibility.Visible;
+                    HostServer.Vm.StartButtonVisibility = Visibility.Collapsed;
+                    HostServer.Vm.StopButtonVisibility = Visibility.Visible;
+                    HostServer.Vm.BackButtonEnabled = false;
+                    HostServer.Vm.StatusTextVisibility = Visibility.Visible;
                 });
             });
         });
 
         public ICommand StopCommand { get; } = new RelayCommand((c) =>
         {
-            DedicatedServer.Vm.StatusText = "Closing ...";
+            HostServer.Vm.StatusText = "Closing ...";
 
             Task.Factory.StartNew(async () =>
             {
-                bool res = await DedicatedServer.Vm.NetworkServerStop();
+                bool res = await HostServer.Vm.NetworkServerStop();
 
                 if (res)
                 {
-                    DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                    HostServer.Instance.Dispatcher.Invoke(() =>
                     {
-                        DedicatedServer.Vm.StatusColor = Brushes.Yellow;
-                        DedicatedServer.Vm.StatusText = "Stopped";
+                        HostServer.Vm.StatusColor = Brushes.Yellow;
+                        HostServer.Vm.StatusText = "Stopped";
                     });
                 }
 
-                DedicatedServer.Instance.Dispatcher.Invoke(() =>
+                HostServer.Instance.Dispatcher.Invoke(() =>
                 {
-                    DedicatedServer.Vm.AnimationStop();
-                    DedicatedServer.Vm.StartButtonVisibility = Visibility.Visible;
-                    DedicatedServer.Vm.StopButtonVisibility = Visibility.Collapsed;
-                    DedicatedServer.Vm.BackButtonEnabled = true;
-                    DedicatedServer.Vm.StatusTextVisibility = Visibility.Hidden;
+                    HostServer.Vm.AnimationStop();
+                    HostServer.Vm.StartButtonVisibility = Visibility.Visible;
+                    HostServer.Vm.StopButtonVisibility = Visibility.Collapsed;
+                    HostServer.Vm.BackButtonEnabled = true;
+                    HostServer.Vm.StatusTextVisibility = Visibility.Hidden;
                 });
             });
         });
