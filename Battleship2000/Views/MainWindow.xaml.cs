@@ -28,10 +28,13 @@ namespace Battleship2000.Views
             {
                 case "oldschool":
                     InstanceVM.BackgroundVis = Visibility.Hidden;
+                    ObjectStorage.BackgroundVis = Visibility.Hidden;
                     break;
                 case "blue":
                     InstanceVM.BackgroundVis = Visibility.Visible;
                     InstanceVM.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                    ObjectStorage.BackgroundVis = Visibility.Visible;
+                    ObjectStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
                     break;
             }
         }

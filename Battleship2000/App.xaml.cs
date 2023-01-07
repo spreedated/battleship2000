@@ -1,4 +1,6 @@
-﻿using Battleship2000.Logic;
+﻿#pragma warning disable S1075
+
+using Battleship2000.Logic;
 using Serilog;
 using Serilog.Events;
 using System;
@@ -36,7 +38,17 @@ namespace Battleship2000
 
             Log.Debug("[App] Log initialize");
 
-            Logic.Configuration.Load();
+            Configuration.Load();
+        }
+
+        private void DebugStartup(object sender, StartupEventArgs e)
+        {
+#if DEBUG
+            //base.StartupUri = new Uri("pack://application:,,,/views/dialogwindow.xaml", UriKind.Absolute);
+            base.StartupUri = new Uri("pack://application:,,,/views/MainWindow.xaml", UriKind.Absolute);
+#else
+            base.StartupUri = new Uri("pack://application:,,,/views/MainWindow.xaml", UriKind.Absolute);
+#endif
         }
 
         protected override void OnExit(ExitEventArgs e)

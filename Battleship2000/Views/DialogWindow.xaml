@@ -1,0 +1,40 @@
+﻿<Window x:Class="Battleship2000.Views.DialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Battleship2000.Views"
+        xmlns:vm="clr-namespace:Battleship2000.ViewModels"
+        xmlns:vl="clr-namespace:Battleship2000.ViewLogic"
+        mc:Ignorable="d"
+        Title="DialogWindow" Height="180" Width="600" WindowStartupLocation="CenterOwner" Background="Transparent" AllowsTransparency="True" WindowStyle="None" MouseDown="Window_MouseDown" ShowInTaskbar="False">
+    <Window.DataContext>
+        <vm:DialogWindowViewModel />
+    </Window.DataContext>
+    <Border Background="Black" CornerRadius="20" BorderBrush="#999" BorderThickness="2.5">
+        <Grid>
+            <Border d:Visibility="Hidden" Visibility="{Binding BackgroundVis}" CornerRadius="20">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding BackgroundImage}" Stretch="None" TileMode="FlipX" Viewport="0,0,256,256" ViewportUnits="Absolute" />
+                </Border.Background>
+            </Border>
+            <Grid>
+                <Border Visibility="{Binding BackgroundVis,Converter={vl:VisibilityOppositeConverter}}" Opacity="0.6" CornerRadius="20">
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" ImageSource="../Resources/battleship1-1280x736.png"/>
+                    </Border.Background>
+                </Border>
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock x:Name="TXT_Headline" Text="{Binding HeadlineText, Mode=OneWay}" d:Text="Headline" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+                    <TextBlock x:Name="TXT_Content" Text="{Binding ContentText, Mode=OneWay}" d:Text="Lorem ipsum" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextStyle}" Margin="0,0,0,0" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource ButtonMenu}" Content="Yes" Width="140" Margin="0,0,10,0" d:Visibility="Visible" Visibility="{Binding ButtonYesVisibility}" Command="{Binding YesCommand}" CommandParameter="{Binding Instance}" />
+                    <Button Style="{StaticResource ButtonMenu}" Content="No" Width="140" Margin="0,0,10,0" d:Visibility="Visible" Visibility="{Binding ButtonNoVisibility}" Command="{Binding NoCommand}" CommandParameter="{Binding Instance}" />
+                    <Button Style="{StaticResource ButtonMenu}" Content="Cancel" Width="140" Margin="0,0,10,0" d:Visibility="Visible" Visibility="{Binding ButtonCancelVisibility}" Command="{Binding CancelCommand}" CommandParameter="{Binding Instance}" />
+                    <Button Style="{StaticResource ButtonMenu}" Content="Okay" Width="140" Margin="0,0,0,0" d:Visibility="Visible" Visibility="{Binding ButtonOkayVisibility}" Command="{Binding OkayCommand}" CommandParameter="{Binding Instance}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,10 +1,15 @@
-﻿using Battleship2000.Models;
+﻿#pragma warning disable S1075
+
+using Battleship2000.Models;
 using Battleship2000.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Battleship2000.Logic
 {
@@ -17,5 +22,7 @@ namespace Battleship2000.Logic
         internal readonly static List<Window> windows = new();
         internal readonly static LinkedList<Music> musics = new();
         internal readonly static List<EffectSound> sounds = new();
+        internal static Visibility BackgroundVis = Visibility.Collapsed;
+        internal static ImageSource BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
     }
 }

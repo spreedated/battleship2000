@@ -9,8 +9,8 @@ namespace Battleship2000.Views.Pages
     /// </summary>
     public partial class MainMenu : Page
     {
-        public MainMenu Instance { get; private set; }
-        public MainMenuViewModel Vm { get; private set; }
+        public static MainMenu Instance { get; private set; }
+        public static MainMenuViewModel Vm { get; private set; }
         public MainMenu()
         {
             InitializeComponent();

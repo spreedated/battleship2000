@@ -21,7 +21,7 @@
             <Grid>
                 <Image Source="../Resources/battleship1-1280x736.png" Visibility="{Binding BackgroundVis,Converter={vl:VisibilityOppositeConverter}}" Stretch="UniformToFill" Opacity="0.6" />
                 <Grid>
-                    <Frame x:Name="MainFrame" d:Source="pages/Playfield.xaml" Source="pages/Preload.xaml" NavigationUIVisibility="Hidden" />
+                    <Frame x:Name="MainFrame" d:Source="pages/Playfield.xaml" Source="pages/Preload.xaml" NavigationUIVisibility="Hidden"/>
                 </Grid>
             </Grid>
         </Grid>
