@@ -25,6 +25,7 @@ namespace Battleship2000.ViewElements
         public ICommand FieldClickCommand { get; } = new RelayCommand((c) =>
         {
             Button cc = (Button)c;
+            cc.Background = Brushes.Red;
             Log.Debug($"[Playfield] Field {cc.Name} pressed");
         });
 
