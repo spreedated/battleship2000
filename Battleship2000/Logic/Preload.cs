@@ -50,7 +50,6 @@ namespace Battleship2000.Logic
             Log.Information("[Preload] Loading pages...");
             ObjectStorage.pages.Add(new ConnectToServer());
             ObjectStorage.pages.Add(new MainMenu());
-            ObjectStorage.pages.Add(new Playfield());
             ObjectStorage.pages.Add(new HostServer());
             ObjectStorage.pages.Add(new Settings());
             ObjectStorage.pages.Add(new Settings_Player());

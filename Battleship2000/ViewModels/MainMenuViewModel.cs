@@ -35,5 +35,31 @@ namespace Battleship2000.ViewModels
         {
             HelperFunctions.NavigateMainframeTo("settings");
         });
+
+#if DEBUG
+        public ICommand DebugCommand { get; } = new RelayCommand((c) =>
+        {
+            HelperFunctions.NavigateMainframeTo("shipplacement");
+        });
+#endif
+
+#if DEBUG
+        private Visibility _DebugButtonVisibility = Visibility.Visible;
+#else
+        private Visibility _DebugButtonVisibility = Visibility.Collapsed;
+#endif
+        public Visibility DebugButtonVisibility
+        {
+            get
+            {
+                return this._DebugButtonVisibility;
+            }
+            set
+            {
+                this._DebugButtonVisibility = value;
+                base.OnPropertyChanged(nameof(this.DebugButtonVisibility));
+            }
+        }
+
     }
 }

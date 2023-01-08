@@ -25,6 +25,7 @@
         </StackPanel>
         <Button VerticalAlignment="Bottom" Style="{StaticResource ButtonMenu}" Content="Exit" Command="{Binding ExitCommand}" Margin="0,0,0,40" />
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,20">
+            <Button Style="{StaticResource ButtonMenu}" Content="DBG" Command="{Binding DebugCommand}" Width="60" Margin="0,0,10,0" />
             <Button Style="{StaticResource ButtonCog}" Command="{Binding SettingsCommand}" />
         </StackPanel>
     </Grid>

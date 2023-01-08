@@ -69,8 +69,12 @@ namespace Battleship2000.ViewModels
 
         public async Task<bool> NetworkServerStop()
         {
-            this.NetworkServer.BsClientConnected -= OnBsClientConnected;
-            return await this.NetworkServer.StopServerAsync();
+            if (this.NetworkServer != null)
+            {
+                this.NetworkServer.BsClientConnected -= OnBsClientConnected;
+                return await this.NetworkServer?.StopServerAsync();
+            }
+            return true;
         }
 
         public ICommand StartCommand { get; } = new RelayCommand((c) =>

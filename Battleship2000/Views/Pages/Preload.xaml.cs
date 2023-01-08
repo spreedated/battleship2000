@@ -41,7 +41,9 @@ namespace Battleship2000.Views.Pages
             Vm.LoadingText = "Loading Complete";
             Log.Information("[PreloadComplete] Loading completed");
 
+#if !DEBUG
             Thread.Sleep(1250);
+#endif
 
             this.Dispatcher.Invoke(() =>
             {
