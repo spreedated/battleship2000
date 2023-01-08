@@ -125,6 +125,7 @@ namespace Battleship2000.Logic
                             w.Stop();
 
                             IsMusicPlaying = false;
+                            Log.Information($"[AudioEngine] Music stopped");
                         }
                     }
                 }

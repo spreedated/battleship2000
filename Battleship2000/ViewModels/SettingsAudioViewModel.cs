@@ -24,6 +24,10 @@ namespace Battleship2000.ViewModels
             }
             set
             {
+                if (!AudioEngine.IsMusicPlaying && this.MusicVolume <= 0.0d)
+                {
+                    AudioEngine.NextTrack();
+                }
                 ObjectStorage.Config.Audio.MusicVolume = value;
                 base.OnPropertyChanged(nameof(MusicVolume));
             }

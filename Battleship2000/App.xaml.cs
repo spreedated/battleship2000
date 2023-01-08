@@ -1,11 +1,14 @@
 ﻿#pragma warning disable S1075
 
 using Battleship2000.Logic;
+using Battleship2000.ViewLogic;
 using Serilog;
 using Serilog.Events;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
