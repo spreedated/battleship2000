@@ -5,6 +5,8 @@ namespace Battleship2000.Models
     public class PlayfieldClassic
     {
         public Cell[,] Cells { get; private set; }
+        
+        //TODO: ships here
 
         #region Constructor
         public PlayfieldClassic()

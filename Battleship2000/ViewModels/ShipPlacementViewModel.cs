@@ -207,7 +207,7 @@ namespace Battleship2000.ViewModels
             Destroyer
         }
 
-        private ShipSelections ShipSelectionCurrent;
+        public ShipSelections ShipSelectionCurrent { get; private set; }
 
         public ICommand CarrierSetCommand { get; } = new RelayCommand((c) =>
         {

@@ -1,5 +1,6 @@
 ﻿using Battleship2000.Models;
 using Battleship2000.ViewLogic;
+using Battleship2000.Views.Pages;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace Battleship2000.ViewElements
             Log.Debug($"[Playfield] {args.ButtonCell.Name} left click");
 
             Point coords = CellnameToCoordinates(args.ButtonCell.Name);
+
 
             args.PlayfieldInstance.PlayfieldLogic.Cells[(int)coords.X, (int)coords.Y].CellState = Cell.CellStates.Ship;
 
@@ -93,7 +95,7 @@ namespace Battleship2000.ViewElements
                     stcks[i].Children.OfType<ButtonCell>().Last().InputBindings.Add(new MouseBinding(this.FieldRightClickCommand, new MouseGesture(MouseAction.RightClick)) { CommandParameter = new PlayfieldCellCommandArgs() { ButtonCell = stcks[i].Children.OfType<ButtonCell>().Last(), PlayfieldInstance = this } });
                 }
             }
-
+            
         }
 
         private static Point CellnameToCoordinates(string cellname)
