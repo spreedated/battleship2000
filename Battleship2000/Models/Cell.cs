@@ -7,7 +7,8 @@
             Unknown = 0,
             Hit,
             Empty,
-            Miss
+            Miss,
+            Ship
         }
 
         public CellStates CellState { get; set; }
