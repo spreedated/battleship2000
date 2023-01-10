@@ -30,25 +30,25 @@
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Player" Margin="0" HorizontalAlignment="Left" Command="{Binding PlayerCommand}" />
-                    <elem:SelectionArrow Visibility="{Binding PlayerArrowVisibility}" />
+                    <elem:SelectionArrow Visibility="{Binding PlayerArrowVisibility}" Margin="8,0,0,0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Audio" Margin="0" HorizontalAlignment="Left" Command="{Binding AudioCommand}" />
-                    <elem:SelectionArrow Visibility="{Binding AudioArrowVisibility}" />
+                    <elem:SelectionArrow Visibility="{Binding AudioArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Network" Margin="0" HorizontalAlignment="Left" Command="{Binding NetworkCommand}" />
-                    <elem:SelectionArrow Visibility="{Binding NetworkArrowVisibility}" />
+                    <elem:SelectionArrow Visibility="{Binding NetworkArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Appearance" Margin="0" HorizontalAlignment="Left" Command="{Binding AppearanceCommand}" />
-                    <elem:SelectionArrow Visibility="{Binding AppearanceArrowVisibility}" />
+                    <elem:SelectionArrow Visibility="{Binding AppearanceArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
             </StackPanel>
             <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Grid.RowSpan="2">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                     <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Credits" Margin="0" HorizontalAlignment="Left" Command="{Binding CreditsCommand}" />
-                    <elem:SelectionArrow Visibility="{Binding CreditsArrowVisibility}" />
+                    <elem:SelectionArrow Visibility="{Binding CreditsArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
             </Grid>
             <ScrollViewer Grid.Row="1" Grid.Column="1" CanContentScroll="True" VerticalScrollBarVisibility="Auto">

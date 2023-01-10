@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Reflection;
 using System.Collections.Generic;
+using Battleship2000.ViewElements;
 
 namespace Battleship2000.ViewModels
 {
@@ -294,5 +295,31 @@ namespace Battleship2000.ViewModels
                 specificPropertyArrowVisible.SetValue(ShipPlacement.Vm, Visibility.Visible);
             }
         }
+
+        public ICommand OrientationChangeCommand { get; } = new RelayCommand((c) =>
+        {
+            if (ShipPlacement.Vm.RotationArrow == SelectionArrow.Rotations.Right)
+            {
+                ShipPlacement.Vm.RotationArrow = SelectionArrow.Rotations.Down;
+                return;
+            }
+
+            ShipPlacement.Vm.RotationArrow = SelectionArrow.Rotations.Right;
+        });
+
+        private SelectionArrow.Rotations _RotationArrow = SelectionArrow.Rotations.Right;
+        public SelectionArrow.Rotations RotationArrow
+        {
+            get
+            {
+                return this._RotationArrow;
+            }
+            set
+            {
+                this._RotationArrow = value;
+                base.OnPropertyChanged(nameof(this.RotationArrow));
+            }
+        }
+
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Battleship2000.Models
 {
-    internal abstract class Ship
+    public abstract class Ship
     {
         public enum ShipTypes
         {
