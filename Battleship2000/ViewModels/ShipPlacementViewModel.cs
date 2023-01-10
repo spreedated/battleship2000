@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Reflection;
 using System.Collections.Generic;
 using Battleship2000.ViewElements;
+using Battleship2000.Models;
 
 namespace Battleship2000.ViewModels
 {
@@ -197,6 +198,8 @@ namespace Battleship2000.ViewModels
             }
         }
 
+        public Ship SelectedShip { get; private set; }
+
         public enum ShipSelections
         {
             None = 0,
@@ -215,10 +218,12 @@ namespace Battleship2000.ViewModels
             if (ShipPlacement.Vm.ShipSelectionCurrent == ShipSelections.Carrier)
             {
                 ShipSelectorButtonHandler(ShipSelections.All);
+                ShipPlacement.Vm.SelectedShip = null;
                 return;
             }
 
             ShipSelectorButtonHandler(ShipSelections.Carrier);
+            ShipPlacement.Vm.SelectedShip = new Carrier();
         });
 
         public ICommand BattlshipSetCommand { get; } = new RelayCommand((c) =>
@@ -226,9 +231,11 @@ namespace Battleship2000.ViewModels
             if (ShipPlacement.Vm.BattleshipArrowVisibility == Visibility.Visible)
             {
                 ShipSelectorButtonHandler(ShipSelections.All);
+                ShipPlacement.Vm.SelectedShip = null;
                 return;
             }
             ShipSelectorButtonHandler(ShipSelections.Battleship);
+            ShipPlacement.Vm.SelectedShip = new Battleship();
         });
 
         public ICommand CruiserSetCommand { get; } = new RelayCommand((c) =>
@@ -236,9 +243,11 @@ namespace Battleship2000.ViewModels
             if (ShipPlacement.Vm.CruiserArrowVisibility == Visibility.Visible)
             {
                 ShipSelectorButtonHandler(ShipSelections.All);
+                ShipPlacement.Vm.SelectedShip = null;
                 return;
             }
             ShipSelectorButtonHandler(ShipSelections.Cruiser);
+            ShipPlacement.Vm.SelectedShip = new Cruiser();
         });
 
         public ICommand SubmarineSetCommand { get; } = new RelayCommand((c) =>
@@ -246,9 +255,11 @@ namespace Battleship2000.ViewModels
             if (ShipPlacement.Vm.SubmarineArrowVisibility == Visibility.Visible)
             {
                 ShipSelectorButtonHandler(ShipSelections.All);
+                ShipPlacement.Vm.SelectedShip = null;
                 return;
             }
             ShipSelectorButtonHandler(ShipSelections.Submarine);
+            ShipPlacement.Vm.SelectedShip = new Submarine();
         });
 
         public ICommand DestroyerSetCommand { get; } = new RelayCommand((c) =>
@@ -256,9 +267,11 @@ namespace Battleship2000.ViewModels
             if (ShipPlacement.Vm.DestroyerArrowVisibility == Visibility.Visible)
             {
                 ShipSelectorButtonHandler(ShipSelections.All);
+                ShipPlacement.Vm.SelectedShip = null;
                 return;
             }
             ShipSelectorButtonHandler(ShipSelections.Destroyer);
+            ShipPlacement.Vm.SelectedShip = new Destroyer();
         });
 
         private static void ShipSelectorButtonHandler(ShipSelections shipSelection)

@@ -1,21 +1,14 @@
 ﻿using Battleship2000.Models;
 using Battleship2000.ViewLogic;
-using Battleship2000.Views.Pages;
 using Serilog;
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Battleship2000.ViewElements
 {
@@ -24,27 +17,44 @@ namespace Battleship2000.ViewElements
     /// </summary>
     public partial class Playfield : UserControl
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private ICommand _FieldLeftClickOverride;
+        public ICommand FieldLeftClickOverride
+        {
+            get
+            {
+                return this._FieldLeftClickOverride;
+            }
+            set
+            {
+                this._FieldLeftClickOverride = value;
+                this.OnPropertyChanged(nameof(this.FieldLeftClickOverride));
+            }
+        }
+
         public ICommand FieldClickCommand { get; } = new RelayCommand((c) =>
         {
             PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
-
-            args.ButtonCell.BackgroundCell = Brushes.Red;
-
             Log.Debug($"[Playfield] {args.ButtonCell.Name} left click");
 
-            Point coords = CellnameToCoordinates(args.ButtonCell.Name);
+            args.Coords = CellnameToCoordinates(args.ButtonCell.Name);
 
+            if (args.PlayfieldInstance.FieldLeftClickOverride != null)
+            {
+                args.PlayfieldInstance.FieldLeftClickOverride.Execute(args);
+            }
 
-            args.PlayfieldInstance.PlayfieldLogic.Cells[(int)coords.X, (int)coords.Y].CellState = Cell.CellStates.Ship;
-
-            Log.Debug($"[Playfield] Ship part placed on [{coords.X},{coords.Y}]");
+            args.PlayfieldInstance.RefreshPlayfieldGui();
         });
 
         public ICommand FieldRightClickCommand { get; } = new RelayCommand((c) =>
         {
             PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
-
-            args.ButtonCell.BackgroundCell = Brushes.Transparent;
 
             Log.Debug($"[Playfield] {args.ButtonCell.Name} right click");
 
@@ -53,7 +63,27 @@ namespace Battleship2000.ViewElements
             args.PlayfieldInstance.PlayfieldLogic.Cells[(int)coords.X, (int)coords.Y].CellState = Cell.CellStates.Empty;
 
             Log.Debug($"[Playfield] Ship part removed on [{coords.X},{coords.Y}]");
+
+            args.PlayfieldInstance.RefreshPlayfieldGui();
         });
+
+        public void RefreshPlayfieldGui()
+        {
+            for (int i = 0; i < this.PlayfieldLogic.Cells.GetLength(0); i++)
+            {
+                for (int ii = 0; ii < this.PlayfieldLogic.Cells.GetLength(1); ii++)
+                {
+                    if (this.PlayfieldLogic.Cells[i,ii].CellState == Cell.CellStates.Ship)
+                    {
+                        ((ButtonCell)this.stcks[ii].Children[i]).BackgroundCell = Brushes.Red;
+                        continue;
+                    }
+                    ((ButtonCell)this.stcks[ii].Children[i]).BackgroundCell = Brushes.Transparent;
+                }
+            }
+        }
+
+        private readonly StackPanel[] stcks;
 
         public PlayfieldClassic PlayfieldLogic { get; private set; }
 
@@ -66,7 +96,7 @@ namespace Battleship2000.ViewElements
 
             string alpha = "ABCDEFGHIJ";
 
-            StackPanel[] stcks = new StackPanel[]
+            this.stcks = new StackPanel[]
             {
                 this.StckPnl_L1,
                 this.StckPnl_L2,
@@ -95,7 +125,6 @@ namespace Battleship2000.ViewElements
                     stcks[i].Children.OfType<ButtonCell>().Last().InputBindings.Add(new MouseBinding(this.FieldRightClickCommand, new MouseGesture(MouseAction.RightClick)) { CommandParameter = new PlayfieldCellCommandArgs() { ButtonCell = stcks[i].Children.OfType<ButtonCell>().Last(), PlayfieldInstance = this } });
                 }
             }
-            
         }
 
         private static Point CellnameToCoordinates(string cellname)
