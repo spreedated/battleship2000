@@ -282,6 +282,7 @@ namespace Battleship2000.ViewModels
                 {
                     p.SetValue(ShipPlacement.Vm, true);
                 }
+                return;
             }
 
             PropertyInfo specificPropertyEnable = typeof(ShipPlacementViewModel).GetProperties().FirstOrDefault(p => p.Name.Contains(shipSelection.ToString()) && p.PropertyType == typeof(bool));
