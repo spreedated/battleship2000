@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace Battleship2000.ViewModels
 {
-    public class SettingsAppearanceViewModel : ViewModelBase
+    public class SettingsVisualViewModel : ViewModelBase
     {
         public ObservableCollection<Background> Backgrounds { get; set; } = new();
 
@@ -20,7 +20,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 this._SelectedBackground = value;
-                ObjectStorage.Config.Appearance.Background = this._SelectedBackground.Name;
+                ObjectStorage.Config.Visual.Background = this._SelectedBackground.Name;
                 base.OnPropertyChanged(nameof(SelectedBackground));
                 MainWindow.Instance.RefreshBackground();
             }

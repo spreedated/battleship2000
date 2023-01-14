@@ -21,7 +21,7 @@
                 <RowDefinition MaxHeight="48"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MaxWidth="160" />
+                <ColumnDefinition MaxWidth="180" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
@@ -29,25 +29,25 @@
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Player" Margin="0" HorizontalAlignment="Left" Command="{Binding PlayerCommand}" />
+                    <elem:ButtonIconText Width="140" Text="Player" Command="{Binding PlayerCommand}" MaterialIcon="Account" />
                     <elem:SelectionArrow Visibility="{Binding PlayerArrowVisibility}" Margin="8,0,0,0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Audio" Margin="0" HorizontalAlignment="Left" Command="{Binding AudioCommand}" />
+                    <elem:ButtonIconText Width="140" Text="Audio" Command="{Binding AudioCommand}" MaterialIcon="Speaker" />
                     <elem:SelectionArrow Visibility="{Binding AudioArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Network" Margin="0" HorizontalAlignment="Left" Command="{Binding NetworkCommand}" />
+                    <elem:ButtonIconText Width="140" Text="Network" Command="{Binding NetworkCommand}" MaterialIcon="LanPending" />
                     <elem:SelectionArrow Visibility="{Binding NetworkArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Appearance" Margin="0" HorizontalAlignment="Left" Command="{Binding AppearanceCommand}" />
-                    <elem:SelectionArrow Visibility="{Binding AppearanceArrowVisibility}" Margin="8,0,0,0"/>
+                    <elem:ButtonIconText Width="140" Text="Visual" Command="{Binding VisualCommand}" ZondIcon="ComputerDesktop" />
+                    <elem:SelectionArrow Visibility="{Binding VisualArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
             </StackPanel>
             <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Grid.RowSpan="2">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Button Style="{StaticResource ButtonMenu}" Width="120" Content="Credits" Margin="0" HorizontalAlignment="Left" Command="{Binding CreditsCommand}" />
+                    <elem:ButtonIconText Width="140" Text="Credits" Command="{Binding CreditsCommand}" MaterialIcon="CardTextOutline" />
                     <elem:SelectionArrow Visibility="{Binding CreditsArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
             </Grid>

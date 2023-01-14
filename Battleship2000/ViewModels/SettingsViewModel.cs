@@ -60,7 +60,7 @@ namespace Battleship2000.ViewModels
             None = 0,
             Player,
             Network,
-            Appearance,
+            Visual,
             Audio,
             Credits
         }
@@ -69,7 +69,7 @@ namespace Battleship2000.ViewModels
         {
             this.PlayerArrowVisibility = Visibility.Hidden;
             this.NetworkArrowVisibility = Visibility.Hidden;
-            this.AppearanceArrowVisibility = Visibility.Hidden;
+            this.VisualArrowVisibility = Visibility.Hidden;
             this.AudioArrowVisibility = Visibility.Hidden;
             this.CreditsArrowVisibility = Visibility.Hidden;
 
@@ -81,8 +81,8 @@ namespace Battleship2000.ViewModels
                 case MenuCategories.Network:
                     this.NetworkArrowVisibility = Visibility.Visible;
                     break;
-                case MenuCategories.Appearance:
-                    this.AppearanceArrowVisibility = Visibility.Visible;
+                case MenuCategories.Visual:
+                    this.VisualArrowVisibility = Visibility.Visible;
                     break;
                 case MenuCategories.Audio:
                     this.AudioArrowVisibility = Visibility.Visible;
@@ -103,10 +103,10 @@ namespace Battleship2000.ViewModels
             HelperFunctions.NavigateSettingsframeTo("settings_network");
             Views.Pages.Settings.Vm.SetArrow(MenuCategories.Network);
         });
-        public ICommand AppearanceCommand { get; } = new RelayCommand((c) =>
+        public ICommand VisualCommand { get; } = new RelayCommand((c) =>
         {
-            HelperFunctions.NavigateSettingsframeTo("settings_appearance");
-            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Appearance);
+            HelperFunctions.NavigateSettingsframeTo("settings_visual");
+            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Visual);
         });
         public ICommand AudioCommand { get; } = new RelayCommand((c) =>
         {
@@ -172,17 +172,17 @@ namespace Battleship2000.ViewModels
             }
         }
 
-        private Visibility _AppearanceArrowVisibility = Visibility.Hidden;
-        public Visibility AppearanceArrowVisibility
+        private Visibility _VisualArrowVisibility = Visibility.Hidden;
+        public Visibility VisualArrowVisibility
         {
             get
             {
-                return _AppearanceArrowVisibility;
+                return _VisualArrowVisibility;
             }
             set
             {
-                _AppearanceArrowVisibility = value;
-                base.OnPropertyChanged(nameof(AppearanceArrowVisibility));
+                _VisualArrowVisibility = value;
+                base.OnPropertyChanged(nameof(VisualArrowVisibility));
             }
         }
 

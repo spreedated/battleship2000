@@ -24,7 +24,7 @@ namespace Battleship2000.Views
 
         public void RefreshBackground()
         {
-            switch (ObjectStorage.Config.Appearance.Background.ToLower())
+            switch (ObjectStorage.Config.Visual.Background.ToLower())
             {
                 case "oldschool":
                     InstanceVM.BackgroundVis = Visibility.Hidden;

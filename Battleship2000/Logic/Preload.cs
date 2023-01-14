@@ -54,7 +54,7 @@ namespace Battleship2000.Logic
             ObjectStorage.pages.Add(new Settings());
             ObjectStorage.pages.Add(new Settings_Player());
             ObjectStorage.pages.Add(new Settings_Network());
-            ObjectStorage.pages.Add(new Settings_Appearance());
+            ObjectStorage.pages.Add(new Settings_Visual());
             ObjectStorage.pages.Add(new Settings_Audio());
             ObjectStorage.pages.Add(new Settings_Credits());
             ObjectStorage.pages.Add(new ShipPlacement());
@@ -133,13 +133,13 @@ namespace Battleship2000.Logic
 
         private static void LoadBackgrounds()
         {
-            Settings_Appearance.Instance.Dispatcher.Invoke(() =>
+            Settings_Visual.Instance.Dispatcher.Invoke(() =>
             {
-                Settings_Appearance.Vm.Backgrounds.Add(new() { Name = "Oldschool", Filename = "battleship1-1280x736.png" });
-                Settings_Appearance.Vm.Backgrounds.Add(new() { Name = "Blue", Filename = "blue.png" });
-                if (Settings_Appearance.Vm.Backgrounds.Any(x => x.Name == ObjectStorage.Config.Appearance.Background))
+                Settings_Visual.Vm.Backgrounds.Add(new() { Name = "Oldschool", Filename = "battleship1-1280x736.png" });
+                Settings_Visual.Vm.Backgrounds.Add(new() { Name = "Blue", Filename = "blue.png" });
+                if (Settings_Visual.Vm.Backgrounds.Any(x => x.Name == ObjectStorage.Config.Visual.Background))
                 {
-                    Settings_Appearance.Instance.CMB_Background.SelectedItem = Settings_Appearance.Vm.Backgrounds.First(x => x.Name == ObjectStorage.Config.Appearance.Background);
+                    Settings_Visual.Instance.CMB_Background.SelectedItem = Settings_Visual.Vm.Backgrounds.First(x => x.Name == ObjectStorage.Config.Visual.Background);
                 }
             });
         }
