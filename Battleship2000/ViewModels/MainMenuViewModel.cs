@@ -1,7 +1,10 @@
 ﻿using Battleship2000.ViewLogic;
 using Battleship2000.Views;
+using Battleship2000.Views.Pages;
+using MahApps.Metro.IconPacks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Battleship2000.ViewModels
 {
@@ -60,6 +63,5 @@ namespace Battleship2000.ViewModels
                 base.OnPropertyChanged(nameof(this.DebugButtonVisibility));
             }
         }
-
     }
 }

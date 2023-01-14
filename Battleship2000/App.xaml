@@ -15,7 +15,7 @@
                 <Setter Property="FontFamily" Value="Consolas" />
                 <Setter Property="FontSize" Value="16px" />
                 <Setter Property="Foreground" Value="WhiteSmoke" />
-                <Setter Property="Background" Value="#333" />
+                <Setter Property="Background" Value="#333333" />
                 <Setter Property="HorizontalContentAlignment" Value="Left" />
                 <Setter Property="VerticalContentAlignment" Value="Center" />
                 <Setter Property="BorderThickness" Value="0" />
@@ -25,7 +25,7 @@
                 <Setter Property="FontFamily" Value="Consolas" />
                 <Setter Property="FontSize" Value="16px" />
                 <Setter Property="Foreground" Value="WhiteSmoke" />
-                <Setter Property="Background" Value="#333" />
+                <Setter Property="Background" Value="#333333" />
                 <Setter Property="HorizontalContentAlignment" Value="Left" />
                 <Setter Property="VerticalContentAlignment" Value="Center" />
                 <Setter Property="BorderThickness" Value="0" />
@@ -80,7 +80,47 @@
                                     <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
                                 </Trigger>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Foreground" TargetName="txtBlock" Value="#222" />
+                                    <Setter Property="Foreground" TargetName="txtBlock" Value="#222222" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="0" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ButtonIcon" TargetType="Button">
+                <EventSetter Event="Click" Handler="Button_Click" />
+
+                <Setter Property="Width" Value="46"/>
+                <Setter Property="Height" Value="46"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="bBorder" Background="#777777" BorderThickness="2" BorderBrush="Black">
+                                <Border x:Name="bBorderFirstFrame" BorderThickness="3,3,0,0" BorderBrush="#999999">
+                                    <Border x:Name="bBorderSecondFrame" BorderThickness="0,0,3,3" BorderBrush="#444444">
+                                        <Grid x:Name="ic" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                                            <ContentPresenter />
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" TargetName="bBorder" Value="#999999" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0,0,3,3" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="bBorder" Value="#333333" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0,0,3,3" />
+                                    <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="3,3,0,0" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
                                     <Setter Property="BorderThickness" TargetName="bBorderFirstFrame" Value="0" />
                                     <Setter Property="BorderThickness" TargetName="bBorderSecondFrame" Value="0" />
                                 </Trigger>
