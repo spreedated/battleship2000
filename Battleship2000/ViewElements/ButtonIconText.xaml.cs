@@ -12,6 +12,20 @@ namespace Battleship2000.ViewElements
     /// </summary>
     public partial class ButtonIconText : UserControl
     {
+        public static readonly DependencyProperty VaadinIconProperty = DependencyProperty.Register("VaadinIcon", typeof(PackIconVaadinIconsKind), typeof(ButtonIconText), new FrameworkPropertyMetadata(PackIconVaadinIconsKind.None, new PropertyChangedCallback(OnIconChanged)));
+        public PackIconVaadinIconsKind VaadinIcon
+        {
+            get => (PackIconVaadinIconsKind)GetValue(VaadinIconProperty);
+            set => SetValue(VaadinIconProperty, value);
+        }
+
+        public static readonly DependencyProperty VaadinVisibilityProperty = DependencyProperty.Register("VaadinVisibility", typeof(Visibility), typeof(ButtonIconText), new FrameworkPropertyMetadata(Visibility.Collapsed));
+        public Visibility VaadinVisibility
+        {
+            get => (Visibility)GetValue(VaadinVisibilityProperty);
+            set => SetValue(VaadinVisibilityProperty, value);
+        }
+
         public static readonly DependencyProperty ZondIconProperty = DependencyProperty.Register("ZondIcon", typeof(PackIconZondiconsKind), typeof(ButtonIconText), new FrameworkPropertyMetadata(PackIconZondiconsKind.None, new PropertyChangedCallback(OnIconChanged)));
         public PackIconZondiconsKind ZondIcon
         {
@@ -106,6 +120,7 @@ namespace Battleship2000.ViewElements
                 v.ZondVisibility = v.ZondIcon == PackIconZondiconsKind.None ? Visibility.Collapsed : Visibility.Visible;
                 v.ForkVisibility = v.ForkIcon == PackIconForkAwesomeKind.None ? Visibility.Collapsed : Visibility.Visible;
                 v.EntypoVisibility = v.EntypoIcon == PackIconEntypoKind.None ? Visibility.Collapsed : Visibility.Visible;
+                v.VaadinVisibility = v.VaadinIcon == PackIconVaadinIconsKind.None ? Visibility.Collapsed : Visibility.Visible;
             }
         }
 

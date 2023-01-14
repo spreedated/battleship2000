@@ -13,12 +13,13 @@ namespace Battleship2000.ViewElements
     /// <summary>
     /// Interaction logic for ButtonIcon.xaml
     /// </summary>
-    public partial class ButtonIcon : UserControl, INotifyPropertyChanged
+    public partial class ButtonIcon : UserControl
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        public static readonly DependencyProperty VaadinIconProperty = DependencyProperty.Register("VaadinIcon", typeof(PackIconVaadinIconsKind), typeof(ButtonIcon), new FrameworkPropertyMetadata(PackIconVaadinIconsKind.None));
+        public PackIconVaadinIconsKind VaadinIcon
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            get => (PackIconVaadinIconsKind)GetValue(VaadinIconProperty);
+            set => SetValue(VaadinIconProperty, value);
         }
 
         public static readonly DependencyProperty ZondIconProperty = DependencyProperty.Register("ZondIcon", typeof(PackIconZondiconsKind), typeof(ButtonIcon), new FrameworkPropertyMetadata(PackIconZondiconsKind.None));

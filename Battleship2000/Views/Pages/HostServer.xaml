@@ -6,6 +6,7 @@
       xmlns:vm="clr-namespace:Battleship2000.ViewModels" 
       xmlns:local="clr-namespace:Battleship2000.Views.Pages"
       xmlns:logic="clr-namespace:Battleship2000.Logic"
+      xmlns:elem="clr-namespace:Battleship2000.ViewElements"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HostServer">
@@ -26,7 +27,7 @@
                 <TextBlock d:Text="Starting ..." Text="{Binding StatusText}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" FontSize="32" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,50,0,0">
-                <Button Style="{StaticResource ButtonMenu}" Content="Back" Width="80" IsEnabled="{Binding BackButtonEnabled}" Margin="0,0,50,0" HorizontalAlignment="Center" Command="{Binding BackCommand}" />
+                <elem:ButtonIconText Width="100" Text="Back" Command="{Binding BackCommand}" VaadinIcon="ArrowBackward" IsEnabled="{Binding BackButtonEnabled}" Margin="0,0,50,0" HorizontalAlignment="Center" />
                 <Button Style="{StaticResource ButtonMenu}" Content="Start Server" Width="180" d:Visibility="Visible" Visibility="{Binding StartButtonVisibility}" Margin="0,0,0,0" HorizontalAlignment="Center" Command="{Binding StartCommand}" />
                 <Button Style="{StaticResource ButtonMenu}" Content="Stop Server" Width="180" d:Visibility="Visible" Visibility="{Binding StopButtonVisibility}" Margin="0,0,0,0" HorizontalAlignment="Center" Command="{Binding StopCommand}" />
             </StackPanel>

@@ -55,7 +55,7 @@
                 <Frame x:Name="SettingsFrame" NavigationUIVisibility="Hidden" />
             </ScrollViewer>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                <Button Style="{StaticResource ButtonMenu}" Width="80" Content="Back" Command="{Binding BackCommand}" Margin="0,0,50,0" />
+                <elem:ButtonIconText Width="100" Text="Back" Command="{Binding BackCommand}" VaadinIcon="ArrowBackward" Margin="0,0,50,0" />
                 <Button Style="{StaticResource ButtonMenu}" Width="140" Content="Save to Disk" Command="{Binding SaveToDiskCommand}" Margin="0,0,10,0" IsEnabled="{Binding ButtonSaveToDiskEnabled}" />
                 <Image Source="../../resources/floppy.png" Height="32" Visibility="{Binding SaveIconVisibility}" />
             </StackPanel>

@@ -11,10 +11,11 @@
         <Button Margin="0,0,0,0" Style="{StaticResource ButtonIcon}" Height="46" Width="46" IsEnabled="{Binding ElementName=me, Path=IsEnabled}" Command="{Binding Command, ElementName=me}">
             <Button.Content>
                 <Grid>
-                    <ic:PackIconMaterial d:Kind="RotateRightVariant" Kind="{Binding MaterialIcon,ElementName=me}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />
+                    <ic:PackIconMaterial Kind="{Binding MaterialIcon,ElementName=me}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />
                     <ic:PackIconEntypo Kind="{Binding EntypoIcon, ElementName=me}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />
-                    <ic:PackIconForkAwesome Kind="{Binding ForkIcon, ElementName=me}" d:Kind="Activitypub" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />
-                    <ic:PackIconZondicons Kind="{Binding ZondIcon, ElementName=me}" d:Kind="Airplane" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />
+                    <ic:PackIconForkAwesome Kind="{Binding ForkIcon, ElementName=me}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />
+                    <ic:PackIconZondicons Kind="{Binding ZondIcon, ElementName=me}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />
+                    <ic:PackIconVaadinIcons Kind="{Binding VaadinIcon, ElementName=me}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />
                 </Grid>
             </Button.Content>
         </Button>

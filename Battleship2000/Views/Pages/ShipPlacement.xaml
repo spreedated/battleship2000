@@ -55,7 +55,7 @@
             </Grid>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
-            <Button Style="{StaticResource ButtonMenu}" Width="140" Content="Disconnect" Command="{Binding DisconnectCommand}" IsEnabled="{Binding ButtonDisconnectEnabled}" Margin="0,0,120,0" />
+            <elem:ButtonIconText Width="160" Text="Disconnect" Command="{Binding DisconnectCommand}" MaterialIcon="LanDisconnect" IsEnabled="{Binding ButtonDisconnectEnabled}" Margin="0,0,120,0" />
             <Button Style="{StaticResource ButtonMenu}" Width="140" Content="Ready" Margin="0,0,0,0" IsEnabled="{Binding ButtonReadyEnabled}" />
         </StackPanel>
     </Grid>
