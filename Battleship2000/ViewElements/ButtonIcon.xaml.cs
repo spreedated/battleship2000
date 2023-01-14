@@ -25,40 +25,28 @@ namespace Battleship2000.ViewElements
         public PackIconZondiconsKind ZondIcon
         {
             get => (PackIconZondiconsKind)GetValue(ZondIconProperty);
-            set
-            {
-                SetValue(ZondIconProperty, value);
-            }
+            set => SetValue(ZondIconProperty, value);
         }
 
         public static readonly DependencyProperty ForkIconProperty = DependencyProperty.Register("ForkIcon", typeof(PackIconForkAwesomeKind), typeof(ButtonIcon), new FrameworkPropertyMetadata(PackIconForkAwesomeKind.None));
         public PackIconForkAwesomeKind ForkIcon
         {
             get => (PackIconForkAwesomeKind)GetValue(ForkIconProperty);
-            set
-            {
-                SetValue(ForkIconProperty, value);
-            }
+            set => SetValue(ForkIconProperty, value);
         }
 
         public static readonly DependencyProperty MaterialIconProperty = DependencyProperty.Register("MaterialIcon", typeof(PackIconMaterialKind), typeof(ButtonIcon), new FrameworkPropertyMetadata(PackIconMaterialKind.None));
         public PackIconMaterialKind MaterialIcon
         {
             get => (PackIconMaterialKind)GetValue(MaterialIconProperty);
-            set
-            {
-                SetValue(MaterialIconProperty, value);
-            }
+            set => SetValue(MaterialIconProperty, value);
         }
 
         public static readonly DependencyProperty EntypoIconProperty = DependencyProperty.Register("EntypoIcon", typeof(PackIconEntypoKind), typeof(ButtonIcon), new FrameworkPropertyMetadata(PackIconEntypoKind.None));
         public PackIconEntypoKind EntypoIcon
         {
             get => (PackIconEntypoKind)GetValue(EntypoIconProperty);
-            set
-            {
-                SetValue(EntypoIconProperty, value);
-            }
+            set => SetValue(EntypoIconProperty, value);
         }
 
         public static readonly DependencyProperty IconColorProperty = DependencyProperty.Register("IconColor", typeof(Brush), typeof(ButtonIcon), new FrameworkPropertyMetadata(Brushes.WhiteSmoke));
@@ -91,7 +79,7 @@ namespace Battleship2000.ViewElements
             else
             {
                 privateColor = this.IconColor;
-                this.IconColor = new SolidColorBrush(Color.FromRgb(44, 44, 44));
+                this.IconColor = new SolidColorBrush(Color.FromRgb(34, 34, 34));
             }
         }
 

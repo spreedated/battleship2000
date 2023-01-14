@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Battleship2000.ViewElements.ButtonIconText"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Battleship2000.ViewElements"
+             xmlns:ic="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             Height="32" Width="220" Name="me">
+    <Grid>
+        <Button Style="{StaticResource ButtonIconText}" IsEnabled="{Binding ElementName=me, Path=IsEnabled}" Margin="0,0,0,0" Width="{Binding ElementName=me, Path=Width}" Command="{Binding ElementName=me,Path=Command}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <ic:PackIconMaterial d:Kind="RotateRightVariant" Visibility="{Binding ElementName=me, Path=MaterialVisibility}" Kind="{Binding MaterialIcon,ElementName=me}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="18" Width="24" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" Margin="5,0,5,0" />
+                    <ic:PackIconEntypo Visibility="{Binding ElementName=me, Path=EntypoVisibility}" Kind="{Binding EntypoIcon, ElementName=me}" d:Kind="_500px"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="18" Width="24" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" Margin="5,0,5,0" />
+                    <ic:PackIconForkAwesome Visibility="{Binding ElementName=me, Path=ForkVisibility}" Kind="{Binding ForkIcon, ElementName=me}" d:Kind="Activitypub" HorizontalAlignment="Center" VerticalAlignment="Center" Height="18" Width="24" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" Margin="5,0,5,0" />
+                    <ic:PackIconZondicons Visibility="{Binding ElementName=me, Path=ZondVisibility}" Kind="{Binding ZondIcon, ElementName=me}" d:Kind="Airplane" HorizontalAlignment="Center" VerticalAlignment="Center" Height="18" Width="24" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" Margin="5,0,5,0" />
+                    <TextBlock x:Name="txtBlock" Text="{Binding ElementName=me, Path=Text}" FontFamily="Consolas" Foreground="{Binding ElementName=me, Path=TextColor}" FontSize="18px" HorizontalAlignment="Center" VerticalAlignment="Center" Effect="{StaticResource ButtonMenuDropShadow}" Margin="0,0,5,0" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>
