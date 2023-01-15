@@ -44,8 +44,10 @@ namespace Battleship2000
         private void DebugStartup(object sender, StartupEventArgs e)
         {
 #if DEBUG
+#pragma warning disable S125
             //base.StartupUri = new Uri("pack://application:,,,/views/dialogwindow.xaml", UriKind.Absolute);
             base.StartupUri = new Uri("pack://application:,,,/views/MainWindow.xaml", UriKind.Absolute);
+#pragma warning restore S125
 #else
             base.StartupUri = new Uri("pack://application:,,,/views/MainWindow.xaml", UriKind.Absolute);
 #endif
