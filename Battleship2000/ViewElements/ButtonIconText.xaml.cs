@@ -103,6 +103,13 @@ namespace Battleship2000.ViewElements
             set => SetValue(CommandProperty, value);
         }
 
+        public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register("CommandParameter", typeof(object), typeof(ButtonIconText), new FrameworkPropertyMetadata(null));
+        public object CommandParameter
+        {
+            get => GetValue(CommandParameterProperty);
+            set => SetValue(CommandParameterProperty, value);
+        }
+
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(ButtonIconText), new FrameworkPropertyMetadata(null));
         public string Text
         {

@@ -1,8 +1,12 @@
-﻿using Battleship2000.ViewLogic;
+﻿using Battleship2000.Logic;
+using Battleship2000.ViewLogic;
 using Battleship2000.Views.Pages;
+using Serilog;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Battleship2000.ViewModels
@@ -65,58 +69,78 @@ namespace Battleship2000.ViewModels
             Credits
         }
 
-        public void SetArrow(MenuCategories menuItem)
+        public static void SetArrowVisibility(Settings settingsInstance, MenuCategories menuItem)
         {
-            this.PlayerArrowVisibility = Visibility.Hidden;
-            this.NetworkArrowVisibility = Visibility.Hidden;
-            this.VisualArrowVisibility = Visibility.Hidden;
-            this.AudioArrowVisibility = Visibility.Hidden;
-            this.CreditsArrowVisibility = Visibility.Hidden;
+            if (settingsInstance == null)
+            {
+                Log.Error($"[SettingsViewModel][SetArrowVisibility] Parameter {nameof(settingsInstance)} is null");
+                return;
+            }
+            ((SettingsViewModel)(settingsInstance).DataContext).PlayerArrowVisibility = Visibility.Hidden;
+            ((SettingsViewModel)(settingsInstance).DataContext).NetworkArrowVisibility = Visibility.Hidden;
+            ((SettingsViewModel)(settingsInstance).DataContext).VisualArrowVisibility = Visibility.Hidden;
+            ((SettingsViewModel)(settingsInstance).DataContext).AudioArrowVisibility = Visibility.Hidden;
+            ((SettingsViewModel)(settingsInstance).DataContext).CreditsArrowVisibility = Visibility.Hidden;
 
             switch (menuItem)
             {
                 case MenuCategories.Player:
-                    this.PlayerArrowVisibility = Visibility.Visible;
+                    ((SettingsViewModel)(settingsInstance).DataContext).PlayerArrowVisibility = Visibility.Visible;
                     break;
                 case MenuCategories.Network:
-                    this.NetworkArrowVisibility = Visibility.Visible;
+                    ((SettingsViewModel)(settingsInstance).DataContext).NetworkArrowVisibility = Visibility.Visible;
                     break;
                 case MenuCategories.Visual:
-                    this.VisualArrowVisibility = Visibility.Visible;
+                    ((SettingsViewModel)(settingsInstance).DataContext).VisualArrowVisibility = Visibility.Visible;
                     break;
                 case MenuCategories.Audio:
-                    this.AudioArrowVisibility = Visibility.Visible;
+                    ((SettingsViewModel)(settingsInstance).DataContext).AudioArrowVisibility = Visibility.Visible;
                     break;
                 case MenuCategories.Credits:
-                    this.CreditsArrowVisibility = Visibility.Visible;
+                    ((SettingsViewModel)(settingsInstance).DataContext).CreditsArrowVisibility = Visibility.Visible;
                     break;
             }
         }
 
+        public static void NavigateSettingsframeTo(Settings settingsInstance, string pagename)
+        {
+            Page p = ObjectStorage.pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
+
+            if (p == null)
+            {
+                Log.Warning($"[SettingsViewModel][NavigateSettingsframeTo] Cannot find page \"{pagename}\"");
+                return;
+            }
+
+            ((SettingsViewModel)(settingsInstance).DataContext).CurrentFramePage = p;
+
+            Log.Information($"[SettingsViewModel][NavigateSettingsframeTo] Navigated to \"{pagename}\" page");
+        }
+
         public ICommand PlayerCommand { get; } = new RelayCommand((c) =>
         {
-            HelperFunctions.NavigateSettingsframeTo("settings_player");
-            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Player);
+            NavigateSettingsframeTo((Settings)c, "settings_player");
+            SetArrowVisibility((Settings)c, MenuCategories.Player);
         });
         public ICommand NetworkCommand { get; } = new RelayCommand((c) =>
         {
-            HelperFunctions.NavigateSettingsframeTo("settings_network");
-            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Network);
+            NavigateSettingsframeTo((Settings)c, "settings_network");
+            SetArrowVisibility((Settings)c, MenuCategories.Network);
         });
         public ICommand VisualCommand { get; } = new RelayCommand((c) =>
         {
-            HelperFunctions.NavigateSettingsframeTo("settings_visual");
-            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Visual);
+            NavigateSettingsframeTo((Settings)c, "settings_visual");
+            SetArrowVisibility((Settings)c, MenuCategories.Visual);
         });
         public ICommand AudioCommand { get; } = new RelayCommand((c) =>
         {
-            HelperFunctions.NavigateSettingsframeTo("settings_audio");
-            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Audio);
+            NavigateSettingsframeTo((Settings)c, "settings_audio");
+            SetArrowVisibility((Settings)c, MenuCategories.Audio);
         });
         public ICommand CreditsCommand { get; } = new RelayCommand((c) =>
         {
-            HelperFunctions.NavigateSettingsframeTo("settings_credits");
-            Views.Pages.Settings.Vm.SetArrow(MenuCategories.Credits);
+            NavigateSettingsframeTo((Settings)c, "settings_credits");
+            SetArrowVisibility((Settings)c, MenuCategories.Credits);
         });
         public ICommand BackCommand { get; } = new RelayCommand((c) =>
         {
@@ -239,6 +263,34 @@ namespace Battleship2000.ViewModels
             {
                 _ButtonSaveToDiskEnabled = value;
                 base.OnPropertyChanged(nameof(ButtonSaveToDiskEnabled));
+            }
+        }
+
+        private Settings _Instance;
+        public Settings Instance
+        {
+            get
+            {
+                return this._Instance;
+            }
+            set
+            {
+                this._Instance = value;
+                base.OnPropertyChanged(nameof(this.Instance));
+            }
+        }
+
+        private Page _CurrentFramePage;
+        public Page CurrentFramePage
+        {
+            get
+            {
+                return this._CurrentFramePage;
+            }
+            set
+            {
+                this._CurrentFramePage = value;
+                base.OnPropertyChanged(nameof(this.CurrentFramePage));
             }
         }
     }

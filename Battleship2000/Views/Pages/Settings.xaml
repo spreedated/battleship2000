@@ -29,30 +29,30 @@
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="0">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <elem:ButtonIconText Width="140" Text="Player" Command="{Binding PlayerCommand}" MaterialIcon="Account" />
+                    <elem:ButtonIconText Width="140" Text="Player" Command="{Binding PlayerCommand}" CommandParameter="{Binding Instance}" MaterialIcon="Account" />
                     <elem:SelectionArrow Visibility="{Binding PlayerArrowVisibility}" Margin="8,0,0,0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <elem:ButtonIconText Width="140" Text="Audio" Command="{Binding AudioCommand}" MaterialIcon="Speaker" />
+                    <elem:ButtonIconText Width="140" Text="Audio" Command="{Binding AudioCommand}" CommandParameter="{Binding Instance}" MaterialIcon="Speaker" />
                     <elem:SelectionArrow Visibility="{Binding AudioArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <elem:ButtonIconText Width="140" Text="Network" Command="{Binding NetworkCommand}" MaterialIcon="LanPending" />
+                    <elem:ButtonIconText Width="140" Text="Network" Command="{Binding NetworkCommand}" CommandParameter="{Binding Instance}" MaterialIcon="LanPending" />
                     <elem:SelectionArrow Visibility="{Binding NetworkArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <elem:ButtonIconText Width="140" Text="Visual" Command="{Binding VisualCommand}" ZondIcon="ComputerDesktop" />
+                    <elem:ButtonIconText Width="140" Text="Visual" Command="{Binding VisualCommand}" CommandParameter="{Binding Instance}" ZondIcon="ComputerDesktop" />
                     <elem:SelectionArrow Visibility="{Binding VisualArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
             </StackPanel>
             <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" Grid.RowSpan="2">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <elem:ButtonIconText Width="140" Text="Credits" Command="{Binding CreditsCommand}" MaterialIcon="CardTextOutline" />
+                    <elem:ButtonIconText Width="140" Text="Credits" Command="{Binding CreditsCommand}" CommandParameter="{Binding Instance}" MaterialIcon="CardTextOutline" />
                     <elem:SelectionArrow Visibility="{Binding CreditsArrowVisibility}" Margin="8,0,0,0"/>
                 </StackPanel>
             </Grid>
             <ScrollViewer Grid.Row="1" Grid.Column="1" CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-                <Frame x:Name="SettingsFrame" NavigationUIVisibility="Hidden" />
+                <Frame x:Name="SettingsFrame" NavigationUIVisibility="Hidden" Content="{Binding CurrentFramePage}" />
             </ScrollViewer>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                 <elem:ButtonIconText Width="100" Text="Back" Command="{Binding BackCommand}" VaadinIcon="ArrowBackward" Margin="0,0,50,0" />

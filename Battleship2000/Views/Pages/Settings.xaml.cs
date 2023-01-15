@@ -14,6 +14,7 @@ namespace Battleship2000.Views.Pages
         public Settings()
         {
             InitializeComponent();
+            ((SettingsViewModel)this.DataContext).Instance = this;
             Instance = this;
             Vm = (SettingsViewModel)this.DataContext;
         }
