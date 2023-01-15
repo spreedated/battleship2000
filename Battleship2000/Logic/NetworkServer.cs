@@ -6,7 +6,6 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Markup;
 
 namespace Battleship2000.Logic
 {
@@ -100,7 +99,7 @@ namespace Battleship2000.Logic
 
             if (this.ConnectedClient == null)
             {
-                if(!WaitingOnConnectionDataProcess(data, e))
+                if (!WaitingOnConnectionDataProcess(data, e))
                 {
                     return;
                 }

@@ -1,11 +1,11 @@
-﻿using Battleship2000.Logic;
-using Serilog;
+﻿#pragma warning disable CA1845
+#pragma warning disable IDE0057
+
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Resources;
-using System.Windows.Controls;
 
 namespace Battleship2000.ViewLogic
 {
@@ -38,21 +38,6 @@ namespace Battleship2000.ViewLogic
             }
 
             return null;
-        }
-
-        public static void NavigateMainframeTo(string pagename)
-        {
-            Page p = ObjectStorage.pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
-
-            if (p == null)
-            {
-                Log.Warning($"[HelperFunctions][NavigateMainframeTo] Cannot find page \"{pagename}\"");
-                return;
-            }
-
-            Views.MainWindow.Instance.MainFrame.Navigate(p);
-
-            Log.Information($"[HelperFunctions][NavigateMainframeTo] Navigated to \"{pagename}\" page");
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Battleship2000.Models
     public class PlayfieldClassic
     {
         public Cell[,] Cells { get; private set; }
-        
+
         public List<Ship> Ships { get; private set; }
 
         public enum ShipLayouts
@@ -17,7 +17,7 @@ namespace Battleship2000.Models
         #region Constructor
         public PlayfieldClassic()
         {
-            this.Ships= new();
+            this.Ships = new();
 
             this.InitializeNewField();
             this.InitializeShips();

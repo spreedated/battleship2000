@@ -1,15 +1,13 @@
-﻿using Battleship2000.Logic;
+﻿using Battleship2000.Models;
+using Battleship2000.ViewElements;
 using Battleship2000.ViewLogic;
 using Battleship2000.Views.Pages;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
-using System.Reflection;
-using System.Collections.Generic;
-using Battleship2000.ViewElements;
-using Battleship2000.Models;
 
 namespace Battleship2000.ViewModels
 {
@@ -19,7 +17,7 @@ namespace Battleship2000.ViewModels
         {
             HostServer.Vm.ResetButtonStates();
             await HostServer.Vm.NetworkServerStop();
-            HelperFunctions.NavigateMainframeTo("mainmenu");
+            MainWindowViewModel.Navigate("mainmenu");
         });
 
         public string Playername

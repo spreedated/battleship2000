@@ -102,7 +102,7 @@ namespace Battleship2000.ViewModels
             }
         }
 
-        public static void NavigateSettingsframeTo(Settings settingsInstance, string pagename)
+        public static void Navigate(Settings settingsInstance, string pagename)
         {
             Page p = ObjectStorage.pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
 
@@ -119,32 +119,32 @@ namespace Battleship2000.ViewModels
 
         public ICommand PlayerCommand { get; } = new RelayCommand((c) =>
         {
-            NavigateSettingsframeTo((Settings)c, "settings_player");
+            Navigate((Settings)c, "settings_player");
             SetArrowVisibility((Settings)c, MenuCategories.Player);
         });
         public ICommand NetworkCommand { get; } = new RelayCommand((c) =>
         {
-            NavigateSettingsframeTo((Settings)c, "settings_network");
+            Navigate((Settings)c, "settings_network");
             SetArrowVisibility((Settings)c, MenuCategories.Network);
         });
         public ICommand VisualCommand { get; } = new RelayCommand((c) =>
         {
-            NavigateSettingsframeTo((Settings)c, "settings_visual");
+            Navigate((Settings)c, "settings_visual");
             SetArrowVisibility((Settings)c, MenuCategories.Visual);
         });
         public ICommand AudioCommand { get; } = new RelayCommand((c) =>
         {
-            NavigateSettingsframeTo((Settings)c, "settings_audio");
+            Navigate((Settings)c, "settings_audio");
             SetArrowVisibility((Settings)c, MenuCategories.Audio);
         });
         public ICommand CreditsCommand { get; } = new RelayCommand((c) =>
         {
-            NavigateSettingsframeTo((Settings)c, "settings_credits");
+            Navigate((Settings)c, "settings_credits");
             SetArrowVisibility((Settings)c, MenuCategories.Credits);
         });
         public ICommand BackCommand { get; } = new RelayCommand((c) =>
         {
-            HelperFunctions.NavigateMainframeTo("mainmenu");
+            MainWindowViewModel.Navigate("mainmenu");
         });
         public ICommand SaveToDiskCommand { get; } = new RelayCommand((c) =>
         {

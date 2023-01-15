@@ -10,7 +10,7 @@ namespace Battleship2000.ViewModels
 {
     public class ConnectToServerViewModel : ViewModelBase
     {
-        public ICommand BackCommand { get; } = new RelayCommand((c) => { HelperFunctions.NavigateMainframeTo("mainmenu"); });
+        public ICommand BackCommand { get; } = new RelayCommand((c) => { MainWindowViewModel.Navigate("mainmenu"); });
         public ICommand ConnectCommand { get; } = new RelayCommand(async (c) =>
         {
             ConnectToServer.Vm.ButtonEnabled = false;
@@ -56,7 +56,7 @@ namespace Battleship2000.ViewModels
 
             ConnectToServer.Vm.StatusTextVisibility = Visibility.Hidden;
 
-            HelperFunctions.NavigateMainframeTo("playfield");
+            MainWindowViewModel.Navigate("shipplacement");
         });
 
         public NetworkClient NetworkClient { get; private set; }

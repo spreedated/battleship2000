@@ -1,14 +1,11 @@
 ﻿#pragma warning disable S1075
 
 using Battleship2000.Logic;
-using Battleship2000.ViewLogic;
 using Serilog;
 using Serilog.Events;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -65,7 +62,7 @@ namespace Battleship2000
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(sender != null && ((Button)sender).Content != null && ((Button)sender).Content.ToString().ToLower().Contains("test"))
+            if (sender != null && ((Button)sender).Content != null && ((Button)sender).Content.ToString().ToLower().Contains("test"))
             {
                 return;
             }

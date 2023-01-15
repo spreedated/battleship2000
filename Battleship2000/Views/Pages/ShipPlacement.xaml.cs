@@ -4,7 +4,6 @@ using Battleship2000.ViewModels;
 using Serilog;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace Battleship2000.Views.Pages
 {
@@ -29,7 +28,7 @@ namespace Battleship2000.Views.Pages
                 {
                     bool isValid = true;
 
-                    for (int i = 0; i < ShipPlacement.Vm.SelectedShip.Width+1; i++)
+                    for (int i = 0; i < ShipPlacement.Vm.SelectedShip.Width + 1; i++)
                     {
                         if (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Right && (int)args.Coords.X + i > args.PlayfieldInstance.PlayfieldLogic.Cells.GetLength(0))
                         {

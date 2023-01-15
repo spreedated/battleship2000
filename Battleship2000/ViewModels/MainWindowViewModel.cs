@@ -1,10 +1,14 @@
 ﻿#pragma warning disable S1075
 
+using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
+using Battleship2000.Views;
+using Serilog;
 using System;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -28,6 +32,21 @@ namespace Battleship2000.ViewModels
             }
         }
 
+        public static void Navigate(string pagename)
+        {
+            Page p = ObjectStorage.pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
+
+            if (p == null)
+            {
+                Log.Warning($"[MainWindowViewModel][NavigateMainframeTo] Cannot find page \"{pagename}\"");
+                return;
+            }
+
+            ((MainWindowViewModel)Application.Current.MainWindow.DataContext).CurrentFramePage = p;
+
+            Log.Information($"[MainWindowViewModel][NavigateMainframeTo] Navigated to \"{pagename}\" page");
+        }
+
         private Visibility _BackgroundVis = Visibility.Hidden;
         public Visibility BackgroundVis
         {
@@ -39,6 +58,34 @@ namespace Battleship2000.ViewModels
             {
                 _BackgroundVis = value;
                 base.OnPropertyChanged(nameof(BackgroundVis));
+            }
+        }
+
+        private MainWindow _Instance;
+        public MainWindow Instance
+        {
+            get
+            {
+                return this._Instance;
+            }
+            set
+            {
+                this._Instance = value;
+                base.OnPropertyChanged(nameof(this.Instance));
+            }
+        }
+
+        private Page _CurrentFramePage;
+        public Page CurrentFramePage
+        {
+            get
+            {
+                return this._CurrentFramePage;
+            }
+            set
+            {
+                this._CurrentFramePage = value;
+                base.OnPropertyChanged(nameof(this.CurrentFramePage));
             }
         }
     }

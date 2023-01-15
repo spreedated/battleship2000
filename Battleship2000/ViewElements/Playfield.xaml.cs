@@ -73,7 +73,7 @@ namespace Battleship2000.ViewElements
             {
                 for (int ii = 0; ii < this.PlayfieldLogic.Cells.GetLength(1); ii++)
                 {
-                    if (this.PlayfieldLogic.Cells[i,ii].CellState == Cell.CellStates.Ship)
+                    if (this.PlayfieldLogic.Cells[i, ii].CellState == Cell.CellStates.Ship)
                     {
                         ((ButtonCell)this.stcks[ii].Children[i]).BackgroundCell = Brushes.Red;
                         continue;
@@ -116,8 +116,8 @@ namespace Battleship2000.ViewElements
                 {
                     stcks[i].Children.Add(new ButtonCell()
                     {
-                        Name = $"Field_{alpha[ii]}_{i+1}",
-                        Margin = new Thickness((ii == 0 ? 16 : 0), 0 ,4.8, 0),
+                        Name = $"Field_{alpha[ii]}_{i + 1}",
+                        Margin = new Thickness((ii == 0 ? 16 : 0), 0, 4.8, 0),
                         Style = (Style)Application.Current.Resources["ButtonField"],
                         Command = this.FieldClickCommand
                     });

@@ -1,8 +1,6 @@
-﻿using Battleship2000.ViewLogic;
-using Battleship2000.ViewModels;
+﻿using Battleship2000.ViewModels;
 using Serilog;
 using System;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -47,7 +45,7 @@ namespace Battleship2000.Views.Pages
 
             this.Dispatcher.Invoke(() =>
             {
-                HelperFunctions.NavigateMainframeTo("mainmenu");
+                MainWindowViewModel.Navigate("mainmenu");
                 Log.Verbose("[PreloadComplete] Navigating to main menu");
             });
         }
