@@ -19,15 +19,12 @@ namespace Battleship2000.ViewLogic
             {
                 using (ResourceReader r = new(ss))
                 {
-                    foreach (DictionaryEntry d in r)
+                    foreach (DictionaryEntry d in r.OfType<DictionaryEntry>().Where(x => x.Key.ToString().ToLower().EndsWith("baml")))
                     {
-                        if (d.Key.ToString().ToLower().EndsWith("baml"))
-                        {
-                            string xx = (string)d.Key;
-                            xx = xx.Substring(0, xx.LastIndexOf('.')) + ".xaml";
+                        string xx = (string)d.Key;
+                        xx = xx.Substring(0, xx.LastIndexOf('.')) + ".xaml";
 
-                            q.Add(xx.ToLower());
-                        }
+                        q.Add(xx.ToLower());
                     }
                 }
             }
