@@ -1,4 +1,5 @@
-﻿using Battleship2000.ViewModels;
+﻿using Battleship2000.Logic;
+using Battleship2000.ViewModels;
 using System.Windows.Controls;
 
 namespace Battleship2000.Views.Pages
@@ -15,6 +16,9 @@ namespace Battleship2000.Views.Pages
             InitializeComponent();
             Instance = this;
             Vm = (SettingsAudioViewModel)this.DataContext;
+
+            Vm.MusicVolume = ObjectStorage.Config.Audio.MusicVolume;
+            Vm.EffectVolume = ObjectStorage.Config.Audio.EffectVolume;
         }
     }
 }

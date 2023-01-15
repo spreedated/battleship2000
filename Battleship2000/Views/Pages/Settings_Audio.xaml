@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Battleship2000.Views.Pages"
       xmlns:vm="clr-namespace:Battleship2000.ViewModels"
       xmlns:vl="clr-namespace:Battleship2000.ViewLogic"
+      xmlns:ic="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Settings_Audio">
@@ -21,11 +22,16 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Music Volume:" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Style="{StaticResource TextHeadline}" FontSize="18"/>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
-                    <Slider MinWidth="180" Value="{Binding MusicVolume}" d:Value="0.6" Minimum="0.0" Maximum="1" Margin="0,0,10,0" Height="16" />
-                    <StackPanel Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
-                        <TextBlock d:Text="60 %" Text="{Binding MusicVolume, Converter={vl:FloatToPercentAudioSliderConverter}}" Style="{StaticResource TextStyle}" FontSize="18" Margin="0,0,10,0"/>
-                        <Button Style="{StaticResource ButtonMenu}" HorizontalAlignment="Left" Content="Play next" Width="130" Margin="0" Command="{Binding PlayNextCommand}" />
-                    </StackPanel>
+                    <Slider MinWidth="160" Value="{Binding MusicVolume}" d:Value="0.6" Minimum="0.0" Maximum="1" Margin="0,0,10,0" Height="16" />
+                    <Grid Grid.Column="1" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" d:Text="60 %" Text="{Binding MusicVolume, Converter={vl:FloatToPercentAudioSliderConverter}}" Style="{StaticResource TextStyle}" FontSize="18" Margin="0,0,10,0" HorizontalAlignment="Right"/>
+                        <ic:PackIconMaterial Kind="{Binding MusicVolumeIconKind}" Height="24" Width="24" Foreground="WhiteSmoke" Effect="{StaticResource TextStyleDropShadow}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding MusicVolumeVisibility}" />
+                        <Button Grid.Column="1" Style="{StaticResource ButtonMenu}" HorizontalAlignment="Left" Content="Play next" Width="130" Margin="0" Command="{Binding PlayNextCommand}" />
+                    </Grid>
                 </StackPanel>
             </Grid>
         </StackPanel>
@@ -37,9 +43,16 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Effect Volume:" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" Style="{StaticResource TextHeadline}" FontSize="18"/>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal">
-                    <Slider MinWidth="180" Value="{Binding EffectVolume}" d:Value="0.6" Minimum="0.0" Maximum="1" Margin="0,0,10,0" Height="16" />
-                    <TextBlock d:Text="60 %" Text="{Binding EffectVolume, Converter={vl:FloatToPercentAudioSliderConverter}}" Style="{StaticResource TextStyle}" FontSize="18" Margin="0,0,10,0"/>
-                    <Button Style="{StaticResource ButtonMenu}" HorizontalAlignment="Left" Content="Test Sound" Width="130" Margin="0" Command="{Binding TestSoundCommand}" />
+                    <Slider MinWidth="160" Value="{Binding EffectVolume}" d:Value="0.6" Minimum="0.0" Maximum="1" Margin="0,0,10,0" Height="16"/>
+                    <Grid Grid.Column="1" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" d:Text="60 %" Text="{Binding EffectVolume, Converter={vl:FloatToPercentAudioSliderConverter}}" Style="{StaticResource TextStyle}" FontSize="18" Margin="0,0,10,0" HorizontalAlignment="Right"/>
+                        <ic:PackIconMaterial Kind="{Binding EffectVolumeIconKind}" Height="24" Width="24" Foreground="WhiteSmoke" Effect="{StaticResource TextStyleDropShadow}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding EffectVolumeVisibility}" />
+                        <Button Grid.Column="1" Style="{StaticResource ButtonMenu}" HorizontalAlignment="Left" Content="Test Sound" Width="130" Margin="0" Command="{Binding TestSoundCommand}" />
+                    </Grid>
                 </StackPanel>
             </Grid>
         </StackPanel>

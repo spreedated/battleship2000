@@ -13,12 +13,12 @@ namespace Battleship2000.ViewLogic
 
             if (b <= 0.0f)
             {
-                return "Muted";
+                return null;
             }
 
             if (b >= 1.0f)
             {
-                return "Maximum";
+                return null;
             }
 
             return (b * 100).ToString("0.00") + " %";
