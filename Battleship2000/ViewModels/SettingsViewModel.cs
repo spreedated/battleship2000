@@ -156,7 +156,7 @@ namespace Battleship2000.ViewModels
                     Settings.Vm.SaveIconAnimationStart();
                 });
 
-                Logic.Configuration.Save();
+                ObjectStorage.ConfigurationHandler.Save();
                 await Task.Delay(2500);
 
                 Settings.Instance.Dispatcher.Invoke(() =>

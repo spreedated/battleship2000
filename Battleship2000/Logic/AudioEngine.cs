@@ -143,7 +143,7 @@ namespace Battleship2000.Logic
             if (IsMusicPlaying)
             {
                 stopping = true;
-                ctMusic.Cancel();
+                ctMusic?.Cancel();
                 Log.Information($"[AudioEngine] Music stopped");
             }
         }

@@ -5,10 +5,18 @@ using System.IO;
 
 namespace Battleship2000.Logic
 {
-    internal static class Configuration
+    internal class ConfigurationHandler
     {
-        private static readonly string configPath = Path.Combine(Path.GetDirectoryName(typeof(Configuration).Assembly.Location), "config.json");
-        public static void Load()
+        private readonly string configPath;
+
+        #region Constructor
+        public ConfigurationHandler(string configPath)
+        {
+            this.configPath = configPath;
+        }
+        #endregion
+
+        public void Load()
         {
             if (!File.Exists(configPath))
             {
@@ -39,17 +47,22 @@ namespace Battleship2000.Logic
             Log.Information($"[Configuration] Config loaded");
         }
 
-        public static void Save()
+        public void Save()
         {
             if (!File.Exists(configPath))
             {
-                TouchFile(configPath);
+                TouchConfigFile();
             }
 
             using (FileStream fs = File.Open(configPath, new FileStreamOptions() { BufferSize = 128, Share = FileShare.ReadWrite, Mode = FileMode.Truncate, Access = FileAccess.ReadWrite }))
             {
                 using (StreamWriter w = new(fs))
                 {
+                    if (ObjectStorage.Config == null)
+                    {
+                        ObjectStorage.Config = new();
+                    }
+
                     w.Write(JsonConvert.SerializeObject(ObjectStorage.Config, Formatting.Indented));
                 }
             }
@@ -57,12 +70,12 @@ namespace Battleship2000.Logic
             Log.Information($"[Configuration] Config saved");
         }
 
-        private static void TouchFile(string filepath)
+        internal void TouchConfigFile()
         {
-            File.Create(filepath).Dispose();
+            File.Create(this.configPath).Dispose();
         }
 
-        private static bool IsValidJson(string json)
+        internal static bool IsValidJson(string json)
         {
             try
             {

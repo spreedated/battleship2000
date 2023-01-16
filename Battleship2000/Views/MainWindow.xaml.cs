@@ -24,6 +24,12 @@ namespace Battleship2000.Views
 
         public void RefreshBackground()
         {
+            if (ObjectStorage.BackgroundImage == null)
+            {
+                ObjectStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                ObjectStorage.BackgroundVis = Visibility.Collapsed;
+            }
+
             switch (ObjectStorage.Config.Visual.Background.ToLower())
             {
                 case "oldschool":

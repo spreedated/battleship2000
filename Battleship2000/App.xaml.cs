@@ -38,7 +38,7 @@ namespace Battleship2000
 
             Log.Debug("[App] Log initialize");
 
-            Configuration.Load();
+            ObjectStorage.ConfigurationHandler.Load();
         }
 
         private void DebugStartup(object sender, StartupEventArgs e)
