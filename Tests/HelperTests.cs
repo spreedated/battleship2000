@@ -19,6 +19,7 @@ namespace Tests
 
             Assert.Multiple(() =>
             {
+                Assert.That(r, Is.Not.Null);
                 Assert.That(r, Does.Contain("application"));
                 Assert.That(r, Does.Contain("pack"));
                 Assert.That(r, Does.Contain(",,,"));
