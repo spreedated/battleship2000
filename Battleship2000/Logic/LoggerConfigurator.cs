@@ -39,7 +39,7 @@ namespace Battleship2000.Logic
                 .WriteTo.File(logfilepath, restrictedToMinimumLevel: level, rollOnFileSizeLimit: true, fileSizeLimitBytes: 1048576, outputTemplate: logOutputTemplate)
                 .CreateLogger();
 
-            Log.Debug("[App] Log initialize");
+            Log.Debug("Logger initialize");
         }
     }
 }

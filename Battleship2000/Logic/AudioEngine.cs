@@ -23,13 +23,13 @@ namespace Battleship2000.Logic
         {
             if (ObjectStorage.Config.Audio.EffectVolume <= 0.0f)
             {
-                Log.Warning($"[AudioEngine] Sound muted");
+                Log.Warning($"Sound muted");
                 return;
             }
 
             if (!ObjectStorage.sounds.Any(x => x.Name.ToLower().Contains(soundname.ToLower())))
             {
-                Log.Warning($"[AudioEngine] Sound not found \"{soundname}\"");
+                Log.Warning($"Sound not found \"{soundname}\"");
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace Battleship2000.Logic
                             string[] sndsplit = ef.Name.Split('.').ToArray();
                             string sndname = $"{sndsplit[sndsplit.Count() - 2]}.{sndsplit[sndsplit.Count() - 1]}";
 
-                            Log.Information($"[AudioEngine] Playing sound \"{sndname}\"");
+                            Log.Information($"Playing sound \"{sndname}\"");
 
                             while (w.PlaybackState == PlaybackState.Playing)
                             {
@@ -74,7 +74,7 @@ namespace Battleship2000.Logic
         {
             if (IsMusicPlaying && !stopping)
             {
-                Log.Warning($"[AudioEngine] Music already playing");
+                Log.Warning($"Music already playing");
                 return;
             }
 
@@ -106,7 +106,7 @@ namespace Battleship2000.Logic
                             w.Init(r);
                             w.Play();
 
-                            Log.Information($"[AudioEngine] Playing music \"{soundname}\"");
+                            Log.Information($"Playing music \"{soundname}\"");
 
                             IsMusicPlaying = true;
 
@@ -125,7 +125,7 @@ namespace Battleship2000.Logic
                             w.Stop();
 
                             IsMusicPlaying = false;
-                            Log.Information($"[AudioEngine] Music stopped");
+                            Log.Information($"Music stopped");
                         }
                     }
                 }
@@ -144,7 +144,7 @@ namespace Battleship2000.Logic
             {
                 stopping = true;
                 ctMusic?.Cancel();
-                Log.Information($"[AudioEngine] Music stopped");
+                Log.Information($"Music stopped");
             }
         }
 

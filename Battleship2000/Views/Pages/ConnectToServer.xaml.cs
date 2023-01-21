@@ -16,7 +16,7 @@ namespace Battleship2000.Views.Pages
             InitializeComponent();
             Instance = this;
             Vm = (ConnectToServerViewModel)this.DataContext;
-            Log.Verbose("[ConnectToServer] Page loaded");
+            Log.Verbose("Page loaded");
         }
     }
 }

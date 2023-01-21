@@ -17,7 +17,7 @@ namespace Battleship2000.Logic
 
         internal static void Run()
         {
-            Log.Information("[Preload] started");
+            Log.Information("started");
 
             Task.Factory.StartNew(() =>
             {
@@ -47,7 +47,7 @@ namespace Battleship2000.Logic
 
         private static void LoadPages()
         {
-            Log.Information("[Preload] Loading pages...");
+            Log.Information("Loading pages...");
             ObjectStorage.pages.Add(new ConnectToServer());
             ObjectStorage.pages.Add(new MainMenu());
             ObjectStorage.pages.Add(new HostServer());
@@ -58,14 +58,14 @@ namespace Battleship2000.Logic
             ObjectStorage.pages.Add(new Settings_Audio());
             ObjectStorage.pages.Add(new Settings_Credits());
             ObjectStorage.pages.Add(new ShipPlacement());
-            Log.Information("[Preload] Loading pages finished");
+            Log.Information("Loading pages finished");
         }
 
         private static void LoadAudioFiles()
         {
             IEnumerable<string> soundlist = typeof(Preload).Assembly.GetManifestResourceNames().Where(x => x.ToLower().EndsWith("mp3"));
 
-            Log.Information($"[Preload] Loading {soundlist.Count()} sounds");
+            Log.Information($"Loading {soundlist.Count()} sounds");
 
             foreach (string snd in soundlist)
             {
@@ -94,10 +94,10 @@ namespace Battleship2000.Logic
                     }
                 }
 
-                Log.Information($"[Preload] Sound \"{soundname}\" loaded");
+                Log.Information($"Sound \"{soundname}\" loaded");
             }
 
-            Log.Information($"[Preload] Loaded successfully {soundlist.Count()} soundfiles. {ObjectStorage.musics.Count} Music files, {ObjectStorage.sounds.Count} Effect files.");
+            Log.Information($"Loaded successfully {soundlist.Count()} soundfiles. {ObjectStorage.musics.Count} Music files, {ObjectStorage.sounds.Count} Effect files.");
         }
 
         private static void LoadNetworkInterfaces()

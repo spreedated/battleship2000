@@ -38,8 +38,8 @@ namespace Battleship2000
         {
             base.OnExit(e);
 
-            Log.Information($"[App] Shuttung down application ... good bye!");
-            Log.Information($"[App] You've wasted {DateTime.Now - ApplicationStartupDate}");
+            Log.Information($"Shuttung down application ... good bye!");
+            Log.Information($"You've wasted {DateTime.Now - ApplicationStartupDate}");
             Log.CloseAndFlush();
         }
 

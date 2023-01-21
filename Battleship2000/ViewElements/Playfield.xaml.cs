@@ -40,7 +40,7 @@ namespace Battleship2000.ViewElements
         public ICommand FieldClickCommand { get; } = new RelayCommand((c) =>
         {
             PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
-            Log.Debug($"[Playfield] {args.ButtonCell.Name} left click");
+            Log.Debug($"{args.ButtonCell.Name} left click");
 
             args.Coords = CellnameToCoordinates(args.ButtonCell.Name);
 
@@ -56,13 +56,13 @@ namespace Battleship2000.ViewElements
         {
             PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
 
-            Log.Debug($"[Playfield] {args.ButtonCell.Name} right click");
+            Log.Debug($"{args.ButtonCell.Name} right click");
 
             Point coords = CellnameToCoordinates(args.ButtonCell.Name);
 
             args.PlayfieldInstance.PlayfieldLogic.Cells[(int)coords.X, (int)coords.Y].CellState = Cell.CellStates.Empty;
 
-            Log.Debug($"[Playfield] Ship part removed on [{coords.X},{coords.Y}]");
+            Log.Debug($"Ship part removed on [{coords.X},{coords.Y}]");
 
             args.PlayfieldInstance.RefreshPlayfieldGui();
         });

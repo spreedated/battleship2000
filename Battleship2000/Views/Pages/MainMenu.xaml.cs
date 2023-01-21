@@ -13,7 +13,7 @@ namespace Battleship2000.Views.Pages
         public MainMenu()
         {
             InitializeComponent();
-            Log.Verbose("[MainMenu] Page loaded");
+            Log.Verbose("Page loaded");
 
             ((MainMenuViewModel)this.DataContext).Instance = this;
             ((MainMenuViewModel)this.DataContext).ParentWindow = (MainWindow)Application.Current.MainWindow;

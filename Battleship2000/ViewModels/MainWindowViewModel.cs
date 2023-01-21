@@ -38,13 +38,13 @@ namespace Battleship2000.ViewModels
 
             if (p == null)
             {
-                Log.Warning($"[MainWindowViewModel][NavigateMainframeTo] Cannot find page \"{pagename}\"");
+                Log.Warning($"Cannot find page \"{pagename}\"");
                 return;
             }
 
             ((MainWindowViewModel)Application.Current.MainWindow.DataContext).CurrentFramePage = p;
 
-            Log.Information($"[MainWindowViewModel][NavigateMainframeTo] Navigated to \"{pagename}\" page");
+            Log.Information($"Navigated to \"{pagename}\" page");
         }
 
         private Visibility _BackgroundVis = Visibility.Hidden;

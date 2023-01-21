@@ -17,7 +17,7 @@ namespace Battleship2000.ViewModels
             ConnectToServer.Vm.StatusText = "Connecting ...";
             ConnectToServer.Vm.StatusTextVisibility = Visibility.Visible;
 
-            Log.Information($"[ConnectToServerViewModel] Trying to connect to \"{ConnectToServer.Vm.ConnectText}\"");
+            Log.Information($"Trying to connect to \"{ConnectToServer.Vm.ConnectText}\"");
 
             await Task.Factory.StartNew(async () =>
             {
@@ -27,11 +27,11 @@ namespace Battleship2000.ViewModels
                 try
                 {
                     ConnectToServer.Vm.NetworkClient.ConnectTo(ConnectToServer.Vm.ConnectText);
-                    Log.Information($"[ConnectToServerViewModel] Connected successfully to \"{ConnectToServer.Vm.ConnectText}\"");
+                    Log.Information($"Connected successfully to \"{ConnectToServer.Vm.ConnectText}\"");
                 }
                 catch (System.Exception ex)
                 {
-                    Log.Error(ex, $"[ConnectToServerViewModel] Connection failed to \"{ConnectToServer.Vm.ConnectText}\" - ");
+                    Log.Error(ex, $"Connection failed to \"{ConnectToServer.Vm.ConnectText}\" - ");
 
                     ConnectToServer.Instance.Dispatcher.Invoke(() =>
                     {

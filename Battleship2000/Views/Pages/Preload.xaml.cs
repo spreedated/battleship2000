@@ -17,7 +17,7 @@ namespace Battleship2000.Views.Pages
         {
             InitializeComponent();
             Vm = (PreloadViewModel)this.DataContext;
-            Log.Verbose("[Preload] Page loaded");
+            Log.Verbose("Page loaded");
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -31,14 +31,14 @@ namespace Battleship2000.Views.Pages
         private void PreloadStepped(object sender, EventArgs e)
         {
             Vm.ProgressbarValue += 10.0d;
-            Log.Verbose($"[PreloadStepped] Step \"{Vm.ProgressbarValue}\"");
+            Log.Verbose($"Step \"{Vm.ProgressbarValue}\"");
         }
 
         private void PreloadComplete(object sender, EventArgs e)
         {
             Vm.ProgressbarValue = 100.0d;
             Vm.LoadingText = "Loading Complete";
-            Log.Information("[PreloadComplete] Loading completed");
+            Log.Information("Loading completed");
 
 #if !DEBUG
             Thread.Sleep(1250);
@@ -47,7 +47,7 @@ namespace Battleship2000.Views.Pages
             this.Dispatcher.Invoke(() =>
             {
                 MainWindowViewModel.Navigate("mainmenu");
-                Log.Verbose("[PreloadComplete] Navigating to main menu");
+                Log.Verbose("Navigating to main menu");
             });
         }
     }

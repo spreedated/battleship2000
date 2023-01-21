@@ -62,7 +62,7 @@ namespace Battleship2000.Views.Pages
                         for (int i = 0; i < ShipPlacement.Vm.SelectedShip.Width; i++)
                         {
                             args.PlayfieldInstance.PlayfieldLogic.Cells[(int)args.Coords.X + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? 0 : i), (int)args.Coords.Y + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? i : 0)].CellState = Cell.CellStates.Ship;
-                            Log.Debug($"[Playfield] Ship part placed on [{args.Coords.X + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? 0 : i)},{args.Coords.Y + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? i : 0)}]");
+                            Log.Debug($"Ship part placed on [{args.Coords.X + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? 0 : i)},{args.Coords.Y + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? i : 0)}]");
                         }
                     }
                 }

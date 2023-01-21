@@ -36,11 +36,11 @@ namespace Battleship2000.Logic
             try
             {
                 server.Start();
-                Log.Information($"[NetworkServer] Server running, bound to \"{this.bindingInterface}:{this.port}\"");
+                Log.Information($"Server running, bound to \"{this.bindingInterface}:{this.port}\"");
             }
             catch (Exception ex)
             {
-                Log.Error(ex, $"[NetworkServer] Server start error  - ");
+                Log.Error(ex, $"Server start error  - ");
                 return false;
             }
 
@@ -57,11 +57,11 @@ namespace Battleship2000.Logic
                     try
                     {
                         this.server.DisconnectClient(c);
-                        Log.Information($"[NetworkServer] Client disconnected \"{c}\"");
+                        Log.Information($"Client disconnected \"{c}\"");
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(ex, $"[NetworkServer] Client disconnection error  - ");
+                        Log.Error(ex, $"Client disconnection error  - ");
                     }
                 }
                 this.server.Dispose();
@@ -95,7 +95,7 @@ namespace Battleship2000.Logic
         {
             string data = Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count);
 
-            Log.Verbose($"[NetworkServer] Server received -> [{e.IpPort}] {data}");
+            Log.Verbose($"Server received -> [{e.IpPort}] {data}");
 
             if (this.ConnectedClient == null)
             {
@@ -121,7 +121,7 @@ namespace Battleship2000.Logic
             }
             catch (Exception ex)
             {
-                Log.Error(ex, $"[NetworkServer] Message parsing error");
+                Log.Error(ex, $"Message parsing error");
                 return false;
             }
 
@@ -133,7 +133,7 @@ namespace Battleship2000.Logic
             }
             else
             {
-                Log.Debug($"[NetworkServer] Client appname mismatch \"{n.AppName}\"");
+                Log.Debug($"Client appname mismatch \"{n.AppName}\"");
             }
 
             if (n.Version == typeof(NetworkServer).Assembly.GetName().Version)
@@ -142,16 +142,16 @@ namespace Battleship2000.Logic
             }
             else
             {
-                Log.Debug($"[NetworkServer] Client version mismatch \"{n.Version}\"");
+                Log.Debug($"Client version mismatch \"{n.Version}\"");
             }
 
             if (conditions.Any(x => !x))
             {
-                Log.Warning($"[NetworkServer] Client sent wrong information");
+                Log.Warning($"Client sent wrong information");
                 return false;
             }
 
-            Log.Information($"[NetworkServer] Client connected! - Playername \"{n.Playername}\"");
+            Log.Information($"Client connected! - Playername \"{n.Playername}\"");
 
             this.ConnectedClient = new()
             {
@@ -167,12 +167,12 @@ namespace Battleship2000.Logic
 
         private void ClientDisconnected(object sender, ConnectionEventArgs e)
         {
-            Log.Verbose($"[NetworkServer] Client ({e.IpPort}) disconnected - reason: \"{e.Reason}\"");
+            Log.Verbose($"Client ({e.IpPort}) disconnected - reason: \"{e.Reason}\"");
         }
 
         private void ClientConnected(object sender, ConnectionEventArgs e)
         {
-            Log.Verbose($"[NetworkServer] Client ({e.IpPort}) connected - reason: \"{e.Reason}\"");
+            Log.Verbose($"Client ({e.IpPort}) connected - reason: \"{e.Reason}\"");
 
             NwoClientConnected n = new()
             {

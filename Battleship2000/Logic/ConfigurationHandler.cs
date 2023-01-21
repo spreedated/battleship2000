@@ -20,7 +20,7 @@ namespace Battleship2000.Logic
         {
             if (!File.Exists(configPath))
             {
-                Log.Information($"[Configuration] No config found, creating new with default values");
+                Log.Information($"No config found, creating new with default values");
                 Save();
                 return;
             }
@@ -37,14 +37,14 @@ namespace Battleship2000.Logic
 
             if (!IsValidJson(json))
             {
-                Log.Warning($"[Configuration] Invalid config file found");
+                Log.Warning($"Invalid config file found");
                 Save();
                 return;
             }
 
             ObjectStorage.Config = JsonConvert.DeserializeObject<Models.Configuration>(json);
 
-            Log.Information($"[Configuration] Config loaded");
+            Log.Information($"Config loaded");
         }
 
         public void Save()
@@ -67,7 +67,7 @@ namespace Battleship2000.Logic
                 }
             }
 
-            Log.Information($"[Configuration] Config saved");
+            Log.Information($"Config saved");
         }
 
         internal void TouchConfigFile()

@@ -73,7 +73,7 @@ namespace Battleship2000.ViewModels
         {
             if (settingsInstance == null)
             {
-                Log.Error($"[SettingsViewModel][SetArrowVisibility] Parameter {nameof(settingsInstance)} is null");
+                Log.Error($"Parameter {nameof(settingsInstance)} is null");
                 return;
             }
             ((SettingsViewModel)(settingsInstance).DataContext).PlayerArrowVisibility = Visibility.Hidden;
@@ -108,13 +108,13 @@ namespace Battleship2000.ViewModels
 
             if (p == null)
             {
-                Log.Warning($"[SettingsViewModel][NavigateSettingsframeTo] Cannot find page \"{pagename}\"");
+                Log.Warning($"Cannot find page \"{pagename}\"");
                 return;
             }
 
             ((SettingsViewModel)(settingsInstance).DataContext).CurrentFramePage = p;
 
-            Log.Information($"[SettingsViewModel][NavigateSettingsframeTo] Navigated to \"{pagename}\" page");
+            Log.Information($"Navigated to \"{pagename}\" page");
         }
 
         public ICommand PlayerCommand { get; } = new RelayCommand((c) =>
