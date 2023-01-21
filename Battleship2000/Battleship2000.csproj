@@ -10,19 +10,30 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>battleship2000.snk</AssemblyOriginatorKeyFile>
     <AssemblyTitle>Battleship 2000</AssemblyTitle>
+    <Authors>Markus Karl Wackermann</Authors>
+    <Copyright>2022-2023 (c) Markus Karl Wackermann</Copyright>
     <Version>0.1</Version>
     <Authors>Markus Wackermann</Authors>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <!--<PublishSingleFile>true</PublishSingleFile>--> <!-- Seems to be broken :( -->
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;IDE0063;IDE0074;IDE0066;IDE0056;XDG0068</NoWarn>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;IDE0063;IDE0074;IDE0066;IDE0056;XDG0068</NoWarn>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PostBuildEvent>"$(Obfuscar)" obfuscar.xml</PostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="obfuscar.xml" />
     <None Remove="Resources\battleship1-1280x736.png" />
     <None Remove="Resources\blue.png" />
     <None Remove="Resources\floppy.png" />
@@ -47,6 +58,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="obfuscar.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Resources\snd_effects\big-impact-7054.mp3" />
     <EmbeddedResource Include="Resources\snd_effects\button-124476.mp3" />
     <EmbeddedResource Include="Resources\snd_effects\button-pressed-38129.mp3" />
@@ -67,8 +84,12 @@
     <PackageReference Include="MahApps.Metro.IconPacks.Zondicons" Version="4.11.0" />
     <PackageReference Include="NAudio" Version="2.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Obfuscar" Version="2.2.37">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Serilog" Version="2.12.0" />
-    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    <PackageReference Condition="'$(Configuration)'=='Debug'" Include="Serilog.Sinks.Debug" Version="2.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
   </ItemGroup>
 

@@ -3,6 +3,7 @@ using Serilog;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Threading;
 
 namespace Battleship2000.Views.Pages
 {
