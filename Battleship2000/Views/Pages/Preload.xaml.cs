@@ -40,6 +40,7 @@ namespace Battleship2000.Views.Pages
             Vm.LoadingText = "Loading Complete";
             Log.Information("Loading completed");
 
+            Thread.Sleep(0);
 #if !DEBUG
             Thread.Sleep(1250);
 #endif
