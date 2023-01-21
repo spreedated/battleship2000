@@ -1,4 +1,5 @@
-﻿using Battleship2000.ViewElements;
+﻿using Battleship2000.Models.Ships;
+using Battleship2000.ViewElements;
 using System.Windows;
 
 namespace Battleship2000.Models

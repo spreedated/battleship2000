@@ -1,4 +1,4 @@
-﻿namespace Battleship2000.Models
+﻿namespace Battleship2000.Models.Ships
 {
     internal class Destroyer : Ship
     {

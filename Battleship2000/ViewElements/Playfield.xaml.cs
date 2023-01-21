@@ -1,4 +1,5 @@
-﻿using Battleship2000.Models;
+﻿using Battleship2000.Logic;
+using Battleship2000.Models;
 using Battleship2000.ViewLogic;
 using Serilog;
 using System;

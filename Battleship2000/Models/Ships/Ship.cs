@@ -1,4 +1,6 @@
-﻿namespace Battleship2000.Models
+﻿using System.Windows;
+
+namespace Battleship2000.Models.Ships
 {
     public abstract class Ship
     {
@@ -10,6 +12,12 @@
             Submarine,
             Destroyer
         }
+        public enum Orientations
+        {
+            Vertical,
+            Horizontal
+        }
+        public Orientations Orientation { get; set; }
         public ShipTypes ShipType { get; set; }
         public int Width { get; set; }
         public int Hits { get; set; }
@@ -20,5 +28,6 @@
                 return Hits >= Width;
             }
         }
+        public Point Coordinate { get; set; }
     }
 }
