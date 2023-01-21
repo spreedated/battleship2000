@@ -13,6 +13,6 @@
   <AssemblySearchPath path="C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\6.0.13" />
   <Var name="KeyFile" value=".\..\..\..\..\battleship2000.snk" />
 
-  <Module file="$(InPath)\Battleship2000.dll" />
+  <!--<Module file="$(InPath)\Battleship2000.dll" />-->
   <Module file="$(InPath)\NetPackage.dll" />
 </Obfuscator>
