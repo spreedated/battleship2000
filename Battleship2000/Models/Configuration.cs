@@ -41,9 +41,9 @@ namespace Battleship2000.Models
     internal class Audio
     {
         [JsonProperty("musicvolume")]
-        public float MusicVolume { get; set; } = 0.4f;
+        public float MusicVolume { get; set; } = 0.2f;
 
         [JsonProperty("effectvolume")]
-        public float EffectVolume { get; set; } = 0.8f;
+        public float EffectVolume { get; set; } = 0.4f;
     }
 }

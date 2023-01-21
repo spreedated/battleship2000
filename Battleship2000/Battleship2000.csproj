@@ -14,6 +14,7 @@
     <Copyright>2022-2023 (c) Markus Karl Wackermann</Copyright>
     <Version>0.1</Version>
     <Authors>Markus Wackermann</Authors>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PublishReadyToRun>true</PublishReadyToRun>
     <!--<PublishSingleFile>true</PublishSingleFile>--> <!-- Seems to be broken :( -->
   </PropertyGroup>
@@ -22,6 +23,7 @@
     <NoWarn>1701;1702;IDE0063;IDE0074;IDE0066;IDE0056;XDG0068</NoWarn>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -29,6 +31,7 @@
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
     <Prefer32Bit>false</Prefer32Bit>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <PostBuildEvent>"$(Obfuscar)" obfuscar.xml</PostBuildEvent>
   </PropertyGroup>
 
