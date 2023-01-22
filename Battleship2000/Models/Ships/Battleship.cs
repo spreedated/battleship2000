@@ -4,7 +4,7 @@
     {
         public Battleship()
         {
-            base.ShipType = ShipTypes.Battleship;
+            base.ShipType = nameof(Battleship);
             base.Width = 4;
         }
     }

@@ -182,10 +182,30 @@ namespace Battleship2000.Logic
                             break;
                         }
                     }
-                    if (ship.Orientation == Ship.Orientations.Horizontal && this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X + i].CellState != Cell.CellStates.Empty)
+
+                    if (ship.Orientation == Ship.Orientations.Vertical && (int)ship.Coordinate.X - 1 != -1 || (int)ship.Coordinate.Y + i != -1)
                     {
-                        isValid = false;
-                        break;
+                        if ((int)ship.Coordinate.X - 1 >= 0)
+                        {
+                            if (this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X - 1].CellState != Cell.CellStates.Empty)
+                            {
+                                isValid = false;
+                                break;
+                            }
+                        }
+                        if ((int)ship.Coordinate.X + 1 <= this.Cells.GetLength(0))
+                        {
+                            if (this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X + 1].CellState != Cell.CellStates.Empty)
+                            {
+                                isValid = false;
+                                break;
+                            }
+                        }
+                        if (i + 1 == ship.Width && this.Cells.GetLength(0) < ship.Width + 1 && this.Cells[ship.Width + 1, (int)ship.Coordinate.X + 1].CellState != Cell.CellStates.Empty)
+                        {
+                            isValid = false;
+                            break;
+                        }
                     }
                 }
             }

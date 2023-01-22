@@ -138,7 +138,13 @@ namespace Tests
                 this.testPlayField = new();
                 Assert.Throws<ArgumentException>(() =>
                 {
-                    this.testPlayField.PlaceShip(new Carrier() { Hits = 5, Width = 5 });
+                    Carrier cc = new();
+                    cc.RegisterHit(0);
+                    cc.RegisterHit(1);
+                    cc.RegisterHit(2);
+                    cc.RegisterHit(3);
+                    cc.RegisterHit(4);
+                    this.testPlayField.PlaceShip(cc);
                 });
                 this.testPlayField = new();
                 Assert.Throws<InvalidPlacementException>(() =>
@@ -158,6 +164,26 @@ namespace Tests
                     this.testPlayField.PlaceShip(new Carrier() { Orientation = Ship.Orientations.Horizontal, Coordinate = new Point(0, 0) });
                     this.testPlayField.PlaceShip(new Carrier() { Orientation = Ship.Orientations.Horizontal, Coordinate = new Point(1, 0) });
                 });
+                this.testPlayField = new();
+                Assert.DoesNotThrow(() =>
+                {
+                    this.testPlayField.PlaceShip(new Carrier() { Orientation = Ship.Orientations.Horizontal, Coordinate = new Point(0, 0) });
+                    this.testPlayField.PlaceShip(new Carrier() { Orientation = Ship.Orientations.Horizontal, Coordinate = new Point(0, 2) });
+                });
+
+                this.testPlayField = new();
+                Assert.Throws<InvalidPlacementException>(() =>
+                {
+                    this.testPlayField.PlaceShip(new Carrier() { Orientation = Ship.Orientations.Vertical, Coordinate = new Point(0, 0) });
+                    this.testPlayField.PlaceShip(new Carrier() { Orientation = Ship.Orientations.Vertical, Coordinate = new Point(0, 1) });
+                });
+                this.testPlayField = new();
+                Assert.DoesNotThrow(() =>
+                {
+                    this.testPlayField.PlaceShip(new Carrier() { Orientation = Ship.Orientations.Vertical, Coordinate = new Point(0, 0) });
+                    this.testPlayField.PlaceShip(new Carrier() { Orientation = Ship.Orientations.Vertical, Coordinate = new Point(2, 0) });
+                });
+
             });
         }
 

@@ -4,7 +4,7 @@
     {
         public Cruiser()
         {
-            base.ShipType = ShipTypes.Cruiser;
+            base.ShipType = nameof(Cruiser);
             base.Width = 3;
         }
     }

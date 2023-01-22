@@ -4,7 +4,7 @@
     {
         public Carrier()
         {
-            base.ShipType = ShipTypes.Carrier;
+            base.ShipType = nameof(Carrier);
             base.Width = 5;
         }
     }

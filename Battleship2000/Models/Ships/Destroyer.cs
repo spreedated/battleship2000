@@ -4,7 +4,7 @@
     {
         public Destroyer()
         {
-            base.ShipType = ShipTypes.Destroyer;
+            base.ShipType = nameof(Destroyer);
             base.Width = 2;
         }
     }
