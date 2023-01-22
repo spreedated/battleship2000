@@ -11,15 +11,15 @@
     <Window.DataContext>
         <vm:DialogWindowViewModel />
     </Window.DataContext>
-    <Border Background="Black" CornerRadius="20" BorderBrush="#999" BorderThickness="2.5">
+    <Border Style="{StaticResource Windows11CorderRadius}" Background="Black" BorderBrush="#999" BorderThickness="2.5">
         <Grid>
-            <Border d:Visibility="Hidden" Visibility="{Binding BackgroundVis}" CornerRadius="20">
+            <Border d:Visibility="Hidden" Visibility="{Binding BackgroundVis}" Style="{StaticResource Windows11CorderRadius}">
                 <Border.Background>
                     <ImageBrush ImageSource="{Binding BackgroundImage}" Stretch="None" TileMode="FlipX" Viewport="0,0,256,256" ViewportUnits="Absolute" />
                 </Border.Background>
             </Border>
             <Grid>
-                <Border Visibility="{Binding BackgroundVis,Converter={vl:VisibilityOppositeConverter}}" Opacity="0.6" CornerRadius="20">
+                <Border Visibility="{Binding BackgroundVis,Converter={vl:VisibilityOppositeConverter}}" Opacity="0.6" CornerRadius="6">
                     <Border.Background>
                         <ImageBrush Stretch="Fill" ImageSource="../Resources/battleship1-1280x736.png"/>
                     </Border.Background>
