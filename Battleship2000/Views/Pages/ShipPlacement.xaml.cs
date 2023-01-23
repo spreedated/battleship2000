@@ -24,7 +24,6 @@ namespace Battleship2000.Views.Pages
                 PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
                 ShipPlacementViewModel sp = (ShipPlacementViewModel)((ShipPlacement)args.PlayfieldInstance.ParentPage).DataContext;
 
-
                 if (sp.SelectedShip != null)
                 {
                     sp.SelectedShip.Orientation = sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? Models.Ships.Ship.Orientations.Vertical : Models.Ships.Ship.Orientations.Horizontal;
