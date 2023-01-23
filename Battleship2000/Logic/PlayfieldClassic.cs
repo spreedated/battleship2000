@@ -168,7 +168,7 @@ namespace Battleship2000.Logic
                                 break;
                             }
                         }
-                        if ((int)ship.Coordinate.Y + 1 <= this.Cells.GetLength(0))
+                        if ((int)ship.Coordinate.Y + 1 < this.Cells.GetLength(0))
                         {
                             if (this.Cells[(int)ship.Coordinate.Y + 1, (int)ship.Coordinate.X].CellState != Cell.CellStates.Empty)
                             {
@@ -185,7 +185,7 @@ namespace Battleship2000.Logic
 
                     if (ship.Orientation == Ship.Orientations.Vertical && (int)ship.Coordinate.X - 1 != -1 || (int)ship.Coordinate.Y + i != -1)
                     {
-                        if ((int)ship.Coordinate.X - 1 >= 0)
+                        if ((int)ship.Coordinate.X - 1 > 0)
                         {
                             if (this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X - 1].CellState != Cell.CellStates.Empty)
                             {
@@ -193,7 +193,7 @@ namespace Battleship2000.Logic
                                 break;
                             }
                         }
-                        if ((int)ship.Coordinate.X + 1 <= this.Cells.GetLength(0))
+                        if ((int)ship.Coordinate.X + 1 < this.Cells.GetLength(0))
                         {
                             if (this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X + 1].CellState != Cell.CellStates.Empty)
                             {

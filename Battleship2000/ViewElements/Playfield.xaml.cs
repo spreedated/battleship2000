@@ -69,9 +69,9 @@ namespace Battleship2000.ViewElements
 
             Point coords = CellnameToCoordinates(args.ButtonCell.Name);
 
-            args.PlayfieldInstance.PlayfieldLogic.Cells[(int)coords.X, (int)coords.Y].CellState = Cell.CellStates.Empty;
+            args.PlayfieldInstance.PlayfieldLogic.Cells[(int)coords.Y, (int)coords.X].CellState = Cell.CellStates.Empty;
 
-            Log.Debug($"Ship part removed on [{coords.X},{coords.Y}]");
+            Log.Debug($"Ship part removed on [{coords.Y},{coords.X}]");
 
             args.PlayfieldInstance.RefreshPlayfieldGui();
         });
@@ -82,7 +82,7 @@ namespace Battleship2000.ViewElements
             {
                 for (int ii = 0; ii < this.PlayfieldLogic.Cells.GetLength(1); ii++)
                 {
-                    if (this.PlayfieldLogic.Cells[i, ii].CellState == Cell.CellStates.Ship)
+                    if (this.PlayfieldLogic.Cells[ii, i].CellState == Cell.CellStates.Ship)
                     {
                         ((ButtonCell)this.stcks[ii].Children[i]).BackgroundCell = Brushes.Red;
                         continue;
