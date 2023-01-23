@@ -1,6 +1,7 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.Models;
 using Battleship2000.ViewLogic;
+using Battleship2000.Views;
 using Serilog;
 using System;
 using System.ComponentModel;
@@ -22,6 +23,13 @@ namespace Battleship2000.ViewElements
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public static readonly DependencyProperty ParentPageProperty = DependencyProperty.Register("ParentPage", typeof(Page), typeof(Playfield), new PropertyMetadata(null));
+        public Page ParentPage
+        {
+            get => (Page)GetValue(ParentPageProperty);
+            set => SetValue(ParentPageProperty, value);
         }
 
         private ICommand _FieldLeftClickOverride;

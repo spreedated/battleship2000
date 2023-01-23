@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              Width="46" Height="46" Name="me">
     <Grid>
-        <Button Margin="0,0,0,0" Style="{StaticResource ButtonIcon}" Height="46" Width="46" IsEnabled="{Binding ElementName=me, Path=IsEnabled}" Command="{Binding Command, ElementName=me}">
+        <Button Margin="0,0,0,0" Style="{StaticResource ButtonIcon}" Height="46" Width="46" IsEnabled="{Binding ElementName=me, Path=IsEnabled}" Command="{Binding Command, ElementName=me}" CommandParameter="{Binding CommandParameter, ElementName=me}">
             <Button.Content>
                 <Grid>
                     <ic:PackIconMaterial Kind="{Binding MaterialIcon,ElementName=me}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="28" Width="28" Effect="{StaticResource ButtonMenuDropShadow}" Foreground="{Binding IconColor, ElementName=me}" />

@@ -27,28 +27,28 @@
                 </Grid.ColumnDefinitions>
                 <elem:Playfield x:Name="PLF_Playfield"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
-                    <elem:ButtonIcon VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding OrientationChangeCommand}" MaterialIcon="RotateLeftVariant" Margin="0,0,0,20" />
+                    <elem:ButtonIcon VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding OrientationChangeCommand}" CommandParameter="{Binding Instance}" MaterialIcon="RotateLeftVariant" Margin="0,0,0,20" />
                     <elem:SelectionArrow Margin="0,0,0,0" Rotation="{Binding RotationArrow}" Width="64" Height="64"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Carrier (5)" Margin="0" IsEnabled="{Binding CarrierEnabled}" Command="{Binding CarrierSetCommand}" />
+                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Carrier (5)" Margin="0" IsEnabled="{Binding CarrierEnabled}" Command="{Binding CarrierSetCommand}" CommandParameter="{Binding Instance}" />
                         <elem:SelectionArrow Visibility="{Binding CarrierArrowVisibility}" Margin="8,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Battleship (4)" Margin="0" IsEnabled="{Binding BattleshipEnabled}" Command="{Binding BattlshipSetCommand}" />
+                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Battleship (4)" Margin="0" IsEnabled="{Binding BattleshipEnabled}" Command="{Binding BattlshipSetCommand}" CommandParameter="{Binding Instance}" />
                         <elem:SelectionArrow Visibility="{Binding BattleshipArrowVisibility}" Margin="8,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Cruiser (3)" Margin="0" IsEnabled="{Binding CruiserEnabled}" Command="{Binding CruiserSetCommand}" />
+                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Cruiser (3)" Margin="0" IsEnabled="{Binding CruiserEnabled}" Command="{Binding CruiserSetCommand}" CommandParameter="{Binding Instance}" />
                         <elem:SelectionArrow Visibility="{Binding CruiserArrowVisibility}" Margin="8,0,0,0"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Submarine (3)" Margin="0" IsEnabled="{Binding SubmarineEnabled}" Command="{Binding SubmarineSetCommand}" />
+                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Submarine (3)" Margin="0" IsEnabled="{Binding SubmarineEnabled}" Command="{Binding SubmarineSetCommand}" CommandParameter="{Binding Instance}" />
                         <elem:SelectionArrow Visibility="{Binding SubmarineArrowVisibility}" Margin="8,0,0,0" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Destroyer (2)" Margin="0" IsEnabled="{Binding DestroyerEnabled}" Command="{Binding DestroyerSetCommand}" />
+                        <Button Style="{StaticResource ButtonMenu}" Width="160" Content="Destroyer (2)" Margin="0" IsEnabled="{Binding DestroyerEnabled}" Command="{Binding DestroyerSetCommand}" CommandParameter="{Binding Instance}" />
                         <elem:SelectionArrow Visibility="{Binding DestroyerArrowVisibility}" Margin="8,0,0,0"/>
                     </StackPanel>
                 </StackPanel>

@@ -12,29 +12,29 @@ namespace Battleship2000.Views.Pages
     /// </summary>
     public partial class ShipPlacement : Page
     {
-        public static ShipPlacement Instance { get; set; }
-        public static ShipPlacementViewModel Vm { get; set; }
         public ShipPlacement()
         {
             InitializeComponent();
-            Instance = this;
-            Vm = (ShipPlacementViewModel)this.DataContext;
+            ((ShipPlacementViewModel)this.DataContext).Instance = this;
+
+            this.PLF_Playfield.ParentPage = this;
 
             this.PLF_Playfield.FieldLeftClickOverride = new RelayCommand((c) =>
             {
                 PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
+                ShipPlacementViewModel sp = (ShipPlacementViewModel)((ShipPlacement)args.PlayfieldInstance.ParentPage).DataContext;
 
-                if (ShipPlacement.Vm.SelectedShip != null)
+                if (sp.SelectedShip != null)
                 {
                     bool isValid = true;
 
-                    for (int i = 0; i < ShipPlacement.Vm.SelectedShip.Width + 1; i++)
+                    for (int i = 0; i < sp.SelectedShip.Width + 1; i++)
                     {
-                        if (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Right && (int)args.Coords.X + i > args.PlayfieldInstance.PlayfieldLogic.Cells.GetLength(0))
+                        if (sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Right && (int)args.Coords.X + i > args.PlayfieldInstance.PlayfieldLogic.Cells.GetLength(0))
                         {
                             isValid = false;
                         }
-                        if (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down && (int)args.Coords.Y + i > args.PlayfieldInstance.PlayfieldLogic.Cells.GetLength(1))
+                        if (sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down && (int)args.Coords.Y + i > args.PlayfieldInstance.PlayfieldLogic.Cells.GetLength(1))
                         {
                             isValid = false;
                         }
@@ -42,13 +42,13 @@ namespace Battleship2000.Views.Pages
 
                     if (isValid)
                     {
-                        for (int i = 0; i < ShipPlacement.Vm.SelectedShip.Width; i++)
+                        for (int i = 0; i < sp.SelectedShip.Width; i++)
                         {
-                            if (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Right && args.PlayfieldInstance.PlayfieldLogic.Cells[(int)args.Coords.X + i, (int)args.Coords.Y].CellState != Cell.CellStates.Empty)
+                            if (sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Right && args.PlayfieldInstance.PlayfieldLogic.Cells[(int)args.Coords.X + i, (int)args.Coords.Y].CellState != Cell.CellStates.Empty)
                             {
                                 isValid = false;
                             }
-                            if (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down && args.PlayfieldInstance.PlayfieldLogic.Cells[(int)args.Coords.X, (int)args.Coords.Y + i].CellState != Cell.CellStates.Empty)
+                            if (sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down && args.PlayfieldInstance.PlayfieldLogic.Cells[(int)args.Coords.X, (int)args.Coords.Y + i].CellState != Cell.CellStates.Empty)
                             {
                                 isValid = false;
                             }
@@ -59,10 +59,10 @@ namespace Battleship2000.Views.Pages
 
                     if (isValid)
                     {
-                        for (int i = 0; i < ShipPlacement.Vm.SelectedShip.Width; i++)
+                        for (int i = 0; i < sp.SelectedShip.Width; i++)
                         {
-                            args.PlayfieldInstance.PlayfieldLogic.Cells[(int)args.Coords.X + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? 0 : i), (int)args.Coords.Y + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? i : 0)].CellState = Cell.CellStates.Ship;
-                            Log.Debug($"Ship part placed on [{args.Coords.X + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? 0 : i)},{args.Coords.Y + (ShipPlacement.Vm.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? i : 0)}]");
+                            args.PlayfieldInstance.PlayfieldLogic.Cells[(int)args.Coords.X + (sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? 0 : i), (int)args.Coords.Y + (sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? i : 0)].CellState = Cell.CellStates.Ship;
+                            Log.Debug($"Ship part placed on [{args.Coords.X + (sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? 0 : i)},{args.Coords.Y + (sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? i : 0)}]");
                         }
                     }
                 }

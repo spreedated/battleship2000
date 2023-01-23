@@ -214,86 +214,96 @@ namespace Battleship2000.ViewModels
 
         public ICommand CarrierSetCommand { get; } = new RelayCommand((c) =>
         {
-            if (ShipPlacement.Vm.ShipSelectionCurrent == ShipSelections.Carrier)
+            ShipPlacementViewModel s = GetViewModel(c);
+
+            if (s.ShipSelectionCurrent == ShipSelections.Carrier)
             {
-                ShipSelectorButtonHandler(ShipSelections.All);
-                ShipPlacement.Vm.SelectedShip = null;
+                ShipSelectorButtonHandler(ShipSelections.All, s);
+                s.SelectedShip = null;
                 return;
             }
 
-            ShipSelectorButtonHandler(ShipSelections.Carrier);
-            ShipPlacement.Vm.SelectedShip = new Carrier();
+            ShipSelectorButtonHandler(ShipSelections.Carrier, s);
+            s.SelectedShip = new Carrier();
         });
 
         public ICommand BattlshipSetCommand { get; } = new RelayCommand((c) =>
         {
-            if (ShipPlacement.Vm.BattleshipArrowVisibility == Visibility.Visible)
+            ShipPlacementViewModel s = GetViewModel(c);
+
+            if (s.BattleshipArrowVisibility == Visibility.Visible)
             {
-                ShipSelectorButtonHandler(ShipSelections.All);
-                ShipPlacement.Vm.SelectedShip = null;
+                ShipSelectorButtonHandler(ShipSelections.All, s);
+                s.SelectedShip = null;
                 return;
             }
-            ShipSelectorButtonHandler(ShipSelections.Battleship);
-            ShipPlacement.Vm.SelectedShip = new Battleship();
+            ShipSelectorButtonHandler(ShipSelections.Battleship, s);
+            s.SelectedShip = new Battleship();
         });
 
         public ICommand CruiserSetCommand { get; } = new RelayCommand((c) =>
         {
-            if (ShipPlacement.Vm.CruiserArrowVisibility == Visibility.Visible)
+            ShipPlacementViewModel s = GetViewModel(c);
+
+            if (s.CruiserArrowVisibility == Visibility.Visible)
             {
-                ShipSelectorButtonHandler(ShipSelections.All);
-                ShipPlacement.Vm.SelectedShip = null;
+                ShipSelectorButtonHandler(ShipSelections.All, s);
+                s.SelectedShip = null;
                 return;
             }
-            ShipSelectorButtonHandler(ShipSelections.Cruiser);
-            ShipPlacement.Vm.SelectedShip = new Cruiser();
+            ShipSelectorButtonHandler(ShipSelections.Cruiser, s);
+            s.SelectedShip = new Cruiser();
         });
 
         public ICommand SubmarineSetCommand { get; } = new RelayCommand((c) =>
         {
-            if (ShipPlacement.Vm.SubmarineArrowVisibility == Visibility.Visible)
+            ShipPlacementViewModel s = GetViewModel(c);
+
+            if (s.SubmarineArrowVisibility == Visibility.Visible)
             {
-                ShipSelectorButtonHandler(ShipSelections.All);
-                ShipPlacement.Vm.SelectedShip = null;
+                ShipSelectorButtonHandler(ShipSelections.All, s);
+                s.SelectedShip = null;
                 return;
             }
-            ShipSelectorButtonHandler(ShipSelections.Submarine);
-            ShipPlacement.Vm.SelectedShip = new Submarine();
+            ShipSelectorButtonHandler(ShipSelections.Submarine, s);
+            s.SelectedShip = new Submarine();
         });
 
         public ICommand DestroyerSetCommand { get; } = new RelayCommand((c) =>
         {
-            if (ShipPlacement.Vm.DestroyerArrowVisibility == Visibility.Visible)
+            ShipPlacementViewModel s = GetViewModel(c);
+
+            if (s.DestroyerArrowVisibility == Visibility.Visible)
             {
-                ShipSelectorButtonHandler(ShipSelections.All);
-                ShipPlacement.Vm.SelectedShip = null;
+                ShipSelectorButtonHandler(ShipSelections.All, s);
+                s.SelectedShip = null;
                 return;
             }
-            ShipSelectorButtonHandler(ShipSelections.Destroyer);
-            ShipPlacement.Vm.SelectedShip = new Destroyer();
+            ShipSelectorButtonHandler(ShipSelections.Destroyer, s);
+            s.SelectedShip = new Destroyer();
         });
 
-        private static void ShipSelectorButtonHandler(ShipSelections shipSelection)
+        private static void ShipSelectorButtonHandler(ShipSelections shipSelection, ShipPlacementViewModel v)
         {
-            ShipPlacement.Vm.ShipSelectionCurrent = shipSelection;
+            v.ShipSelectionCurrent = shipSelection;
 
             IEnumerable<PropertyInfo> allEnables = typeof(ShipPlacementViewModel).GetProperties().Where(p => p.PropertyType == typeof(bool) && Enum.GetNames(typeof(ShipSelections)).Any(x => p.Name.Contains(x)));
             foreach (PropertyInfo p in allEnables)
             {
-                p.SetValue(ShipPlacement.Vm, false);
+                p.SetValue(v, false);
             }
 
             IEnumerable<PropertyInfo> allVisiblesArrows = typeof(ShipPlacementViewModel).GetProperties().Where(p => p.PropertyType == typeof(Visibility) && Enum.GetNames(typeof(ShipSelections)).Any(x => p.Name.Contains(x)));
             foreach (PropertyInfo p in allVisiblesArrows)
             {
-                p.SetValue(ShipPlacement.Vm, Visibility.Hidden);
+                p.SetValue(v, Visibility.Hidden);
             }
 
             if (shipSelection == ShipSelections.All)
             {
                 foreach (PropertyInfo p in allEnables)
                 {
-                    p.SetValue(ShipPlacement.Vm, true);
+                    p.SetValue(v, true);
                 }
                 return;
             }
@@ -303,20 +313,21 @@ namespace Battleship2000.ViewModels
 
             if (specificPropertyArrowVisible != null && specificPropertyEnable != null)
             {
-                specificPropertyEnable.SetValue(ShipPlacement.Vm, true);
-                specificPropertyArrowVisible.SetValue(ShipPlacement.Vm, Visibility.Visible);
+                specificPropertyEnable.SetValue(v, true);
+                specificPropertyArrowVisible.SetValue(v, Visibility.Visible);
             }
         }
 
         public ICommand OrientationChangeCommand { get; } = new RelayCommand((c) =>
         {
-            if (ShipPlacement.Vm.RotationArrow == SelectionArrow.Rotations.Right)
+            ShipPlacementViewModel v = GetViewModel(c);
+            if (v.RotationArrow == SelectionArrow.Rotations.Right)
             {
-                ShipPlacement.Vm.RotationArrow = SelectionArrow.Rotations.Down;
+                v.RotationArrow = SelectionArrow.Rotations.Down;
                 return;
             }
 
-            ShipPlacement.Vm.RotationArrow = SelectionArrow.Rotations.Right;
+            v.RotationArrow = SelectionArrow.Rotations.Right;
         });
 
         private SelectionArrow.Rotations _RotationArrow = SelectionArrow.Rotations.Right;
@@ -333,5 +344,22 @@ namespace Battleship2000.ViewModels
             }
         }
 
+        private ShipPlacement _Instance;
+        public ShipPlacement Instance
+        {
+            get
+            {
+                return this._Instance;
+            }
+            set
+            {
+                this._Instance = value;
+                base.OnPropertyChanged(nameof(this.Instance));
+            }
+        }
+        private static ShipPlacementViewModel GetViewModel(object c)
+        {
+            return ((ShipPlacementViewModel)((ShipPlacement)c).DataContext);
+        }
     }
 }
