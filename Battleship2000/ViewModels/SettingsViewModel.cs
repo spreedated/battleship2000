@@ -104,7 +104,7 @@ namespace Battleship2000.ViewModels
 
         public static void Navigate(Settings settingsInstance, string pagename)
         {
-            Page p = ObjectStorage.pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
+            Page p = ObjectStorage.Pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
 
             if (p == null)
             {

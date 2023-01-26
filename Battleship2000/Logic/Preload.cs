@@ -48,16 +48,16 @@ namespace Battleship2000.Logic
         private static void LoadPages()
         {
             Log.Information("Loading pages...");
-            ObjectStorage.pages.Add(new ConnectToServer());
-            ObjectStorage.pages.Add(new MainMenu());
-            ObjectStorage.pages.Add(new HostServer());
-            ObjectStorage.pages.Add(new Settings());
-            ObjectStorage.pages.Add(new Settings_Player());
-            ObjectStorage.pages.Add(new Settings_Network());
-            ObjectStorage.pages.Add(new Settings_Visual());
-            ObjectStorage.pages.Add(new Settings_Audio());
-            ObjectStorage.pages.Add(new Settings_Credits());
-            ObjectStorage.pages.Add(new ShipPlacement());
+            ObjectStorage.Pages.Add(new ConnectToServer());
+            ObjectStorage.Pages.Add(new MainMenu());
+            ObjectStorage.Pages.Add(new HostServer());
+            ObjectStorage.Pages.Add(new Settings());
+            ObjectStorage.Pages.Add(new Settings_Player());
+            ObjectStorage.Pages.Add(new Settings_Network());
+            ObjectStorage.Pages.Add(new Settings_Visual());
+            ObjectStorage.Pages.Add(new Settings_Audio());
+            ObjectStorage.Pages.Add(new Settings_Credits());
+            ObjectStorage.Pages.Add(new ShipPlacement());
             Log.Information("Loading pages finished");
         }
 
@@ -76,28 +76,28 @@ namespace Battleship2000.Logic
                 {
                     if (snd.Contains("snd_effects"))
                     {
-                        ObjectStorage.sounds.Add(new()
+                        ObjectStorage.Sounds.Add(new()
                         {
                             Name = soundname,
                             Payload = new byte[s.Length]
                         });
-                        s.Read(ObjectStorage.sounds.Last().Payload, 0, ObjectStorage.sounds.Last().Payload.Length);
+                        s.Read(ObjectStorage.Sounds.Last().Payload, 0, ObjectStorage.Sounds.Last().Payload.Length);
                     }
                     if (snd.Contains("snd_music"))
                     {
-                        ObjectStorage.musics.AddLast(new Models.Music()
+                        ObjectStorage.Musics.AddLast(new Models.Music()
                         {
                             Name = soundname,
                             Payload = new byte[s.Length]
                         });
-                        s.Read(ObjectStorage.musics.Last().Payload, 0, ObjectStorage.musics.Last().Payload.Length);
+                        s.Read(ObjectStorage.Musics.Last().Payload, 0, ObjectStorage.Musics.Last().Payload.Length);
                     }
                 }
 
                 Log.Information($"Sound \"{soundname}\" loaded");
             }
 
-            Log.Information($"Loaded successfully {soundlist.Count()} soundfiles. {ObjectStorage.musics.Count} Music files, {ObjectStorage.sounds.Count} Effect files.");
+            Log.Information($"Loaded successfully {soundlist.Count()} soundfiles. {ObjectStorage.Musics.Count} Music files, {ObjectStorage.Sounds.Count} Effect files.");
         }
 
         private static void LoadNetworkInterfaces()

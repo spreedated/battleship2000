@@ -1,7 +1,10 @@
 ﻿#pragma warning disable S1075
 
 using Battleship2000.Models;
+using Newtonsoft.Json;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -17,10 +20,10 @@ namespace Battleship2000.Logic
         public static string ProjectVersion { get; } = $"v{typeof(ObjectStorage).Assembly.GetName().Version.ToNiceString()}";
         internal static ConfigurationHandler ConfigurationHandler { get; } = new(Path.Combine(Path.GetDirectoryName(typeof(ObjectStorage).Assembly.Location), "config.json"));
         internal static Models.Configuration Config { get; set; }
-        internal readonly static List<Page> pages = new();
-        internal readonly static List<Window> windows = new();
-        internal readonly static LinkedList<Music> musics = new();
-        internal readonly static List<EffectSound> sounds = new();
+        internal static List<Page> Pages { get; } = new();
+        internal static List<Window> Windows { get; } = new();
+        internal static LinkedList<Music> Musics { get; } = new();
+        internal static List<EffectSound> Sounds { get; } = new();
         internal static Visibility BackgroundVis { get; set; } = Visibility.Collapsed;
         internal static ImageSource BackgroundImage { get; set; }
     }

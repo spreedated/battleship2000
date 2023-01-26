@@ -10,7 +10,7 @@ namespace Battleship2000.ViewModels
     {
         public ICommand TestSoundCommand { get; } = new RelayCommand((c) =>
         {
-            AudioEngine.PlaySoundEffect(ObjectStorage.sounds.GetRandomElement().Name);
+            AudioEngine.PlaySoundEffect(ObjectStorage.Sounds.GetRandomElement().Name);
         });
 
         public ICommand PlayNextCommand { get; } = new RelayCommand((c) =>

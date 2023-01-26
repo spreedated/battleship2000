@@ -27,7 +27,7 @@ namespace Battleship2000.Logic
                 return;
             }
 
-            if (!ObjectStorage.sounds.Any(x => x.Name.ToLower().Contains(soundname.ToLower())))
+            if (!ObjectStorage.Sounds.Any(x => x.Name.ToLower().Contains(soundname.ToLower())))
             {
                 Log.Warning($"Sound not found \"{soundname}\"");
                 return;
@@ -35,7 +35,7 @@ namespace Battleship2000.Logic
 
             Task.Factory.StartNew(async () =>
             {
-                EffectSound ef = ObjectStorage.sounds.First(x => x.Name.ToLower().Contains(soundname.ToLower()));
+                EffectSound ef = ObjectStorage.Sounds.First(x => x.Name.ToLower().Contains(soundname.ToLower()));
 
                 using (MemoryStream ms = new(ef.Payload))
                 {
@@ -89,7 +89,7 @@ namespace Battleship2000.Logic
 
                 if (CurrentTrack == null)
                 {
-                    CurrentTrack = ObjectStorage.musics.First;
+                    CurrentTrack = ObjectStorage.Musics.First;
                 }
 
                 using (MemoryStream ms = new(CurrentTrack.Value.Payload))
@@ -154,7 +154,7 @@ namespace Battleship2000.Logic
             {
                 if (CurrentTrack.Next == null)
                 {
-                    CurrentTrack = ObjectStorage.musics.First;
+                    CurrentTrack = ObjectStorage.Musics.First;
                 }
                 else
                 {
