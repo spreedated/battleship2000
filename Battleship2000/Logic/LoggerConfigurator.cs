@@ -33,6 +33,7 @@ namespace Battleship2000.Logic
                 .MinimumLevel.Verbose()
                 .Enrich.FromLogContext()
                 .Enrich.WithCaller()
+                .WriteTo.SQLite(Path.Combine(Path.GetDirectoryName(logfilepath), "log.db"), tableName: "logs", restrictedToMinimumLevel: level)
 #if DEBUG
                 .WriteTo.Debug(restrictedToMinimumLevel: level, outputTemplate: logOutputTemplate)
 #endif
