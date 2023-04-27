@@ -2,6 +2,7 @@
 using Battleship2000.Models;
 using Battleship2000.ViewLogic;
 using Battleship2000.Views;
+using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System;
 using System.ComponentModel;
@@ -46,9 +47,8 @@ namespace Battleship2000.ViewElements
             }
         }
 
-        public ICommand FieldClickCommand { get; } = new RelayCommand((c) =>
+        public ICommand FieldClickCommand { get; } = new RelayCommand<PlayfieldCellCommandArgs>((args) =>
         {
-            PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
             Log.Debug($"{args.ButtonCell.Name} left click");
 
             args.Coords = CellnameToCoordinates(args.ButtonCell.Name);
@@ -61,10 +61,8 @@ namespace Battleship2000.ViewElements
             args.PlayfieldInstance.RefreshPlayfieldGui();
         });
 
-        public ICommand FieldRightClickCommand { get; } = new RelayCommand((c) =>
+        public ICommand FieldRightClickCommand { get; } = new RelayCommand<PlayfieldCellCommandArgs>((args) =>
         {
-            PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
-
             Log.Debug($"{args.ButtonCell.Name} right click");
 
             Point coords = CellnameToCoordinates(args.ButtonCell.Name);

@@ -1,5 +1,6 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
+using neXn.Lib.Wpf.ViewLogic;
 using System.Collections.ObjectModel;
 
 namespace Battleship2000.ViewModels

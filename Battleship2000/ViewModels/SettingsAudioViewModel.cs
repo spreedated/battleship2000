@@ -1,6 +1,7 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
 using MahApps.Metro.IconPacks;
+using neXn.Lib.Wpf.ViewLogic;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,12 +9,12 @@ namespace Battleship2000.ViewModels
 {
     public class SettingsAudioViewModel : ViewModelBase
     {
-        public ICommand TestSoundCommand { get; } = new RelayCommand((c) =>
+        public ICommand TestSoundCommand { get; } = new RelayCommand(() =>
         {
             AudioEngine.PlaySoundEffect(ObjectStorage.Sounds.GetRandomElement().Name);
         });
 
-        public ICommand PlayNextCommand { get; } = new RelayCommand((c) =>
+        public ICommand PlayNextCommand { get; } = new RelayCommand(() =>
         {
             AudioEngine.NextTrack();
         });

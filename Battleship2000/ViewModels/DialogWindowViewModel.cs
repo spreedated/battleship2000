@@ -1,6 +1,7 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
 using Battleship2000.Views;
+using neXn.Lib.Wpf.ViewLogic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -9,16 +10,16 @@ namespace Battleship2000.ViewModels
 {
     public class DialogWindowViewModel : ViewModelBase
     {
-        public ICommand CancelCommand { get; } = new RelayCommand((c) =>
+        public ICommand CancelCommand { get; } = new RelayCommand<DialogWindow>((w) =>
         {
-            ((DialogWindow)c).DialogWindowResult = DialogWindow.DialogResults.Cancel;
-            ((Window)c).Close();
+            w.DialogWindowResult = DialogWindow.DialogResults.Cancel;
+            w.Close();
         });
 
-        private ICommand _YesCommand = new RelayCommand((c) =>
+        private ICommand _YesCommand = new RelayCommand<DialogWindow>((w) =>
         {
-            ((DialogWindow)c).DialogWindowResult = DialogWindow.DialogResults.Yes;
-            ((Window)c).Close();
+            w.DialogWindowResult = DialogWindow.DialogResults.Yes;
+            w.Close();
         });
 
         public ICommand YesCommand
@@ -34,10 +35,10 @@ namespace Battleship2000.ViewModels
             }
         }
 
-        private ICommand _NoCommand = new RelayCommand((c) =>
+        private ICommand _NoCommand = new RelayCommand<DialogWindow>((w) =>
         {
-            ((DialogWindow)c).DialogWindowResult = DialogWindow.DialogResults.No;
-            ((Window)c).Close();
+            w.DialogWindowResult = DialogWindow.DialogResults.No;
+            w.Close();
         });
         public ICommand NoCommand
         {
@@ -52,10 +53,10 @@ namespace Battleship2000.ViewModels
             }
         }
 
-        private ICommand _OkayCommand = new RelayCommand((c) =>
+        private ICommand _OkayCommand = new RelayCommand<DialogWindow>((w) =>
         {
-            ((DialogWindow)c).DialogWindowResult = DialogWindow.DialogResults.Okay;
-            ((Window)c).Close();
+            w.DialogWindowResult = DialogWindow.DialogResults.Okay;
+            w.Close();
         });
         public ICommand OkayCommand
         {

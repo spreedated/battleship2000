@@ -1,6 +1,7 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
 using Battleship2000.Views.Pages;
+using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System.Linq;
 using System.Threading.Tasks;
@@ -117,36 +118,36 @@ namespace Battleship2000.ViewModels
             Log.Information($"Navigated to \"{pagename}\" page");
         }
 
-        public ICommand PlayerCommand { get; } = new RelayCommand((c) =>
+        public ICommand PlayerCommand { get; } = new RelayCommand<Settings>((c) =>
         {
-            Navigate((Settings)c, "settings_player");
-            SetArrowVisibility((Settings)c, MenuCategories.Player);
+            Navigate(c, "settings_player");
+            SetArrowVisibility(c, MenuCategories.Player);
         });
-        public ICommand NetworkCommand { get; } = new RelayCommand((c) =>
+        public ICommand NetworkCommand { get; } = new RelayCommand<Settings>((c) =>
         {
-            Navigate((Settings)c, "settings_network");
-            SetArrowVisibility((Settings)c, MenuCategories.Network);
+            Navigate(c, "settings_network");
+            SetArrowVisibility(c, MenuCategories.Network);
         });
-        public ICommand VisualCommand { get; } = new RelayCommand((c) =>
+        public ICommand VisualCommand { get; } = new RelayCommand<Settings>((c) =>
         {
-            Navigate((Settings)c, "settings_visual");
-            SetArrowVisibility((Settings)c, MenuCategories.Visual);
+            Navigate(c, "settings_visual");
+            SetArrowVisibility(c, MenuCategories.Visual);
         });
-        public ICommand AudioCommand { get; } = new RelayCommand((c) =>
+        public ICommand AudioCommand { get; } = new RelayCommand<Settings>((c) =>
         {
-            Navigate((Settings)c, "settings_audio");
-            SetArrowVisibility((Settings)c, MenuCategories.Audio);
+            Navigate(c, "settings_audio");
+            SetArrowVisibility(c, MenuCategories.Audio);
         });
-        public ICommand CreditsCommand { get; } = new RelayCommand((c) =>
+        public ICommand CreditsCommand { get; } = new RelayCommand<Settings>((c) =>
         {
-            Navigate((Settings)c, "settings_credits");
-            SetArrowVisibility((Settings)c, MenuCategories.Credits);
+            Navigate(c, "settings_credits");
+            SetArrowVisibility(c, MenuCategories.Credits);
         });
-        public ICommand BackCommand { get; } = new RelayCommand((c) =>
+        public ICommand BackCommand { get; } = new RelayCommand(() =>
         {
             MainWindowViewModel.Navigate("mainmenu");
         });
-        public ICommand SaveToDiskCommand { get; } = new RelayCommand((c) =>
+        public ICommand SaveToDiskCommand { get; } = new RelayCommand(() =>
         {
             Task.Factory.StartNew(async () =>
             {

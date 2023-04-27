@@ -1,14 +1,13 @@
-﻿using System;
+﻿using neXn.Lib.Wpf.ViewLogic;
+using System;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Markup;
 
 namespace Battleship2000.ViewLogic
 {
-    internal class VisibilityOppositeConverter : MarkupExtension, IValueConverter
+    internal class VisibilityOppositeConverter : ValueConverterBase
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Visibility b = (Visibility)value;
 
@@ -19,16 +18,6 @@ namespace Battleship2000.ViewLogic
                 default:
                     return Visibility.Visible;
             }
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object ProvideValue(IServiceProvider serviceProvider)
-        {
-            return this;
         }
     }
 }

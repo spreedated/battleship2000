@@ -1,6 +1,7 @@
 ﻿using Battleship2000.Models;
 using Battleship2000.ViewLogic;
 using Battleship2000.ViewModels;
+using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System.Windows;
 using System.Windows.Controls;

@@ -1,6 +1,7 @@
 ﻿using Battleship2000.ViewLogic;
 using Battleship2000.Views;
 using Battleship2000.Views.Pages;
+using neXn.Lib.Wpf.ViewLogic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,37 +10,37 @@ namespace Battleship2000.ViewModels
 {
     public class MainMenuViewModel : ViewModelBase
     {
-        public ICommand PlayCommand { get; } = new RelayCommand((c) =>
+        public ICommand PlayCommand { get; } = new RelayCommand(() =>
         {
             MainWindowViewModel.Navigate("connecttoserver");
         });
 
-        public ICommand HostServerCommand { get; } = new RelayCommand((c) =>
+        public ICommand HostServerCommand { get; } = new RelayCommand(() =>
         {
             MainWindowViewModel.Navigate("hostserver");
         });
 
-        public ICommand ExitCommand { get; } = new RelayCommand((c) =>
+        public ICommand ExitCommand { get; } = new RelayCommand<Window>((w) =>
         {
             DialogWindow d = new($"Quit?", "Are you sure you want to exit?", DialogWindow.DialogButtons.Yes | DialogWindow.DialogButtons.No)
             {
-                Owner = Window.GetWindow((Window)c)
+                Owner = Window.GetWindow(w)
             };
             d.ShowDialog();
 
             if (d.DialogWindowResult == DialogWindow.DialogResults.Yes)
             {
-                ((Window)c).Close();
+                w.Close();
             }
         });
 
-        public ICommand SettingsCommand { get; } = new RelayCommand((c) =>
+        public ICommand SettingsCommand { get; } = new RelayCommand(() =>
         {
             MainWindowViewModel.Navigate("settings");
         });
 
 #if DEBUG
-        public ICommand DebugCommand { get; } = new RelayCommand((c) =>
+        public ICommand DebugCommand { get; } = new RelayCommand(() =>
         {
             MainWindowViewModel.Navigate("shipplacement");
         });

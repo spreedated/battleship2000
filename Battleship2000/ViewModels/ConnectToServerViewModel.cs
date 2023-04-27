@@ -1,6 +1,7 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
 using Battleship2000.Views.Pages;
+using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,8 +11,8 @@ namespace Battleship2000.ViewModels
 {
     public class ConnectToServerViewModel : ViewModelBase
     {
-        public ICommand BackCommand { get; } = new RelayCommand((c) => { MainWindowViewModel.Navigate("mainmenu"); });
-        public ICommand ConnectCommand { get; } = new RelayCommand(async (c) =>
+        public ICommand BackCommand { get; } = new RelayCommand(() => { MainWindowViewModel.Navigate("mainmenu"); });
+        public ICommand ConnectCommand { get; } = new RelayCommand(async () =>
         {
             ConnectToServer.Vm.ButtonEnabled = false;
             ConnectToServer.Vm.StatusText = "Connecting ...";
@@ -71,7 +72,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _ButtonEnabled = value;
-                base.OnPropertyChanged(nameof(ButtonEnabled));
+                base.OnPropertyChanged(nameof(this.ButtonEnabled));
             }
         }
 
@@ -85,7 +86,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _ConnectText = value;
-                base.OnPropertyChanged(nameof(ConnectText));
+                base.OnPropertyChanged(nameof(this.ConnectText));
             }
         }
 
@@ -99,7 +100,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _StatusText = value;
-                base.OnPropertyChanged(nameof(StatusText));
+                base.OnPropertyChanged(nameof(this.StatusText));
             }
         }
 
@@ -113,7 +114,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _StatusTextVisibility = value;
-                base.OnPropertyChanged(nameof(StatusTextVisibility));
+                base.OnPropertyChanged(nameof(this.StatusTextVisibility));
             }
         }
     }

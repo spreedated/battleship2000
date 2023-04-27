@@ -1,5 +1,5 @@
 ﻿using Battleship2000.Logic;
-using Battleship2000.ViewLogic;
+using neXn.Lib.Wpf.ViewLogic;
 
 namespace Battleship2000.ViewModels
 {
@@ -14,7 +14,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 ObjectStorage.Config.Player.Playername = value;
-                base.OnPropertyChanged(nameof(Playername));
+                base.OnPropertyChanged(nameof(this.Playername));
             }
         }
     }

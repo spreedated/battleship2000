@@ -3,6 +3,7 @@
 using Battleship2000.Logic;
 using Battleship2000.ViewLogic;
 using Battleship2000.Views;
+using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System;
 using System.Linq;

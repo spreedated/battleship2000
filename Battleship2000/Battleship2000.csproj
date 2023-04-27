@@ -86,7 +86,7 @@
     <PackageReference Include="MahApps.Metro.IconPacks.VaadinIcons" Version="4.11.0" />
     <PackageReference Include="MahApps.Metro.IconPacks.Zondicons" Version="4.11.0" />
     <PackageReference Include="NAudio" Version="2.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Obfuscar" Version="2.2.37">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -95,12 +95,19 @@
     <PackageReference Condition="'$(Configuration)'=='Debug'" Include="Serilog.Sinks.Debug" Version="2.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="Serilog.Sinks.SQLite" Version="5.5.0" />
+    <PackageReference Include="System.CodeDom" Version="7.0.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Inxi.NET">
+      <HintPath>DLL\Inxi.NET\Inxi.NET.dll</HintPath>
+    </Reference>
     <Reference Include="NetPackage">
       <HintPath>DLL\NetPackage.dll</HintPath>
+    </Reference>
+    <Reference Include="neXn.Lib.Wpf">
+      <HintPath>DLL\neXn.Lib.Wpf.dll</HintPath>
     </Reference>
   </ItemGroup>
 

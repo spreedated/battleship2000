@@ -2,6 +2,7 @@
 using Battleship2000.ViewLogic;
 using Battleship2000.Views;
 using Battleship2000.Views.Pages;
+using neXn.Lib.Wpf.ViewLogic;
 using System;
 using System.Threading.Tasks;
 using System.Timers;
@@ -63,7 +64,7 @@ namespace Battleship2000.ViewModels
         {
             this.NetworkServer?.Dispose();
             this.NetworkServer = new(ObjectStorage.Config.Network.Interface, ObjectStorage.Config.Network.Port);
-            this.NetworkServer.BsClientConnected += OnBsClientConnected;
+            this.NetworkServer.BsClientConnected += this.OnBsClientConnected;
             return await this.NetworkServer.StartServerAsync();
         }
 
@@ -71,13 +72,13 @@ namespace Battleship2000.ViewModels
         {
             if (this.NetworkServer != null)
             {
-                this.NetworkServer.BsClientConnected -= OnBsClientConnected;
+                this.NetworkServer.BsClientConnected -= this.OnBsClientConnected;
                 return await this.NetworkServer?.StopServerAsync();
             }
             return true;
         }
 
-        public ICommand StartCommand { get; } = new RelayCommand((c) =>
+        public ICommand StartCommand { get; } = new RelayCommand(() =>
         {
             HostServer.Vm.StatusText = "Starting ...";
             HostServer.Vm.AnimationStart();
@@ -169,7 +170,7 @@ namespace Battleship2000.ViewModels
                 });
             });
         });
-        public ICommand BackCommand { get; } = new RelayCommand((c) => { MainWindowViewModel.Navigate("mainmenu"); });
+        public ICommand BackCommand { get; } = new RelayCommand(() => { MainWindowViewModel.Navigate("mainmenu"); });
 
         private string _StatusText = "Starting ...";
         public string StatusText
