@@ -100,9 +100,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Inxi.NET">
-      <HintPath>DLL\Inxi.NET\Inxi.NET.dll</HintPath>
-    </Reference>
     <Reference Include="NetPackage">
       <HintPath>DLL\NetPackage.dll</HintPath>
     </Reference>
