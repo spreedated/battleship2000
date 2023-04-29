@@ -11,7 +11,7 @@ namespace Battleship2000.ViewModels
     {
         public ICommand TestSoundCommand { get; } = new RelayCommand(() =>
         {
-            AudioEngine.PlaySoundEffect(ObjectStorage.Sounds.GetRandomElement().Name);
+            AudioEngine.PlaySoundEffect(RuntimeStorage.Sounds.GetRandomElement().Name);
         });
 
         public ICommand PlayNextCommand { get; } = new RelayCommand(() =>
@@ -25,7 +25,7 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return ObjectStorage.Config.Audio.MusicVolume;
+                return RuntimeStorage.Config.Audio.MusicVolume;
             }
             set
             {
@@ -33,7 +33,7 @@ namespace Battleship2000.ViewModels
                 {
                     AudioEngine.NextTrack();
                 }
-                ObjectStorage.Config.Audio.MusicVolume = value;
+                RuntimeStorage.Config.Audio.MusicVolume = value;
                 base.OnPropertyChanged(nameof(MusicVolume));
                 if (AudioEngine.IsMusicPlaying && this.MusicVolume <= 0.0d && this.MusicVolume != this.musicVolumeOldValue)
                 {
@@ -62,11 +62,11 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return ObjectStorage.Config.Audio.EffectVolume;
+                return RuntimeStorage.Config.Audio.EffectVolume;
             }
             set
             {
-                ObjectStorage.Config.Audio.EffectVolume = value;
+                RuntimeStorage.Config.Audio.EffectVolume = value;
                 base.OnPropertyChanged(nameof(EffectVolume));
                 if (this.EffectVolume <= 0.0d)
                 {

@@ -20,9 +20,8 @@ namespace Battleship2000.Views.Pages
 
             this.PLF_Playfield.ParentPage = this;
 
-            this.PLF_Playfield.FieldLeftClickOverride = new RelayCommand((c) =>
+            this.PLF_Playfield.FieldLeftClickOverride = new RelayCommand<PlayfieldCellCommandArgs>((args) =>
             {
-                PlayfieldCellCommandArgs args = (PlayfieldCellCommandArgs)c;
                 ShipPlacementViewModel sp = (ShipPlacementViewModel)((ShipPlacement)args.PlayfieldInstance.ParentPage).DataContext;
 
                 if (sp.SelectedShip != null)

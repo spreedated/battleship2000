@@ -19,7 +19,7 @@ namespace Battleship2000
         {
             base.OnStartup(e);
             LoggerConfigurator.ConfigureLogger();
-            ObjectStorage.ConfigurationHandler.Load();
+            RuntimeStorage.ConfigurationHandler.Load();
         }
 
         private void DebugStartup(object sender, StartupEventArgs e)

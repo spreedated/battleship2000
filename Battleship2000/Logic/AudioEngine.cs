@@ -21,13 +21,13 @@ namespace Battleship2000.Logic
 
         public static void PlaySoundEffect(string soundname)
         {
-            if (ObjectStorage.Config.Audio.EffectVolume <= 0.0f)
+            if (RuntimeStorage.Config.Audio.EffectVolume <= 0.0f)
             {
                 Log.Warning($"Sound muted");
                 return;
             }
 
-            if (!ObjectStorage.Sounds.Any(x => x.Name.ToLower().Contains(soundname.ToLower())))
+            if (!RuntimeStorage.Sounds.Any(x => x.Name.ToLower().Contains(soundname.ToLower())))
             {
                 Log.Warning($"Sound not found \"{soundname}\"");
                 return;
@@ -35,7 +35,7 @@ namespace Battleship2000.Logic
 
             Task.Factory.StartNew(async () =>
             {
-                EffectSound ef = ObjectStorage.Sounds.First(x => x.Name.ToLower().Contains(soundname.ToLower()));
+                EffectSound ef = RuntimeStorage.Sounds.First(x => x.Name.ToLower().Contains(soundname.ToLower()));
 
                 using (MemoryStream ms = new(ef.Payload))
                 {
@@ -43,7 +43,7 @@ namespace Battleship2000.Logic
                     {
                         using (WaveOut w = new())
                         {
-                            w.Volume = ObjectStorage.Config.Audio.EffectVolume;
+                            w.Volume = RuntimeStorage.Config.Audio.EffectVolume;
 
                             w.Init(r);
                             w.Play();
@@ -89,7 +89,7 @@ namespace Battleship2000.Logic
 
                 if (CurrentTrack == null)
                 {
-                    CurrentTrack = ObjectStorage.Musics.First;
+                    CurrentTrack = RuntimeStorage.Musics.First;
                 }
 
                 using (MemoryStream ms = new(CurrentTrack.Value.Payload))
@@ -101,7 +101,7 @@ namespace Battleship2000.Logic
                             string[] sndsplit = CurrentTrack.Value.Name.Split('.').ToArray();
                             string soundname = $"{sndsplit[sndsplit.Count() - 2]}.{sndsplit[sndsplit.Count() - 1]}";
 
-                            w.Volume = ObjectStorage.Config.Audio.MusicVolume;
+                            w.Volume = RuntimeStorage.Config.Audio.MusicVolume;
 
                             w.Init(r);
                             w.Play();
@@ -112,7 +112,7 @@ namespace Battleship2000.Logic
 
                             while (w.PlaybackState == PlaybackState.Playing)
                             {
-                                w.Volume = ObjectStorage.Config.Audio.MusicVolume;
+                                w.Volume = RuntimeStorage.Config.Audio.MusicVolume;
 
                                 if (w.Volume <= 0.0f || ctMusic.Token.IsCancellationRequested)
                                 {
@@ -131,7 +131,7 @@ namespace Battleship2000.Logic
                 }
                 stopping = false;
 
-                if (!ctMusic.IsCancellationRequested && ObjectStorage.Config.Audio.MusicVolume > 0.0f)
+                if (!ctMusic.IsCancellationRequested && RuntimeStorage.Config.Audio.MusicVolume > 0.0f)
                 {
                     NextTrack();
                 }
@@ -154,7 +154,7 @@ namespace Battleship2000.Logic
             {
                 if (CurrentTrack.Next == null)
                 {
-                    CurrentTrack = ObjectStorage.Musics.First;
+                    CurrentTrack = RuntimeStorage.Musics.First;
                 }
                 else
                 {

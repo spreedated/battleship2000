@@ -36,7 +36,7 @@ namespace Battleship2000.Logic
                 LoadAudioFiles();
                 PreloadStep?.Invoke(null, EventArgs.Empty);
 
-                if (ObjectStorage.Config.Audio.MusicVolume > 0.0f)
+                if (RuntimeStorage.Config.Audio.MusicVolume > 0.0f)
                 {
                     AudioEngine.PlayMusic();
                 }
@@ -48,16 +48,16 @@ namespace Battleship2000.Logic
         private static void LoadPages()
         {
             Log.Information("Loading pages...");
-            ObjectStorage.Pages.Add(new ConnectToServer());
-            ObjectStorage.Pages.Add(new MainMenu());
-            ObjectStorage.Pages.Add(new HostServer());
-            ObjectStorage.Pages.Add(new Settings());
-            ObjectStorage.Pages.Add(new Settings_Player());
-            ObjectStorage.Pages.Add(new Settings_Network());
-            ObjectStorage.Pages.Add(new Settings_Visual());
-            ObjectStorage.Pages.Add(new Settings_Audio());
-            ObjectStorage.Pages.Add(new Settings_Credits());
-            ObjectStorage.Pages.Add(new ShipPlacement());
+            RuntimeStorage.Pages.Add(new ConnectToServer());
+            RuntimeStorage.Pages.Add(new MainMenu());
+            RuntimeStorage.Pages.Add(new HostServer());
+            RuntimeStorage.Pages.Add(new Settings());
+            RuntimeStorage.Pages.Add(new Settings_Player());
+            RuntimeStorage.Pages.Add(new Settings_Network());
+            RuntimeStorage.Pages.Add(new Settings_Visual());
+            RuntimeStorage.Pages.Add(new Settings_Audio());
+            RuntimeStorage.Pages.Add(new Settings_Credits());
+            RuntimeStorage.Pages.Add(new ShipPlacement());
             Log.Information("Loading pages finished");
         }
 
@@ -76,28 +76,28 @@ namespace Battleship2000.Logic
                 {
                     if (snd.Contains("snd_effects"))
                     {
-                        ObjectStorage.Sounds.Add(new()
+                        RuntimeStorage.Sounds.Add(new()
                         {
                             Name = soundname,
                             Payload = new byte[s.Length]
                         });
-                        s.Read(ObjectStorage.Sounds.Last().Payload, 0, ObjectStorage.Sounds.Last().Payload.Length);
+                        s.Read(RuntimeStorage.Sounds.Last().Payload, 0, RuntimeStorage.Sounds.Last().Payload.Length);
                     }
                     if (snd.Contains("snd_music"))
                     {
-                        ObjectStorage.Musics.AddLast(new Models.Music()
+                        RuntimeStorage.Musics.AddLast(new Models.Music()
                         {
                             Name = soundname,
                             Payload = new byte[s.Length]
                         });
-                        s.Read(ObjectStorage.Musics.Last().Payload, 0, ObjectStorage.Musics.Last().Payload.Length);
+                        s.Read(RuntimeStorage.Musics.Last().Payload, 0, RuntimeStorage.Musics.Last().Payload.Length);
                     }
                 }
 
                 Log.Information($"Sound \"{soundname}\" loaded");
             }
 
-            Log.Information($"Loaded successfully {soundlist.Count()} soundfiles. {ObjectStorage.Musics.Count} Music files, {ObjectStorage.Sounds.Count} Effect files.");
+            Log.Information($"Loaded successfully {soundlist.Count()} soundfiles. {RuntimeStorage.Musics.Count} Music files, {RuntimeStorage.Sounds.Count} Effect files.");
         }
 
         private static void LoadNetworkInterfaces()
@@ -124,9 +124,9 @@ namespace Battleship2000.Logic
 
             Settings_Network.Instance.Dispatcher.Invoke(() =>
             {
-                if (Settings_Network.Vm.NetworkInterfaces.Any(x => x.IPAddress.ToString() == ObjectStorage.Config.Network.Interface))
+                if (Settings_Network.Vm.NetworkInterfaces.Any(x => x.IPAddress.ToString() == RuntimeStorage.Config.Network.Interface))
                 {
-                    Settings_Network.Instance.CMB_Interface.SelectedItem = Settings_Network.Vm.NetworkInterfaces.First(x => x.IPAddress.ToString() == ObjectStorage.Config.Network.Interface);
+                    Settings_Network.Instance.CMB_Interface.SelectedItem = Settings_Network.Vm.NetworkInterfaces.First(x => x.IPAddress.ToString() == RuntimeStorage.Config.Network.Interface);
                 }
             });
         }
@@ -137,9 +137,9 @@ namespace Battleship2000.Logic
             {
                 Settings_Visual.Vm.Backgrounds.Add(new() { Name = "Oldschool", Filename = "battleship1-1280x736.png" });
                 Settings_Visual.Vm.Backgrounds.Add(new() { Name = "Blue", Filename = "blue.png" });
-                if (Settings_Visual.Vm.Backgrounds.Any(x => x.Name == ObjectStorage.Config.Visual.Background))
+                if (Settings_Visual.Vm.Backgrounds.Any(x => x.Name == RuntimeStorage.Config.Visual.Background))
                 {
-                    Settings_Visual.Instance.CMB_Background.SelectedItem = Settings_Visual.Vm.Backgrounds.First(x => x.Name == ObjectStorage.Config.Visual.Background);
+                    Settings_Visual.Instance.CMB_Background.SelectedItem = Settings_Visual.Vm.Backgrounds.First(x => x.Name == RuntimeStorage.Config.Visual.Background);
                 }
             });
         }

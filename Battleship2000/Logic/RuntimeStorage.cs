@@ -14,11 +14,11 @@ using System.Windows.Media;
 
 namespace Battleship2000.Logic
 {
-    internal static class ObjectStorage
+    internal static class RuntimeStorage
     {
-        public static string ProjectName { get; } = $"{((AssemblyTitleAttribute)typeof(ObjectStorage).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title}";
-        public static string ProjectVersion { get; } = $"v{typeof(ObjectStorage).Assembly.GetName().Version.ToNiceString()}";
-        internal static ConfigurationHandler ConfigurationHandler { get; } = new(Path.Combine(Path.GetDirectoryName(typeof(ObjectStorage).Assembly.Location), "config.json"));
+        public static string ProjectName { get; } = $"{((AssemblyTitleAttribute)typeof(RuntimeStorage).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title}";
+        public static string ProjectVersion { get; } = $"v{typeof(RuntimeStorage).Assembly.GetName().Version.ToNiceString()}";
+        internal static ConfigurationHandler ConfigurationHandler { get; } = new(Path.Combine(Path.GetDirectoryName(typeof(RuntimeStorage).Assembly.Location), "config.json"));
         internal static Models.Configuration Config { get; set; }
         internal static List<Page> Pages { get; } = new();
         internal static List<Window> Windows { get; } = new();

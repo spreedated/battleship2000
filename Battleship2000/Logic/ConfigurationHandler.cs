@@ -42,7 +42,7 @@ namespace Battleship2000.Logic
                 return;
             }
 
-            ObjectStorage.Config = JsonConvert.DeserializeObject<Models.Configuration>(json);
+            RuntimeStorage.Config = JsonConvert.DeserializeObject<Models.Configuration>(json);
 
             Log.Information($"Config loaded");
         }
@@ -58,12 +58,12 @@ namespace Battleship2000.Logic
             {
                 using (StreamWriter w = new(fs))
                 {
-                    if (ObjectStorage.Config == null)
+                    if (RuntimeStorage.Config == null)
                     {
-                        ObjectStorage.Config = new();
+                        RuntimeStorage.Config = new();
                     }
 
-                    w.Write(JsonConvert.SerializeObject(ObjectStorage.Config, Formatting.Indented));
+                    w.Write(JsonConvert.SerializeObject(RuntimeStorage.Config, Formatting.Indented));
                 }
             }
 

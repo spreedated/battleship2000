@@ -17,8 +17,8 @@ namespace Battleship2000.Views.Pages
             Instance = this;
             Vm = (SettingsAudioViewModel)this.DataContext;
 
-            Vm.MusicVolume = ObjectStorage.Config.Audio.MusicVolume;
-            Vm.EffectVolume = ObjectStorage.Config.Audio.EffectVolume;
+            Vm.MusicVolume = RuntimeStorage.Config.Audio.MusicVolume;
+            Vm.EffectVolume = RuntimeStorage.Config.Audio.EffectVolume;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 this._SelectedBackground = value;
-                ObjectStorage.Config.Visual.Background = this._SelectedBackground.Name;
+                RuntimeStorage.Config.Visual.Background = this._SelectedBackground.Name;
                 base.OnPropertyChanged(nameof(SelectedBackground));
                 MainWindow.Instance.RefreshBackground();
             }

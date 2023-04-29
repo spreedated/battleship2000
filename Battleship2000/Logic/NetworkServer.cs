@@ -176,7 +176,7 @@ namespace Battleship2000.Logic
 
             NwoClientConnected n = new()
             {
-                Playername = ObjectStorage.Config.Player.Playername,
+                Playername = RuntimeStorage.Config.Player.Playername,
                 Version = typeof(NetworkServer).Assembly.GetName().Version
             };
 

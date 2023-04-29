@@ -24,23 +24,23 @@ namespace Battleship2000.Views
 
         public void RefreshBackground()
         {
-            if (ObjectStorage.BackgroundImage == null)
+            if (RuntimeStorage.BackgroundImage == null)
             {
-                ObjectStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
-                ObjectStorage.BackgroundVis = Visibility.Collapsed;
+                RuntimeStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                RuntimeStorage.BackgroundVis = Visibility.Collapsed;
             }
 
-            switch (ObjectStorage.Config.Visual.Background.ToLower())
+            switch (RuntimeStorage.Config.Visual.Background.ToLower())
             {
                 case "oldschool":
                     InstanceVM.BackgroundVis = Visibility.Hidden;
-                    ObjectStorage.BackgroundVis = Visibility.Hidden;
+                    RuntimeStorage.BackgroundVis = Visibility.Hidden;
                     break;
                 case "blue":
                     InstanceVM.BackgroundVis = Visibility.Visible;
                     InstanceVM.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
-                    ObjectStorage.BackgroundVis = Visibility.Visible;
-                    ObjectStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                    RuntimeStorage.BackgroundVis = Visibility.Visible;
+                    RuntimeStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
                     break;
             }
         }
