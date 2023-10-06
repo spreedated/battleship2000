@@ -13,12 +13,12 @@ namespace Battleship2000.Views.Pages
         public static SettingsAudioViewModel Vm { get; private set; }
         public Settings_Audio()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             Instance = this;
             Vm = (SettingsAudioViewModel)this.DataContext;
 
-            Vm.MusicVolume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume;
-            Vm.EffectVolume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.EffectVolume;
+            Vm.MusicVolume = RuntimeStorage.AudioEngine.MusicVolume;
+            Vm.EffectVolume = RuntimeStorage.AudioEngine.EffectVolume;
         }
     }
 }

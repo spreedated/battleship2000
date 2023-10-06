@@ -1,8 +1,7 @@
-﻿using Battleship2000.Views.Pages;
+﻿using AudioLayer;
+using Battleship2000.Views.Pages;
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -21,6 +20,9 @@ namespace Battleship2000.Logic
 
             Task.Factory.StartNew(() =>
             {
+                LoadAudio();
+                PreloadStep?.Invoke(null, EventArgs.Empty);
+
                 Views.MainWindow.Instance.Dispatcher.Invoke(() =>
                 {
                     LoadPages();
@@ -33,12 +35,9 @@ namespace Battleship2000.Logic
                 LoadBackgrounds();
                 PreloadStep?.Invoke(null, EventArgs.Empty);
 
-                LoadAudioFiles();
-                PreloadStep?.Invoke(null, EventArgs.Empty);
-
-                if (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume > 0.0f)
+                if (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Music > 0.0f)
                 {
-                    AudioEngine.PlayMusic();
+                    RuntimeStorage.AudioEngine.PlayMusic();
                 }
 
                 PreloadComplete?.Invoke(null, EventArgs.Empty);
@@ -61,43 +60,18 @@ namespace Battleship2000.Logic
             Log.Information("Loading pages finished");
         }
 
-        private static void LoadAudioFiles()
+        private static void LoadAudio()
         {
-            IEnumerable<string> soundlist = typeof(Preload).Assembly.GetManifestResourceNames().Where(x => x.ToLower().EndsWith("mp3"));
-
-            Log.Information($"Loading {soundlist.Count()} sounds");
-
-            foreach (string snd in soundlist)
+            AudioBanks.SoundLoaded += (s, e) => Log.Information($"Sound \"{e.Soundname}\" loaded");
+            AudioBanks.AudioBanksLoadedFinished += (s, e) => Log.Information($"All audiobanks loaded");
+            AudioBanks.LoadAudioBanks();
+            RuntimeStorage.AudioEngine = new()
             {
-                string[] sndplit = snd.Split('.');
-                string soundname = $"{sndplit[sndplit.Length - 2]}.{sndplit[sndplit.Length - 1]}";
+                EffectVolume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Effect,
+                MusicVolume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Music
+            };
 
-                using (Stream s = typeof(Preload).Assembly.GetManifestResourceStream(snd))
-                {
-                    if (snd.Contains("snd_effects"))
-                    {
-                        RuntimeStorage.Sounds.Add(new()
-                        {
-                            Name = soundname,
-                            Payload = new byte[s.Length]
-                        });
-                        s.Read(RuntimeStorage.Sounds.Last().Payload, 0, RuntimeStorage.Sounds.Last().Payload.Length);
-                    }
-                    if (snd.Contains("snd_music"))
-                    {
-                        RuntimeStorage.Musics.AddLast(new Models.Music()
-                        {
-                            Name = soundname,
-                            Payload = new byte[s.Length]
-                        });
-                        s.Read(RuntimeStorage.Musics.Last().Payload, 0, RuntimeStorage.Musics.Last().Payload.Length);
-                    }
-                }
-
-                Log.Information($"Sound \"{soundname}\" loaded");
-            }
-
-            Log.Information($"Loaded successfully {soundlist.Count()} soundfiles. {RuntimeStorage.Musics.Count} Music files, {RuntimeStorage.Sounds.Count} Effect files.");
+            Log.Information($"Loaded successfully {AudioBanks.GetEffectCount} soundfiles. {AudioBanks.GetMusicCount} Music files, {AudioBanks.GetEffectCount} Effect files.");
         }
 
         private static void LoadNetworkInterfaces()

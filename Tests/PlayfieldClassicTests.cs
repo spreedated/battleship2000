@@ -1,11 +1,11 @@
-﻿using Battleship2000.Exceptions;
-using Battleship2000.Logic;
-using Battleship2000.Models;
-using Battleship2000.Models.Ships;
+﻿using EngineLayer;
+using EngineLayer.Exceptions;
+using EngineLayer.Models;
+using EngineLayer.Models.Ships;
 using NUnit.Framework;
 using System;
+using System.Drawing;
 using System.Linq;
-using System.Windows;
 
 namespace Tests
 {

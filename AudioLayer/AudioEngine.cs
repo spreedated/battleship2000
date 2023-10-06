@@ -1,41 +1,61 @@
-﻿using Battleship2000.Models;
+﻿using AudioLayer.Models;
 using NAudio.Wave;
-using Serilog;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Battleship2000.Logic
+namespace AudioLayer
 {
-    internal static class AudioEngine
+    public class AudioEngine
     {
-        public static bool IsMusicPlaying { get; private set; }
+        private readonly AudioVolumes volumes;
+        private bool stopping;
+        private CancellationTokenSource ctMusic;
+        private LinkedListNode<Models.Music> CurrentTrack;
 
-        private static CancellationTokenSource ctMusic;
+        public bool IsMusicPlaying { get; private set; }
 
-        private static LinkedListNode<Models.Music> CurrentTrack;
-
-        private static bool stopping;
-
-        public static void PlaySoundEffect(string soundname)
+        public float EffectVolume
         {
-            if (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.EffectVolume <= 0.0f)
+            get
             {
-                Log.Warning($"Sound muted");
-                return;
+                return this.volumes.Effect;
             }
-
-            if (!RuntimeStorage.Sounds.Any(x => x.Name.ToLower().Contains(soundname.ToLower())))
+            set
             {
-                Log.Warning($"Sound not found \"{soundname}\"");
+                this.volumes.Effect = value;
+            }
+        }
+
+        public float MusicVolume
+        {
+            get
+            {
+                return this.volumes.Music;
+            }
+            set
+            {
+                this.volumes.Music = value;
+            }
+        }
+
+        public AudioEngine()
+        {
+            this.volumes = new();
+        }
+
+        public void PlaySoundEffect(string soundname)
+        {
+            if (this.volumes.Effect <= 0.0f || !AudioBanks.Effects.Exists(x => x.Name.ToLower().Contains(soundname.ToLower())))
+            {
                 return;
             }
 
             Task.Factory.StartNew(async () =>
             {
-                EffectSound ef = RuntimeStorage.Sounds.First(x => x.Name.ToLower().Contains(soundname.ToLower()));
+                EffectSound ef = AudioBanks.Effects.First(x => x.Name.ToLower().Contains(soundname.ToLower()));
 
                 using (MemoryStream ms = new(ef.Payload))
                 {
@@ -43,7 +63,7 @@ namespace Battleship2000.Logic
                     {
                         using (WaveOut w = new())
                         {
-                            w.Volume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.EffectVolume;
+                            w.Volume = this.volumes.Effect;
 
                             w.Init(r);
                             w.Play();
@@ -51,7 +71,7 @@ namespace Battleship2000.Logic
                             string[] sndsplit = ef.Name.Split('.').ToArray();
                             string sndname = $"{sndsplit[sndsplit.Count() - 2]}.{sndsplit[sndsplit.Count() - 1]}";
 
-                            Log.Information($"Playing sound \"{sndname}\"");
+                            //Log.Information($"Playing sound \"{sndname}\"");
 
                             while (w.PlaybackState == PlaybackState.Playing)
                             {
@@ -65,16 +85,16 @@ namespace Battleship2000.Logic
             });
         }
 
-        public static void ButtonEnterSoundPlay(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            PlaySoundEffect("button-");
-        }
+        //public static void ButtonEnterSoundPlay(object sender, System.Windows.Input.MouseEventArgs e)
+        //{
+        //    PlaySoundEffect("button-");
+        //}
 
-        public static void PlayMusic()
+        public void PlayMusic()
         {
-            if (IsMusicPlaying && !stopping)
+            if (this.IsMusicPlaying && !stopping)
             {
-                Log.Warning($"Music already playing");
+                //Log.Warning($"Music already playing");
                 return;
             }
 
@@ -89,7 +109,7 @@ namespace Battleship2000.Logic
 
                 if (CurrentTrack == null)
                 {
-                    CurrentTrack = RuntimeStorage.Musics.First;
+                    CurrentTrack = AudioBanks.Musics.First;
                 }
 
                 using (MemoryStream ms = new(CurrentTrack.Value.Payload))
@@ -101,18 +121,18 @@ namespace Battleship2000.Logic
                             string[] sndsplit = CurrentTrack.Value.Name.Split('.').ToArray();
                             string soundname = $"{sndsplit[sndsplit.Count() - 2]}.{sndsplit[sndsplit.Count() - 1]}";
 
-                            w.Volume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume;
+                            w.Volume = this.volumes.Music;
 
                             w.Init(r);
                             w.Play();
 
-                            Log.Information($"Playing music \"{soundname}\"");
+                            //Log.Information($"Playing music \"{soundname}\"");
 
-                            IsMusicPlaying = true;
+                            this.IsMusicPlaying = true;
 
                             while (w.PlaybackState == PlaybackState.Playing)
                             {
-                                w.Volume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume;
+                                w.Volume = this.volumes.Music;
 
                                 if (w.Volume <= 0.0f || ctMusic.Token.IsCancellationRequested)
                                 {
@@ -125,48 +145,48 @@ namespace Battleship2000.Logic
                             w.Stop();
 
                             IsMusicPlaying = false;
-                            Log.Information($"Music stopped");
+                            //Log.Information($"Music stopped");
                         }
                     }
                 }
-                stopping = false;
+                this.stopping = false;
 
-                if (!ctMusic.IsCancellationRequested && RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume > 0.0f)
+                if (!ctMusic.IsCancellationRequested && this.volumes.Music > 0.0f)
                 {
-                    NextTrack();
+                    this.NextTrack();
                 }
             });
         }
 
-        public static void StopMusic()
+        public void StopMusic()
         {
-            if (IsMusicPlaying)
+            if (this.IsMusicPlaying)
             {
-                stopping = true;
-                ctMusic?.Cancel();
-                Log.Information($"Music stopped");
+                this.stopping = true;
+                this.ctMusic?.Cancel();
+                //Log.Information($"Music stopped");
             }
         }
 
-        public static void NextTrack()
+        public void NextTrack()
         {
-            if (CurrentTrack != null)
+            if (this.CurrentTrack != null)
             {
-                if (CurrentTrack.Next == null)
+                if (this.CurrentTrack.Next == null)
                 {
-                    CurrentTrack = RuntimeStorage.Musics.First;
+                    this.CurrentTrack = AudioBanks.Musics.First;
                 }
                 else
                 {
                     CurrentTrack = CurrentTrack.Next;
                 }
             }
-            StopMusic();
-            while (IsMusicPlaying)
+            this.StopMusic();
+            while (this.IsMusicPlaying)
             {
                 Thread.Sleep(50);
             }
-            PlayMusic();
+            this.PlayMusic();
         }
     }
 }

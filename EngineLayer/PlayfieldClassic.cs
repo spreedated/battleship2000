@@ -3,11 +3,9 @@ using EngineLayer.Models;
 using EngineLayer.Models.Ships;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace EngineLayer
 {
@@ -62,6 +60,10 @@ namespace EngineLayer
             PropertyInfo coordinateProperty = ship.GetType().GetProperties().First(x => x.PropertyType == typeof(Point));
             IEnumerable<double> coordinatesOfShipObject = ship.Coordinate.GetType().GetProperties().Where(x => x.PropertyType == typeof(double)).Select(x => (double)x.GetValue(coordinateProperty.GetValue(ship)));
 
+            if (ship.Coordinate.X <= -1 || ship.Coordinate.Y <= -1)
+            {
+                throw new ArgumentException("Coordinates are irrational");
+            }
             if (coordinatesOfShipObject.Any(x => x < 0))
             {
                 throw new ArgumentException("Coordinates contains negative values");
@@ -88,32 +90,18 @@ namespace EngineLayer
             {
                 for (int i = 0; i < ship.Width; i++)
                 {
-                    this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X + i].CellState = Cell.CellStates.Ship;
+                    this.Cells[ship.Coordinate.Y, ship.Coordinate.X + i].CellState = Cell.CellStates.Ship;
                 }
             }
             else
             {
                 for (int i = 0; i < ship.Width; i++)
                 {
-                    this.Cells[(int)ship.Coordinate.Y + i, (int)ship.Coordinate.X].CellState = Cell.CellStates.Ship;
+                    this.Cells[ship.Coordinate.Y + i, ship.Coordinate.X].CellState = Cell.CellStates.Ship;
                 }
             }
 
 
-        }
-
-        private void PrintDebugCells()
-        {
-            for (int i = 0; i < this.Cells.GetLength(0); i++)
-            {
-                StringBuilder s = new();
-                for (int ii = 0; ii < this.Cells.GetLength(1); ii++)
-                {
-                    s.Append($"[{(this.Cells[i, ii].CellState == Cell.CellStates.Empty ? " " : "X")}] ");
-                }
-                Debug.Print(s.ToString());
-                s.Clear();
-            }
         }
 
         private bool IsPlacementValid(Ship ship)
@@ -138,12 +126,12 @@ namespace EngineLayer
             {
                 for (int i = 0; i < ship.Width; i++)
                 {
-                    if (ship.Orientation == Ship.Orientations.Horizontal && this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X + i].CellState != Cell.CellStates.Empty)
+                    if (ship.Orientation == Ship.Orientations.Horizontal && this.Cells[ship.Coordinate.Y, ship.Coordinate.X + i].CellState != Cell.CellStates.Empty)
                     {
                         isValid = false;
                         break;
                     }
-                    if (ship.Orientation == Ship.Orientations.Vertical && this.Cells[(int)ship.Coordinate.Y + i, (int)ship.Coordinate.X].CellState != Cell.CellStates.Empty)
+                    if (ship.Orientation == Ship.Orientations.Vertical && this.Cells[ship.Coordinate.Y + i, ship.Coordinate.X].CellState != Cell.CellStates.Empty)
                     {
                         isValid = false;
                         break;
@@ -155,50 +143,50 @@ namespace EngineLayer
             {
                 for (int i = 0; i < ship.Width; i++)
                 {
-                    if (ship.Orientation == Ship.Orientations.Horizontal && (int)ship.Coordinate.Y - 1 != -1 || (int)ship.Coordinate.X + i != -1)
+                    if (ship.Orientation == Ship.Orientations.Horizontal && ship.Coordinate.Y - 1 != -1 || ship.Coordinate.X + i != -1)
                     {
-                        if ((int)ship.Coordinate.Y - 1 >= 0)
+                        if (ship.Coordinate.Y - 1 >= 0)
                         {
-                            if (this.Cells[(int)ship.Coordinate.Y - 1, (int)ship.Coordinate.X].CellState != Cell.CellStates.Empty)
+                            if (this.Cells[ship.Coordinate.Y - 1, ship.Coordinate.X].CellState != Cell.CellStates.Empty)
                             {
                                 isValid = false;
                                 break;
                             }
                         }
-                        if ((int)ship.Coordinate.Y + 1 < this.Cells.GetLength(0))
+                        if (ship.Coordinate.Y + 1 < this.Cells.GetLength(0))
                         {
-                            if (this.Cells[(int)ship.Coordinate.Y + 1, (int)ship.Coordinate.X].CellState != Cell.CellStates.Empty)
+                            if (this.Cells[ship.Coordinate.Y + 1, ship.Coordinate.X].CellState != Cell.CellStates.Empty)
                             {
                                 isValid = false;
                                 break;
                             }
                         }
-                        if (i + 1 == ship.Width && this.Cells.GetLength(0) < ship.Width + 1 && this.Cells[(int)ship.Coordinate.Y + 1, ship.Width + 1].CellState != Cell.CellStates.Empty)
+                        if (i + 1 == ship.Width && this.Cells.GetLength(0) < ship.Width + 1 && this.Cells[ship.Coordinate.Y + 1, ship.Width + 1].CellState != Cell.CellStates.Empty)
                         {
                             isValid = false;
                             break;
                         }
                     }
 
-                    if (ship.Orientation == Ship.Orientations.Vertical && (int)ship.Coordinate.X - 1 != -1 || (int)ship.Coordinate.Y + i != -1)
+                    if (ship.Orientation == Ship.Orientations.Vertical && ship.Coordinate.X - 1 != -1 || ship.Coordinate.Y + i != -1)
                     {
-                        if ((int)ship.Coordinate.X - 1 > 0)
+                        if (ship.Coordinate.X - 1 > 0)
                         {
-                            if (this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X - 1].CellState != Cell.CellStates.Empty)
+                            if (this.Cells[ship.Coordinate.Y, ship.Coordinate.X - 1].CellState != Cell.CellStates.Empty)
                             {
                                 isValid = false;
                                 break;
                             }
                         }
-                        if ((int)ship.Coordinate.X + 1 < this.Cells.GetLength(0))
+                        if (ship.Coordinate.X + 1 < this.Cells.GetLength(0))
                         {
-                            if (this.Cells[(int)ship.Coordinate.Y, (int)ship.Coordinate.X + 1].CellState != Cell.CellStates.Empty)
+                            if (this.Cells[ship.Coordinate.Y, ship.Coordinate.X + 1].CellState != Cell.CellStates.Empty)
                             {
                                 isValid = false;
                                 break;
                             }
                         }
-                        if (i + 1 == ship.Width && this.Cells.GetLength(0) < ship.Width + 1 && this.Cells[ship.Width + 1, (int)ship.Coordinate.X + 1].CellState != Cell.CellStates.Empty)
+                        if (i + 1 == ship.Width && this.Cells.GetLength(0) < ship.Width + 1 && this.Cells[ship.Width + 1, ship.Coordinate.X + 1].CellState != Cell.CellStates.Empty)
                         {
                             isValid = false;
                             break;

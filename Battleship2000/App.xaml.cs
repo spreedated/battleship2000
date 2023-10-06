@@ -20,7 +20,7 @@ namespace Battleship2000
         {
             base.OnStartup(e);
             LoggerConfigurator.ConfigureLogger();
-            
+
             RuntimeStorage.ConfigurationHandler = new(new(Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), "config.json")));
             RuntimeStorage.ConfigurationHandler.Load();
         }
@@ -52,7 +52,7 @@ namespace Battleship2000
             {
                 return;
             }
-            AudioEngine.PlaySoundEffect("button-pressed");
+            RuntimeStorage.AudioEngine.PlaySoundEffect("button-pressed");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Battleship2000.Models
+﻿namespace AudioLayer.Models
 {
     public abstract class PayloadBase
     {

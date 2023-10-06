@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AudioLayer.Models;
+using Newtonsoft.Json;
 using System;
 
 namespace Battleship2000.Models
@@ -15,7 +16,7 @@ namespace Battleship2000.Models
         public Visual Visual { get; set; } = new();
 
         [JsonProperty("audio")]
-        public Audio Audio { get; set; } = new();
+        public AudioVolumes Audio { get; set; } = new();
     }
 
     internal class Network
@@ -36,14 +37,5 @@ namespace Battleship2000.Models
     {
         [JsonProperty("background")]
         public string Background { get; set; } = "Blue";
-    }
-
-    internal class Audio
-    {
-        [JsonProperty("musicvolume")]
-        public float MusicVolume { get; set; } = 0.2f;
-
-        [JsonProperty("effectvolume")]
-        public float EffectVolume { get; set; } = 0.4f;
     }
 }

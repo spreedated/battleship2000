@@ -1,6 +1,6 @@
-﻿using EngineLayer.Models.Ships;
-using Battleship2000.ViewElements;
+﻿using Battleship2000.ViewElements;
 using Battleship2000.Views.Pages;
+using EngineLayer.Models.Ships;
 using neXn.Lib.Wpf.ViewLogic;
 using System;
 using System.Collections.Generic;

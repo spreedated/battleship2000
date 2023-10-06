@@ -1,5 +1,5 @@
-﻿using NetworkLayer.Models;
-using NetPackage.TCP;
+﻿using NetPackage.TCP;
+using NetworkLayer.Models;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
