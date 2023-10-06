@@ -98,11 +98,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="NetPackage">
-      <HintPath>DLL\NetPackage.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\NetworkLayer\NetworkLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="neXn.Lib.Wpf">
-      <HintPath>DLL\neXn.Lib.Wpf.dll</HintPath>
+      <HintPath>..\Libraries\neXn.Lib.Wpf.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Battleship2000.Models
+namespace NetworkLayer.Models
 {
     public class NwoConnectedClient
     {

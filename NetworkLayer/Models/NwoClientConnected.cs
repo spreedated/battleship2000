@@ -1,23 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Battleship2000.Models
+namespace NetworkLayer.Models
 {
     public class NwoClientConnected
     {
-        [JsonProperty("appname")]
-        public string AppName
-        {
-            get
-            {
-                return typeof(NwoClientConnected).Assembly.GetName().Name;
-            }
-            set
-            {
-                _ = value;
-            }
-        }
-
         [JsonProperty("version")]
         public Version Version { get; set; }
 
@@ -25,7 +12,7 @@ namespace Battleship2000.Models
         public string Playername { get; set; }
 
         [JsonIgnore()]
-        public string JsonString
+        public string Json
         {
             get
             {

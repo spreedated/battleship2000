@@ -1,5 +1,5 @@
-﻿using Battleship2000.Logic;
-using Battleship2000.Views.Pages;
+﻿using Battleship2000.Views.Pages;
+using NetworkLayer.Logic;
 using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System.Threading.Tasks;

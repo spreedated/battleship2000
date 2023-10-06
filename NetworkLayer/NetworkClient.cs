@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-namespace Battleship2000.Logic
+namespace NetworkLayer.Logic
 {
     public class NetworkClient : IDisposable
     {
@@ -37,6 +37,12 @@ namespace Battleship2000.Logic
             Debug.Print($"[{e.IpPort}] {Encoding.UTF8.GetString(e.Data.Array, 0, e.Data.Count)}");
         }
 
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -48,12 +54,6 @@ namespace Battleship2000.Logic
 
                 disposed = true;
             }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }
