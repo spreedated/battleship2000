@@ -6,6 +6,10 @@
     <Nullable>disable</Nullable>
     <AssemblyOriginatorKeyFile>net.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>True</SignAssembly>
+    <Version>1.0.0</Version>
+    <Authors>Markus Karl Wackermann</Authors>
+    <Title>Network Layer</Title>
+    <AssemblyTitle>Network Layer</AssemblyTitle>
   </PropertyGroup>
 
   <ItemGroup>
