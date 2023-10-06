@@ -1,5 +1,7 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.Models;
+using EngineLayer;
+using EngineLayer.Models;
 using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System;

@@ -1,4 +1,4 @@
-﻿namespace Battleship2000.Models
+﻿namespace EngineLayer.Models
 {
     public class Cell
     {

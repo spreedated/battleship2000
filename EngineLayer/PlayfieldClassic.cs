@@ -1,15 +1,15 @@
-﻿using Battleship2000.Exceptions;
-using Battleship2000.Models;
-using Battleship2000.Models.Ships;
+﻿using EngineLayer.Exceptions;
+using EngineLayer.Models;
+using EngineLayer.Models.Ships;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Windows;
 
-namespace Battleship2000.Logic
+namespace EngineLayer
 {
     public class PlayfieldClassic
     {

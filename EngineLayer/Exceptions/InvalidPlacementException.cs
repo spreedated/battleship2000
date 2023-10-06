@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Battleship2000.Exceptions
+namespace EngineLayer.Exceptions
 {
     [Serializable]
     public sealed class InvalidPlacementException : Exception

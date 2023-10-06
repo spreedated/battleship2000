@@ -13,7 +13,7 @@ namespace Battleship2000.Views.Pages
     {
         public ShipPlacement()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             ((ShipPlacementViewModel)this.DataContext).Instance = this;
 
             this.PLF_Playfield.ParentPage = this;
@@ -24,8 +24,8 @@ namespace Battleship2000.Views.Pages
 
                 if (sp.SelectedShip != null)
                 {
-                    sp.SelectedShip.Orientation = sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? Models.Ships.Ship.Orientations.Vertical : Models.Ships.Ship.Orientations.Horizontal;
-                    sp.SelectedShip.Coordinate = args.Coords;
+                    sp.SelectedShip.Orientation = sp.RotationArrow == ViewElements.SelectionArrow.Rotations.Down ? EngineLayer.Models.Ships.Ship.Orientations.Vertical : EngineLayer.Models.Ships.Ship.Orientations.Horizontal;
+                    sp.SelectedShip.Coordinate = new System.Drawing.Point((int)args.Coords.X, (int)args.Coords.Y);
                     this.PLF_Playfield.PlayfieldLogic.PlaceShip(sp.SelectedShip);
                 }
             });

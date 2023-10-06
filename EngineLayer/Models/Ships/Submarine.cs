@@ -1,6 +1,6 @@
-﻿namespace Battleship2000.Models.Ships
+﻿namespace EngineLayer.Models.Ships
 {
-    internal class Submarine : Ship
+    public sealed class Submarine : Ship
     {
         public Submarine()
         {

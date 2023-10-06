@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
-using System.Windows;
 
-namespace Battleship2000.Models.Ships
+namespace EngineLayer.Models.Ships
 {
     public abstract class Ship
     {
