@@ -4,6 +4,7 @@
 using Battleship2000.Logic;
 using Serilog;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -19,6 +20,8 @@ namespace Battleship2000
         {
             base.OnStartup(e);
             LoggerConfigurator.ConfigureLogger();
+            
+            RuntimeStorage.ConfigurationHandler = new(new(Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), "config.json")));
             RuntimeStorage.ConfigurationHandler.Load();
         }
 

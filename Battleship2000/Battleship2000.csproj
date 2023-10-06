@@ -101,6 +101,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="neXn.Lib.ConfigurationHandler">
+      <HintPath>..\Libraries\neXn.Lib.ConfigurationHandler.dll</HintPath>
+    </Reference>
     <Reference Include="neXn.Lib.Wpf">
       <HintPath>..\Libraries\neXn.Lib.Wpf.dll</HintPath>
     </Reference>

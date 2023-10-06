@@ -30,7 +30,7 @@ namespace Battleship2000.Views
                 RuntimeStorage.BackgroundVis = Visibility.Collapsed;
             }
 
-            switch (RuntimeStorage.Config.Visual.Background.ToLower())
+            switch (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background.ToLower())
             {
                 case "oldschool":
                     InstanceVM.BackgroundVis = Visibility.Hidden;

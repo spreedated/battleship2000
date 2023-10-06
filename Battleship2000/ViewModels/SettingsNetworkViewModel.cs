@@ -10,11 +10,11 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return RuntimeStorage.Config.Network.Port;
+                return RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Port;
             }
             set
             {
-                RuntimeStorage.Config.Network.Port = value;
+                RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Port = value;
                 base.OnPropertyChanged(nameof(Port));
             }
         }
@@ -29,7 +29,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 this._Interface = value;
-                RuntimeStorage.Config.Network.Interface = this._Interface.IPAddress.ToString();
+                RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Interface = this._Interface.IPAddress.ToString();
                 base.OnPropertyChanged(nameof(Interface));
             }
         }

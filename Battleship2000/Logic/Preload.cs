@@ -36,7 +36,7 @@ namespace Battleship2000.Logic
                 LoadAudioFiles();
                 PreloadStep?.Invoke(null, EventArgs.Empty);
 
-                if (RuntimeStorage.Config.Audio.MusicVolume > 0.0f)
+                if (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume > 0.0f)
                 {
                     AudioEngine.PlayMusic();
                 }
@@ -124,9 +124,9 @@ namespace Battleship2000.Logic
 
             Settings_Network.Instance.Dispatcher.Invoke(() =>
             {
-                if (Settings_Network.Vm.NetworkInterfaces.Any(x => x.IPAddress.ToString() == RuntimeStorage.Config.Network.Interface))
+                if (Settings_Network.Vm.NetworkInterfaces.Any(x => x.IPAddress.ToString() == RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Interface))
                 {
-                    Settings_Network.Instance.CMB_Interface.SelectedItem = Settings_Network.Vm.NetworkInterfaces.First(x => x.IPAddress.ToString() == RuntimeStorage.Config.Network.Interface);
+                    Settings_Network.Instance.CMB_Interface.SelectedItem = Settings_Network.Vm.NetworkInterfaces.First(x => x.IPAddress.ToString() == RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Interface);
                 }
             });
         }
@@ -137,9 +137,9 @@ namespace Battleship2000.Logic
             {
                 Settings_Visual.Vm.Backgrounds.Add(new() { Name = "Oldschool", Filename = "battleship1-1280x736.png" });
                 Settings_Visual.Vm.Backgrounds.Add(new() { Name = "Blue", Filename = "blue.png" });
-                if (Settings_Visual.Vm.Backgrounds.Any(x => x.Name == RuntimeStorage.Config.Visual.Background))
+                if (Settings_Visual.Vm.Backgrounds.Any(x => x.Name == RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background))
                 {
-                    Settings_Visual.Instance.CMB_Background.SelectedItem = Settings_Visual.Vm.Backgrounds.First(x => x.Name == RuntimeStorage.Config.Visual.Background);
+                    Settings_Visual.Instance.CMB_Background.SelectedItem = Settings_Visual.Vm.Backgrounds.First(x => x.Name == RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background);
                 }
             });
         }

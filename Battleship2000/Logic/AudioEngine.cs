@@ -21,7 +21,7 @@ namespace Battleship2000.Logic
 
         public static void PlaySoundEffect(string soundname)
         {
-            if (RuntimeStorage.Config.Audio.EffectVolume <= 0.0f)
+            if (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.EffectVolume <= 0.0f)
             {
                 Log.Warning($"Sound muted");
                 return;
@@ -43,7 +43,7 @@ namespace Battleship2000.Logic
                     {
                         using (WaveOut w = new())
                         {
-                            w.Volume = RuntimeStorage.Config.Audio.EffectVolume;
+                            w.Volume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.EffectVolume;
 
                             w.Init(r);
                             w.Play();
@@ -101,7 +101,7 @@ namespace Battleship2000.Logic
                             string[] sndsplit = CurrentTrack.Value.Name.Split('.').ToArray();
                             string soundname = $"{sndsplit[sndsplit.Count() - 2]}.{sndsplit[sndsplit.Count() - 1]}";
 
-                            w.Volume = RuntimeStorage.Config.Audio.MusicVolume;
+                            w.Volume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume;
 
                             w.Init(r);
                             w.Play();
@@ -112,7 +112,7 @@ namespace Battleship2000.Logic
 
                             while (w.PlaybackState == PlaybackState.Playing)
                             {
-                                w.Volume = RuntimeStorage.Config.Audio.MusicVolume;
+                                w.Volume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume;
 
                                 if (w.Volume <= 0.0f || ctMusic.Token.IsCancellationRequested)
                                 {
@@ -131,7 +131,7 @@ namespace Battleship2000.Logic
                 }
                 stopping = false;
 
-                if (!ctMusic.IsCancellationRequested && RuntimeStorage.Config.Audio.MusicVolume > 0.0f)
+                if (!ctMusic.IsCancellationRequested && RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume > 0.0f)
                 {
                     NextTrack();
                 }

@@ -63,7 +63,7 @@ namespace Battleship2000.ViewModels
         public async Task<bool> NetworkServerStart()
         {
             this.NetworkServer?.Dispose();
-            this.NetworkServer = new(RuntimeStorage.Config.Network.Interface, RuntimeStorage.Config.Network.Port);
+            this.NetworkServer = new(RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Interface, RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Port);
             this.NetworkServer.BsClientConnected += this.OnBsClientConnected;
             return await this.NetworkServer.StartServerAsync();
         }
@@ -92,7 +92,7 @@ namespace Battleship2000.ViewModels
                     HostServer.Instance.Dispatcher.Invoke(() =>
                     {
                         HostServer.Vm.StatusColor = Brushes.Green;
-                        HostServer.Vm.StatusText = $"Waiting for client on port {RuntimeStorage.Config.Network.Port}";
+                        HostServer.Vm.StatusText = $"Waiting for client on port {RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Port}";
                     });
                 }
                 else

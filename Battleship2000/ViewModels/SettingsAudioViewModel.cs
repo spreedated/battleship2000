@@ -24,7 +24,7 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return RuntimeStorage.Config.Audio.MusicVolume;
+                return RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume;
             }
             set
             {
@@ -32,7 +32,7 @@ namespace Battleship2000.ViewModels
                 {
                     AudioEngine.NextTrack();
                 }
-                RuntimeStorage.Config.Audio.MusicVolume = value;
+                RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.MusicVolume = value;
                 base.OnPropertyChanged(nameof(MusicVolume));
                 if (AudioEngine.IsMusicPlaying && this.MusicVolume <= 0.0d && this.MusicVolume != this.musicVolumeOldValue)
                 {
@@ -61,11 +61,11 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return RuntimeStorage.Config.Audio.EffectVolume;
+                return RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.EffectVolume;
             }
             set
             {
-                RuntimeStorage.Config.Audio.EffectVolume = value;
+                RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.EffectVolume = value;
                 base.OnPropertyChanged(nameof(EffectVolume));
                 if (this.EffectVolume <= 0.0d)
                 {
