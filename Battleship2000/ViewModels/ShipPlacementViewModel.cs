@@ -1,7 +1,5 @@
-﻿using Battleship2000.Models;
-using Battleship2000.Models.Ships;
+﻿using Battleship2000.Models.Ships;
 using Battleship2000.ViewElements;
-using Battleship2000.ViewLogic;
 using Battleship2000.Views.Pages;
 using neXn.Lib.Wpf.ViewLogic;
 using System;

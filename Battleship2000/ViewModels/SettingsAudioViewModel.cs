@@ -1,5 +1,4 @@
 ﻿using Battleship2000.Logic;
-using Battleship2000.ViewLogic;
 using MahApps.Metro.IconPacks;
 using neXn.Lib.Wpf.ViewLogic;
 using System.Windows;

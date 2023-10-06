@@ -87,7 +87,7 @@ namespace Tests
 
             Assert.Throws<ArgumentException>(() =>
             {
-                c.Coordinate = new Point(10,11);
+                c.Coordinate = new Point(10, 11);
                 this.testPlayField.PlaceShip(c);
             });
             this.testPlayField = new();
@@ -99,7 +99,7 @@ namespace Tests
             this.testPlayField = new();
             Assert.Throws<ArgumentException>(() =>
             {
-                c.Coordinate = new Point(-1,0);
+                c.Coordinate = new Point(-1, 0);
                 this.testPlayField.PlaceShip(c);
             });
             this.testPlayField = new();
@@ -126,7 +126,7 @@ namespace Tests
                 c.Coordinate = new Point(-1, 45);
                 this.testPlayField.PlaceShip(c);
             });
- 
+
             this.testPlayField = new();
             Assert.Throws<ArgumentException>(() =>
             {

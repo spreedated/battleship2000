@@ -1,5 +1,4 @@
-﻿using Battleship2000.ViewLogic;
-using Battleship2000.Views;
+﻿using Battleship2000.Views;
 using Battleship2000.Views.Pages;
 using neXn.Lib.Wpf.ViewLogic;
 using System.Windows;

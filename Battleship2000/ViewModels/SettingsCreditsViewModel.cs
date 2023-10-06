@@ -1,6 +1,5 @@
 ﻿#pragma warning disable CA1822
 
-using Battleship2000.ViewLogic;
 using neXn.Lib.Wpf.ViewLogic;
 
 namespace Battleship2000.ViewModels

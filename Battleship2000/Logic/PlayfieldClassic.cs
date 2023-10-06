@@ -1,16 +1,13 @@
 ﻿using Battleship2000.Exceptions;
 using Battleship2000.Models;
 using Battleship2000.Models.Ships;
-using Battleship2000.ViewElements;
-using Battleship2000.ViewModels;
-using Battleship2000.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
-using System.Reflection;
 
 namespace Battleship2000.Logic
 {
@@ -112,7 +109,7 @@ namespace Battleship2000.Logic
                 StringBuilder s = new();
                 for (int ii = 0; ii < this.Cells.GetLength(1); ii++)
                 {
-                    s.Append($"[{(this.Cells[i,ii].CellState == Cell.CellStates.Empty ? " " : "X")}] ");
+                    s.Append($"[{(this.Cells[i, ii].CellState == Cell.CellStates.Empty ? " " : "X")}] ");
                 }
                 Debug.Print(s.ToString());
                 s.Clear();
@@ -162,7 +159,7 @@ namespace Battleship2000.Logic
                     {
                         if ((int)ship.Coordinate.Y - 1 >= 0)
                         {
-                            if (this.Cells[(int)ship.Coordinate.Y -1, (int)ship.Coordinate.X].CellState != Cell.CellStates.Empty)
+                            if (this.Cells[(int)ship.Coordinate.Y - 1, (int)ship.Coordinate.X].CellState != Cell.CellStates.Empty)
                             {
                                 isValid = false;
                                 break;
