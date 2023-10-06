@@ -61,7 +61,7 @@
             </StackPanel>
         </Grid>
         <StackPanel VerticalAlignment="Bottom" Margin="0,0,20,10">
-            <TextBlock Text="{x:Static logic:ObjectStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" FontSize="16" Style="{StaticResource TextStyle}" />
+            <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" FontSize="16" Style="{StaticResource TextStyle}" />
         </StackPanel>
     </Grid>
     
