@@ -1,6 +1,6 @@
 ﻿namespace AudioLayer.Models
 {
-    public class EffectSound : PayloadBase
+    public class Effect : PayloadBase
     {
     }
 }

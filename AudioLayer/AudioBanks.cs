@@ -9,8 +9,9 @@ namespace AudioLayer
 {
     public static class AudioBanks
     {
+        public static bool AreBanksLoaded { get; private set; }
         internal static LinkedList<Music> Musics { get; } = new();
-        internal static List<EffectSound> Effects { get; } = new();
+        internal static List<Effect> Effects { get; } = new();
 
         public static event EventHandler<SoundEventArgs> SoundLoaded;
         public static event EventHandler AudioBanksLoadedFinished;
@@ -80,6 +81,7 @@ namespace AudioLayer
 
             banksLoading = false;
             AudioBanksLoadedFinished?.Invoke(null, System.EventArgs.Empty);
+            AreBanksLoaded = true;
         }
     }
 }

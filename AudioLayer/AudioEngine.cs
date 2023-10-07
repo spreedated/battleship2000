@@ -2,9 +2,11 @@
 using AudioLayer.Models;
 using NAudio.Wave;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,7 +21,16 @@ namespace AudioLayer
 
         public event EventHandler<SoundEventArgs> PlayingSound;
         public event EventHandler<SoundEventArgs> PlayingMusic;
+        public event EventHandler<SoundEventArgs> UnknownFile;
         public event EventHandler StoppedMusic;
+
+        public static bool AreBanksLoaded
+        {
+            get
+            {
+                return AudioBanks.AreBanksLoaded;
+            }
+        }
 
         public bool IsMusicPlaying { get; private set; }
 
@@ -47,21 +58,38 @@ namespace AudioLayer
             }
         }
 
+        #region Constructor
         public AudioEngine()
         {
             this.volumes = new();
         }
+        #endregion
+
+        private bool IsFileInAudioBank(string name)
+        {
+#pragma warning disable S3011
+            IEnumerable<PropertyInfo> availableAudiobanks = typeof(AudioBanks).GetProperties(BindingFlags.Static | BindingFlags.NonPublic).Where(x => typeof(IEnumerable).IsAssignableFrom(x.PropertyType));
+#pragma warning restore S3011
+
+            if (availableAudiobanks.Select(x => (IEnumerable)x.GetValue(null)).OfType<IEnumerable<PayloadBase>>().Any(x => x.Any(y => y.Name.ToLower() == name.ToLower() || y.Name.ToLower().StartsWith(name.ToLower()))))
+            {
+                return true;
+            }
+
+            this.UnknownFile?.Invoke(this, new(name));
+            return false;
+        }
 
         public void PlaySoundEffect(string soundname)
         {
-            if (this.volumes.Effect <= 0.0f || !AudioBanks.Effects.Exists(x => x.Name.ToLower().Contains(soundname.ToLower())))
+            if (!this.IsFileInAudioBank(soundname) && this.volumes.Effect <= 0.0f)
             {
                 return;
             }
 
             Task.Factory.StartNew(async () =>
             {
-                EffectSound ef = AudioBanks.Effects.First(x => x.Name.ToLower().Contains(soundname.ToLower()));
+                Effect ef = AudioBanks.Effects.First(x => x.Name.ToLower().Contains(soundname.ToLower()));
 
                 using (MemoryStream ms = new(ef.Payload))
                 {
@@ -119,7 +147,7 @@ namespace AudioLayer
                         using (WaveOut w = new())
                         {
                             string[] sndsplit = CurrentTrack.Value.Name.Split('.').ToArray();
-                            string soundname = $"{sndsplit[sndsplit.Count() - 2]}.{sndsplit[sndsplit.Count() - 1]}";
+                            string soundname = $"{sndsplit[^2]}.{sndsplit[^1]}";
 
                             w.Volume = this.volumes.Music;
 
