@@ -10,6 +10,7 @@
     <Authors>Markus Karl Wackermann</Authors>
     <Title>Engine Layer</Title>
     <AssemblyTitle>Engine Layer</AssemblyTitle>
+    <NoWarn>1701;1702;IDE0063</NoWarn>
   </PropertyGroup>
 
 </Project>
