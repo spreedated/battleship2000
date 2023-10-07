@@ -1,5 +1,7 @@
-﻿using AudioLayer.Models;
+﻿using AudioLayer.EventArgs;
+using AudioLayer.Models;
 using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,7 +15,11 @@ namespace AudioLayer
         private readonly AudioVolumes volumes;
         private bool stopping;
         private CancellationTokenSource ctMusic;
-        private LinkedListNode<Models.Music> CurrentTrack;
+        private LinkedListNode<Music> CurrentTrack;
+
+        public event EventHandler<SoundEventArgs> PlayingSound;
+        public event EventHandler<SoundEventArgs> PlayingMusic;
+        public event EventHandler StoppedMusic;
 
         public bool IsMusicPlaying { get; private set; }
 
@@ -69,9 +75,9 @@ namespace AudioLayer
                             w.Play();
 
                             string[] sndsplit = ef.Name.Split('.').ToArray();
-                            string sndname = $"{sndsplit[sndsplit.Count() - 2]}.{sndsplit[sndsplit.Count() - 1]}";
+                            string sndname = $"{sndsplit[^2]}.{sndsplit[^1]}";
 
-                            //Log.Information($"Playing sound \"{sndname}\"");
+                            this.PlayingSound?.Invoke(this, new(sndname));
 
                             while (w.PlaybackState == PlaybackState.Playing)
                             {
@@ -85,16 +91,10 @@ namespace AudioLayer
             });
         }
 
-        //public static void ButtonEnterSoundPlay(object sender, System.Windows.Input.MouseEventArgs e)
-        //{
-        //    PlaySoundEffect("button-");
-        //}
-
         public void PlayMusic()
         {
             if (this.IsMusicPlaying && !stopping)
             {
-                //Log.Warning($"Music already playing");
                 return;
             }
 
@@ -126,7 +126,7 @@ namespace AudioLayer
                             w.Init(r);
                             w.Play();
 
-                            //Log.Information($"Playing music \"{soundname}\"");
+                            this.PlayingMusic?.Invoke(this, new(soundname));
 
                             this.IsMusicPlaying = true;
 
@@ -144,8 +144,9 @@ namespace AudioLayer
 
                             w.Stop();
 
-                            IsMusicPlaying = false;
-                            //Log.Information($"Music stopped");
+                            this.IsMusicPlaying = false;
+
+                            this.StoppedMusic?.Invoke(this, System.EventArgs.Empty);
                         }
                     }
                 }
@@ -164,7 +165,7 @@ namespace AudioLayer
             {
                 this.stopping = true;
                 this.ctMusic?.Cancel();
-                //Log.Information($"Music stopped");
+                this.StoppedMusic?.Invoke(this, System.EventArgs.Empty);
             }
         }
 

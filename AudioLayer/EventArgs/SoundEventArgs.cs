@@ -1,9 +1,9 @@
 ﻿namespace AudioLayer.EventArgs
 {
-    public sealed class SoundLoadedEventArgs : System.EventArgs
+    public sealed class SoundEventArgs : System.EventArgs
     {
         public string Soundname { get; init; }
-        public SoundLoadedEventArgs(string soundname)
+        public SoundEventArgs(string soundname)
         {
             this.Soundname = soundname;
         }

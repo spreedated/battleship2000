@@ -12,7 +12,7 @@ namespace AudioLayer
         internal static LinkedList<Music> Musics { get; } = new();
         internal static List<EffectSound> Effects { get; } = new();
 
-        public static event EventHandler<SoundLoadedEventArgs> SoundLoaded;
+        public static event EventHandler<SoundEventArgs> SoundLoaded;
         public static event EventHandler AudioBanksLoadedFinished;
         private static bool banksLoading;
 

@@ -70,6 +70,9 @@ namespace Battleship2000.Logic
                 EffectVolume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Effect,
                 MusicVolume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Music
             };
+            RuntimeStorage.AudioEngine.PlayingSound += (s, e) => Log.Information($"Playing \"{e.Soundname}\" sound");
+            RuntimeStorage.AudioEngine.PlayingMusic += (s, e) => Log.Information($"Playing \"{e.Soundname}\" music");
+            RuntimeStorage.AudioEngine.StoppedMusic += (s, e) => Log.Information("Music stopped");
 
             Log.Information($"Loaded successfully {AudioBanks.GetEffectCount} soundfiles. {AudioBanks.GetMusicCount} Music files, {AudioBanks.GetEffectCount} Effect files.");
         }
