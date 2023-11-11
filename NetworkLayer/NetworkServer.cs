@@ -5,29 +5,41 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static NetworkLayer.Logic.HelperFunctions;
 
-namespace NetworkLayer.Logic
+namespace NetworkLayer
 {
     public class NetworkServer : IDisposable
     {
         private bool disposed;
         private readonly uint port;
-        private SimpleTcpServer server = null;
         private readonly string bindingInterface = null;
+        internal SimpleTcpServer server = null;
 
         public event EventHandler BsClientConnected;
 
         public NwoConnectedClient ConnectedClient { get; private set; }
 
+        #region Constructor
         public NetworkServer(string bindingInterface, uint port = 32485)
         {
+            if (!IsIpAddressValid(bindingInterface))
+            {
+                throw new ArgumentNullException(nameof(bindingInterface));
+            }
+            if (!IsPortValid(port))
+            {
+                throw new ArgumentNullException(nameof(port));
+            }
+
             this.bindingInterface = bindingInterface;
             this.port = port;
         }
+        #endregion
 
         public bool StartServer()
         {
-            this.server = new(this.bindingInterface, (int)this.port);
+            this.server ??= new(this.bindingInterface, (int)this.port);
             server.Events.DataReceived += this.DataReceived;
             server.Events.ClientDisconnected += this.ClientDisconnected;
             server.Events.ClientConnected += this.ClientConnected;
@@ -98,7 +110,7 @@ namespace NetworkLayer.Logic
 
             if (this.ConnectedClient == null)
             {
-                if (!WaitingOnConnectionDataProcess(data, e))
+                if (!this.WaitingOnConnectionDataProcess(data, e))
                 {
                     return;
                 }

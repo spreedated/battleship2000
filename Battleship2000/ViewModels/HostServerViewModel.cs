@@ -1,7 +1,7 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.Views;
 using Battleship2000.Views.Pages;
-using NetworkLayer.Logic;
+using NetworkLayer;
 using neXn.Lib.Wpf.ViewLogic;
 using System;
 using System.Threading.Tasks;

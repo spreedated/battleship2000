@@ -8,16 +8,9 @@
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>tests.snk</AssemblyOriginatorKeyFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;S1186;IDE0063</NoWarn>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;S1186;IDE0063</NoWarn>
-  </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Autofac.Extras.Moq" Version="6.1.1">
       <TreatAsUsed>true</TreatAsUsed>
@@ -29,9 +22,9 @@
     <PackageReference Include="NSubstitute" Version="5.1.0">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
-    <PackageReference Include="NUnit.Analyzers" Version="3.8.0">
+    <PackageReference Include="NUnit.Analyzers" Version="3.9.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -44,6 +37,8 @@
   <ItemGroup>
     <ProjectReference Include="..\AudioLayer\AudioLayer.csproj" />
     <ProjectReference Include="..\Battleship2000\Battleship2000.csproj" />
+    <ProjectReference Include="..\EngineLayer\EngineLayer.csproj" />
+    <ProjectReference Include="..\NetworkLayer\NetworkLayer.csproj" />
   </ItemGroup>
 
 </Project>
