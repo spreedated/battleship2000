@@ -32,8 +32,8 @@
                         <TextBlock Style="{StaticResource TextStyle}" FontSize="12" Text="Serilog Framework" HorizontalAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="0,0,40,0">
-                        <Image Source="../../resources/net6_logo.png" Width="64" Height="48" Stretch="Uniform" Margin="0,0,0,10" />
-                        <TextBlock Style="{StaticResource TextStyle}" FontSize="12" Text=".NET 6 Framework" HorizontalAlignment="Center" />
+                        <Image Source="../../resources/net8_logo.png" Width="64" Height="48" Stretch="Uniform" Margin="0,0,0,10" />
+                        <TextBlock Style="{StaticResource TextStyle}" FontSize="12" Text=".NET 8 Framework" HorizontalAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
                 <TextBlock Grid.Column="0" Text="Sounds" TextAlignment="Center"  Style="{StaticResource TextStyle}" FontSize="18" TextDecorations="Underline" Margin="0,15,0,10"/>
