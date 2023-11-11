@@ -1,12 +1,12 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.Models;
 using Battleship2000.Views;
-using neXn.Lib.Wpf.ViewLogic;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 
 namespace Battleship2000.ViewModels
 {
-    public class SettingsVisualViewModel : ViewModelBase
+    public class SettingsVisualViewModel : ObservableObject
     {
         public ObservableCollection<Background> Backgrounds { get; set; } = new();
 
@@ -21,7 +21,7 @@ namespace Battleship2000.ViewModels
             {
                 this._SelectedBackground = value;
                 RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background = this._SelectedBackground.Name;
-                base.OnPropertyChanged(nameof(SelectedBackground));
+                base.OnPropertyChanged(nameof(this.SelectedBackground));
                 MainWindow.Instance.RefreshBackground();
             }
         }

@@ -1,8 +1,8 @@
-﻿using neXn.Lib.Wpf.ViewLogic;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Battleship2000.ViewModels
 {
-    public class PreloadViewModel : ViewModelBase
+    public class PreloadViewModel : ObservableObject
     {
         private double _ProgressbarValue = 0.0d;
         public double ProgressbarValue
@@ -14,7 +14,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _ProgressbarValue = value;
-                base.OnPropertyChanged(nameof(ProgressbarValue));
+                base.OnPropertyChanged(nameof(this.ProgressbarValue));
             }
         }
 
@@ -28,7 +28,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _LoadingText = value;
-                base.OnPropertyChanged(nameof(LoadingText));
+                base.OnPropertyChanged(nameof(this.LoadingText));
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.Views.Pages;
-using neXn.Lib.Wpf.ViewLogic;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Serilog;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using System.Windows.Input;
 
 namespace Battleship2000.ViewModels
 {
-    public class SettingsViewModel : ViewModelBase
+    public class SettingsViewModel : ObservableObject
     {
         private readonly Timer saveIconAnimationTimer = null;
         private bool saveIconAnimationRunning = false;

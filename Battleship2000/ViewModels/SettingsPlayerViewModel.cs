@@ -1,9 +1,9 @@
 ﻿using Battleship2000.Logic;
-using neXn.Lib.Wpf.ViewLogic;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Battleship2000.ViewModels
 {
-    public class SettingsPlayerViewModel : ViewModelBase
+    public class SettingsPlayerViewModel : ObservableObject
     {
         public string Playername
         {

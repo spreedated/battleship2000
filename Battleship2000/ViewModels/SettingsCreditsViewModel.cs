@@ -1,10 +1,10 @@
 ﻿#pragma warning disable CA1822
 
-using neXn.Lib.Wpf.ViewLogic;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Battleship2000.ViewModels
 {
-    public class SettingsCreditsViewModel : ViewModelBase
+    public class SettingsCreditsViewModel : ObservableObject
     {
         public string SoundCredits
         {

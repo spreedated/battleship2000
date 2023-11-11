@@ -1,13 +1,14 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.Views;
-using neXn.Lib.Wpf.ViewLogic;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Battleship2000.ViewModels
 {
-    public class DialogWindowViewModel : ViewModelBase
+    public class DialogWindowViewModel : ObservableObject
     {
         public ICommand CancelCommand { get; } = new RelayCommand<DialogWindow>((w) =>
         {
@@ -23,10 +24,7 @@ namespace Battleship2000.ViewModels
 
         public ICommand YesCommand
         {
-            get
-            {
-                return this._YesCommand;
-            }
+            get => this._YesCommand;
             set
             {
                 this._YesCommand = value;

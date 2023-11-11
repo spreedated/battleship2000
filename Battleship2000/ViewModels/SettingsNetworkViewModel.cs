@@ -1,10 +1,11 @@
 ﻿using Battleship2000.Logic;
-using neXn.Lib.Wpf.ViewLogic;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
 namespace Battleship2000.ViewModels
 {
-    public class SettingsNetworkViewModel : ViewModelBase
+    public class SettingsNetworkViewModel : ObservableObject
     {
         public uint Port
         {
@@ -15,7 +16,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Port = value;
-                base.OnPropertyChanged(nameof(Port));
+                base.OnPropertyChanged(nameof(this.Port));
             }
         }
 
@@ -30,7 +31,7 @@ namespace Battleship2000.ViewModels
             {
                 this._Interface = value;
                 RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Interface = this._Interface.IPAddress.ToString();
-                base.OnPropertyChanged(nameof(Interface));
+                base.OnPropertyChanged(nameof(this.Interface));
             }
         }
 

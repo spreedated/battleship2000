@@ -1,13 +1,14 @@
 ﻿using Battleship2000.Views;
 using Battleship2000.Views.Pages;
-using neXn.Lib.Wpf.ViewLogic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Battleship2000.ViewModels
 {
-    public class MainMenuViewModel : ViewModelBase
+    public class MainMenuViewModel : ObservableObject
     {
         public ICommand PlayCommand { get; } = new RelayCommand(() =>
         {

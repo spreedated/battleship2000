@@ -2,7 +2,6 @@
 
 using Battleship2000.Logic;
 using Battleship2000.Views;
-using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System;
 using System.Linq;
@@ -11,10 +10,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Battleship2000.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ObservableObject
     {
         public string WindowTitle { get; } = $"{((AssemblyTitleAttribute)typeof(MainWindowViewModel).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title} v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
 
@@ -28,13 +28,13 @@ namespace Battleship2000.ViewModels
             set
             {
                 _BackgroundImage = value;
-                base.OnPropertyChanged(nameof(BackgroundImage));
+                base.OnPropertyChanged(nameof(this.BackgroundImage));
             }
         }
 
         public static void Navigate(string pagename)
         {
-            Page p = RuntimeStorage.Pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
+            Page p = RuntimeStorage.Pages.Find(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
 
             if (p == null)
             {
@@ -57,7 +57,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _BackgroundVis = value;
-                base.OnPropertyChanged(nameof(BackgroundVis));
+                base.OnPropertyChanged(nameof(this.BackgroundVis));
             }
         }
 

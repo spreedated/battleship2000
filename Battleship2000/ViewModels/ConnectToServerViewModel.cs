@@ -1,6 +1,7 @@
 ﻿using Battleship2000.Views.Pages;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NetworkLayer.Logic;
-using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,7 +9,7 @@ using System.Windows.Input;
 
 namespace Battleship2000.ViewModels
 {
-    public class ConnectToServerViewModel : ViewModelBase
+    public class ConnectToServerViewModel : ObservableObject
     {
         public ICommand BackCommand { get; } = new RelayCommand(() => { MainWindowViewModel.Navigate("mainmenu"); });
         public ICommand ConnectCommand { get; } = new RelayCommand(async () =>
@@ -64,57 +65,29 @@ namespace Battleship2000.ViewModels
         private bool _ButtonEnabled = true;
         public bool ButtonEnabled
         {
-            get
-            {
-                return _ButtonEnabled;
-            }
-            set
-            {
-                _ButtonEnabled = value;
-                base.OnPropertyChanged(nameof(this.ButtonEnabled));
-            }
+            get => _ButtonEnabled;
+            set => base.SetProperty(ref this._ButtonEnabled, value);
         }
 
         private string _ConnectText = "127.0.0.1";
         public string ConnectText
         {
-            get
-            {
-                return _ConnectText;
-            }
-            set
-            {
-                _ConnectText = value;
-                base.OnPropertyChanged(nameof(this.ConnectText));
-            }
+            get => _ConnectText;
+            set => base.SetProperty(ref this._ConnectText, value);
         }
 
         private string _StatusText = "Connecting ...";
         public string StatusText
         {
-            get
-            {
-                return _StatusText;
-            }
-            set
-            {
-                _StatusText = value;
-                base.OnPropertyChanged(nameof(this.StatusText));
-            }
+            get => _StatusText;
+            set => base.SetProperty(ref this._StatusText, value);
         }
 
         private Visibility _StatusTextVisibility = Visibility.Hidden;
         public Visibility StatusTextVisibility
         {
-            get
-            {
-                return _StatusTextVisibility;
-            }
-            set
-            {
-                _StatusTextVisibility = value;
-                base.OnPropertyChanged(nameof(this.StatusTextVisibility));
-            }
+            get => _StatusTextVisibility;
+            set => base.SetProperty(ref this._StatusTextVisibility, value);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Battleship2000.Models;
+using CommunityToolkit.Mvvm.Input;
 using EngineLayer;
 using EngineLayer.Models;
-using neXn.Lib.Wpf.ViewLogic;
 using Serilog;
 using System;
 using System.ComponentModel;

@@ -1,8 +1,9 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.Views;
 using Battleship2000.Views.Pages;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using NetworkLayer;
-using neXn.Lib.Wpf.ViewLogic;
 using System;
 using System.Threading.Tasks;
 using System.Timers;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 
 namespace Battleship2000.ViewModels
 {
-    public class HostServerViewModel : ViewModelBase
+    public class HostServerViewModel : ObservableObject
     {
         private readonly Timer animationTimer = null;
         private bool animationRunning = false;
@@ -143,7 +144,7 @@ namespace Battleship2000.ViewModels
             this.StopButtonVisibility = Visibility.Collapsed;
         }
 
-        public ICommand StopCommand { get; } = new RelayCommand((c) =>
+        public ICommand StopCommand { get; } = new RelayCommand(() =>
         {
             HostServer.Vm.StatusText = "Closing ...";
 

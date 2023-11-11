@@ -1,7 +1,8 @@
 ﻿using Battleship2000.ViewElements;
 using Battleship2000.Views.Pages;
 using EngineLayer.Models.Ships;
-using neXn.Lib.Wpf.ViewLogic;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ using System.Windows.Input;
 
 namespace Battleship2000.ViewModels
 {
-    public class ShipPlacementViewModel : ViewModelBase
+    public class ShipPlacementViewModel : ObservableObject
     {
-        public ICommand DisconnectCommand { get; } = new RelayCommand(async (c) =>
+        public ICommand DisconnectCommand { get; } = new RelayCommand(async () =>
         {
             HostServer.Vm.ResetButtonStates();
             await HostServer.Vm.NetworkServerStop();
@@ -211,7 +212,7 @@ namespace Battleship2000.ViewModels
 
         public ShipSelections ShipSelectionCurrent { get; private set; }
 
-        public ICommand CarrierSetCommand { get; } = new RelayCommand((c) =>
+        public ICommand CarrierSetCommand { get; } = new RelayCommand<object>((c) =>
         {
             ShipPlacementViewModel s = GetViewModel(c);
 
@@ -226,7 +227,7 @@ namespace Battleship2000.ViewModels
             s.SelectedShip = new Carrier();
         });
 
-        public ICommand BattlshipSetCommand { get; } = new RelayCommand((c) =>
+        public ICommand BattlshipSetCommand { get; } = new RelayCommand<object>((c) =>
         {
             ShipPlacementViewModel s = GetViewModel(c);
 
@@ -240,7 +241,7 @@ namespace Battleship2000.ViewModels
             s.SelectedShip = new Battleship();
         });
 
-        public ICommand CruiserSetCommand { get; } = new RelayCommand((c) =>
+        public ICommand CruiserSetCommand { get; } = new RelayCommand<object>((c) =>
         {
             ShipPlacementViewModel s = GetViewModel(c);
 
@@ -254,7 +255,7 @@ namespace Battleship2000.ViewModels
             s.SelectedShip = new Cruiser();
         });
 
-        public ICommand SubmarineSetCommand { get; } = new RelayCommand((c) =>
+        public ICommand SubmarineSetCommand { get; } = new RelayCommand<object>((c) =>
         {
             ShipPlacementViewModel s = GetViewModel(c);
 
@@ -268,7 +269,7 @@ namespace Battleship2000.ViewModels
             s.SelectedShip = new Submarine();
         });
 
-        public ICommand DestroyerSetCommand { get; } = new RelayCommand((c) =>
+        public ICommand DestroyerSetCommand { get; } = new RelayCommand<object>((c) =>
         {
             ShipPlacementViewModel s = GetViewModel(c);
 
@@ -317,7 +318,7 @@ namespace Battleship2000.ViewModels
             }
         }
 
-        public ICommand OrientationChangeCommand { get; } = new RelayCommand((c) =>
+        public ICommand OrientationChangeCommand { get; } = new RelayCommand<object>((c) =>
         {
             ShipPlacementViewModel v = GetViewModel(c);
             if (v.RotationArrow == SelectionArrow.Rotations.Right)
