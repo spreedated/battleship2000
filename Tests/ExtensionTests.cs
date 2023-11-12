@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 
-namespace Tests
+namespace Miscellaneous
 {
     [TestFixture]
     public class ExtensionTests

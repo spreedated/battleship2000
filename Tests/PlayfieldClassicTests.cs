@@ -7,7 +7,7 @@ using System;
 using System.Drawing;
 using System.Linq;
 
-namespace Tests
+namespace Miscellaneous
 {
     [TestFixture]
     public class PlayfieldClassicTests

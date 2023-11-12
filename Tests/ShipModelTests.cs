@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace Tests
+namespace Miscellaneous
 {
     [TestFixture]
     public class ShipModelTests

@@ -1,7 +1,7 @@
 ﻿using Battleship2000.ViewLogic;
 using NUnit.Framework;
 
-namespace Tests
+namespace Miscellaneous
 {
     [TestFixture]
     public class HelperTests
