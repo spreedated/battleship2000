@@ -12,7 +12,7 @@ namespace Battleship2000.Views.Pages
         public static SettingsVisualViewModel Vm { get; private set; }
         public Settings_Visual()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             Instance = this;
             Vm = (SettingsVisualViewModel)this.DataContext;
         }

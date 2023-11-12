@@ -13,7 +13,7 @@ namespace Battleship2000.Views.Pages
         private bool isFirstLoad = true;
         public Settings()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             ((SettingsViewModel)this.DataContext).Instance = this;
             Instance = this;
             Vm = (SettingsViewModel)this.DataContext;

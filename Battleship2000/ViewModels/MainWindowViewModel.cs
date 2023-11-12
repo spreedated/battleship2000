@@ -20,8 +20,6 @@ namespace Battleship2000.ViewModels
         public ICommand ResizeCommand { get; } = new RelayCommand<SizeChangedEventArgs>((o) =>
         {
             RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize = o.NewSize;
-
-            RuntimeStorage.ConfigurationHandler.Save();
         });
 
         private ImageSource _BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));

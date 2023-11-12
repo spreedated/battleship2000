@@ -1,11 +1,16 @@
 ﻿#pragma warning disable CA1845
 #pragma warning disable IDE0057
 
+using Battleship2000.Logic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Resources;
+using System.Windows.Media.Imaging;
+using System.Windows;
+using Battleship2000.Views;
 
 namespace Battleship2000.ViewLogic
 {
@@ -35,6 +40,29 @@ namespace Battleship2000.ViewLogic
             }
 
             return null;
+        }
+
+        public static void RefreshBackground()
+        {
+            if (RuntimeStorage.BackgroundImage == null)
+            {
+                RuntimeStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                RuntimeStorage.BackgroundVis = Visibility.Collapsed;
+            }
+
+            switch (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background.ToLower())
+            {
+                case "oldschool":
+                    MainWindow.InstanceVM.BackgroundVis = Visibility.Hidden;
+                    RuntimeStorage.BackgroundVis = Visibility.Hidden;
+                    break;
+                case "blue":
+                    MainWindow.InstanceVM.BackgroundVis = Visibility.Visible;
+                    MainWindow.InstanceVM.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                    RuntimeStorage.BackgroundVis = Visibility.Visible;
+                    RuntimeStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                    break;
+            }
         }
     }
 }
