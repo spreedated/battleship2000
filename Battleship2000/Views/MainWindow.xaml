@@ -6,11 +6,19 @@
         xmlns:local="clr-namespace:Battleship2000.Views"
         xmlns:vm="clr-namespace:Battleship2000.ViewModels"
         xmlns:vl="clr-namespace:Battleship2000.ViewLogic"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="450" Width="800" MinHeight="450" MinWidth="800" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="SizeChanged">
+            <behaviors:InvokeCommandAction Command="{Binding ResizeCommand}" PassEventArgsToCommand="True" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
+    
     <Border Background="Black">
         <Grid>
             <Border d:Visibility="Hidden" Visibility="{Binding BackgroundVis}">

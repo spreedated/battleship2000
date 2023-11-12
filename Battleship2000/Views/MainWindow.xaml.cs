@@ -15,14 +15,20 @@ namespace Battleship2000.Views
         public static MainWindowViewModel InstanceVM { get; private set; }
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             Instance = this;
             InstanceVM = (MainWindowViewModel)this.DataContext;
 
-            this.RefreshBackground();
+            if (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize != default)
+            {
+                this.Width = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize.Width;
+                this.Height = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize.Height;
+            }
+
+            RefreshBackground();
         }
 
-        public void RefreshBackground()
+        public static void RefreshBackground()
         {
             if (RuntimeStorage.BackgroundImage == null)
             {

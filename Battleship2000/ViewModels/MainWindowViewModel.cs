@@ -11,11 +11,20 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Battleship2000.ViewModels
 {
     public class MainWindowViewModel : ObservableObject
     {
+        public ICommand ResizeCommand { get; } = new RelayCommand<SizeChangedEventArgs>((o) =>
+        {
+            RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize = o.NewSize;
+
+            RuntimeStorage.ConfigurationHandler.Save();
+        });
+
         public string WindowTitle { get; } = $"{((AssemblyTitleAttribute)typeof(MainWindowViewModel).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title} v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
 
         private ImageSource _BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));

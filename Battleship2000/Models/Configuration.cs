@@ -1,6 +1,7 @@
 ﻿using AudioLayer.Models;
 using Newtonsoft.Json;
 using System;
+using System.Windows;
 
 namespace Battleship2000.Models
 {
@@ -17,6 +18,9 @@ namespace Battleship2000.Models
 
         [JsonProperty("audio")]
         public AudioVolumes Audio { get; set; } = new();
+
+        [JsonProperty("windowsSize")]
+        public Size WindowsSize { get; set; }
     }
 
     internal class Network
