@@ -98,8 +98,7 @@ namespace Tests.AudioLayer
         [TearDown]
         public void TearDown()
         {
-            AudioBanks.Effects?.Clear();
-            AudioBanks.Musics?.Clear();
+            AudioBanks.UnloadAudioBanks();
         }
     }
 }

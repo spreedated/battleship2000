@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace AudioLayer
 {
@@ -82,6 +83,14 @@ namespace AudioLayer
             banksLoading = false;
             AudioBanksLoadedFinished?.Invoke(null, System.EventArgs.Empty);
             AreBanksLoaded = true;
+        }
+
+        public static void UnloadAudioBanks()
+        {
+            Musics?.Clear();
+            Effects?.Clear();
+
+            AreBanksLoaded = false;
         }
     }
 }
