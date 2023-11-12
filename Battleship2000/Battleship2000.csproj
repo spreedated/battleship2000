@@ -30,11 +30,9 @@
     <DebugSymbols>false</DebugSymbols>
     <Prefer32Bit>false</Prefer32Bit>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
-    <PostBuildEvent>"$(Obfuscar)" obfuscar.xml</PostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="obfuscar.xml" />
     <None Remove="Resources\battleship1-1280x736.png" />
     <None Remove="Resources\blue.png" />
     <None Remove="Resources\floppy.png" />
@@ -49,12 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="obfuscar.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="MahApps.Metro.IconPacks.Entypo" Version="4.11.0" />
     <PackageReference Include="MahApps.Metro.IconPacks.ForkAwesome" Version="4.11.0" />
@@ -63,10 +55,6 @@
     <PackageReference Include="MahApps.Metro.IconPacks.Zondicons" Version="4.11.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
     <PackageReference Include="NAudio" Version="2.2.1" />
-    <PackageReference Include="Obfuscar" Version="2.2.38">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Serilog" Version="3.1.1">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
