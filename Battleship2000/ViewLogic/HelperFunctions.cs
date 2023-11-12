@@ -11,6 +11,7 @@ using System.Resources;
 using System.Windows.Media.Imaging;
 using System.Windows;
 using Battleship2000.Views;
+using static Battleship2000.Logic.Constants;
 
 namespace Battleship2000.ViewLogic
 {
@@ -46,7 +47,7 @@ namespace Battleship2000.ViewLogic
         {
             if (RuntimeStorage.BackgroundImage == null)
             {
-                RuntimeStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                RuntimeStorage.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
                 RuntimeStorage.BackgroundVis = Visibility.Collapsed;
             }
 
@@ -58,9 +59,9 @@ namespace Battleship2000.ViewLogic
                     break;
                 case "blue":
                     MainWindow.InstanceVM.BackgroundVis = Visibility.Visible;
-                    MainWindow.InstanceVM.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                    MainWindow.InstanceVM.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
                     RuntimeStorage.BackgroundVis = Visibility.Visible;
-                    RuntimeStorage.BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+                    RuntimeStorage.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
                     break;
             }
         }

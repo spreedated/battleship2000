@@ -1,6 +1,4 @@
-﻿#pragma warning disable S1075
-
-using Battleship2000.Logic;
+﻿using Battleship2000.Logic;
 using Battleship2000.Views;
 using Serilog;
 using System;
@@ -12,6 +10,7 @@ using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using static Battleship2000.Logic.Constants;
 
 namespace Battleship2000.ViewModels
 {
@@ -22,7 +21,7 @@ namespace Battleship2000.ViewModels
             RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize = o.NewSize;
         });
 
-        private ImageSource _BackgroundImage = new BitmapImage(new Uri("pack://application:,,,/Resources/blue.png"));
+        private ImageSource _BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
         public ImageSource BackgroundImage
         {
             get => this._BackgroundImage;
