@@ -10,9 +10,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Settings" Loaded="Page_Loaded">
+    
     <Page.DataContext>
         <vm:SettingsViewModel/>
     </Page.DataContext>
+
     <Grid>
         <Grid Margin="20,0,20,0" >
             <Grid.RowDefinitions>

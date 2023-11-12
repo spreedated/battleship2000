@@ -8,9 +8,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Settings_Credits">
+    
     <Page.DataContext>
         <vm:SettingsCreditsViewModel />
     </Page.DataContext>
+    
     <StackPanel Margin="10,0,10,10">
         <StackPanel Orientation="Vertical">
             <StackPanel>
