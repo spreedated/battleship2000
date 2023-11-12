@@ -1,6 +1,6 @@
 ﻿using Battleship2000.Models;
 using Battleship2000.ViewModels;
-using neXn.Lib.Wpf.ViewLogic;
+using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using System.Windows.Controls;
 
