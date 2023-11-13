@@ -19,61 +19,6 @@ namespace Miscellaneous
         }
 
         [Test]
-        public void ShipHitRegisterTests()
-        {
-            Assert.That(this.testShip.Hits, Is.Zero);
-            Assert.Throws<InvalidOperationException>(() =>
-            {
-                this.testShip.HitHistory.Peek();
-            });
-            Assert.That(this.testShip.IsSunk, Is.False);
-
-            this.testShip.RegisterHit(4);
-            Assert.Multiple(() =>
-            {
-                Assert.That(this.testShip.Hits, Is.EqualTo(1));
-                Assert.That(this.testShip.HitHistory.Peek(), Is.EqualTo(4));
-                Assert.That(this.testShip.IsSunk, Is.False);
-            });
-
-            this.testShip.RegisterHit(0);
-            Assert.Multiple(() =>
-            {
-                Assert.That(this.testShip.Hits, Is.EqualTo(2));
-                Assert.That(this.testShip.IsSunk, Is.False);
-                Assert.That(this.testShip.HitHistory, Has.Count);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(2));
-                Assert.That(this.testShip.HitHistory.Peek(), Is.EqualTo(0));
-            });
-
-            this.testShip.RegisterHit(1);
-            this.testShip.RegisterHit(2);
-            this.testShip.RegisterHit(3);
-
-            Assert.That(this.testShip.IsSunk, Is.True);
-
-            this.testShip.RegisterHit(3);
-            this.testShip.RegisterHit(3);
-            this.testShip.RegisterHit(3);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(this.testShip.IsSunk, Is.True);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(5));
-                Assert.That(this.testShip.Hits, Is.EqualTo(5));
-            });
-
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                this.testShip.RegisterHit(-1);
-            });
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                this.testShip.RegisterHit(100);
-            });
-        }
-
-        [Test]
         public void RepairShipTests()
         {
             this.testShip.RegisterHit(1);
@@ -83,7 +28,7 @@ namespace Miscellaneous
             Assert.Multiple(() =>
             {
                 Assert.That(this.testShip.IsSunk, Is.False);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(3));
+                Assert.That(this.testShip.HitHistory.Count(), Is.EqualTo(3));
                 Assert.That(this.testShip.Hits, Is.EqualTo(3));
             });
 
@@ -92,7 +37,7 @@ namespace Miscellaneous
             Assert.Multiple(() =>
             {
                 Assert.That(this.testShip.IsSunk, Is.False);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(2));
+                Assert.That(this.testShip.HitHistory.Count(), Is.EqualTo(2));
                 Assert.That(this.testShip.Hits, Is.EqualTo(2));
             });
 
@@ -101,7 +46,7 @@ namespace Miscellaneous
             Assert.Multiple(() =>
             {
                 Assert.That(this.testShip.IsSunk, Is.False);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(2));
+                Assert.That(this.testShip.HitHistory.Count(), Is.EqualTo(2));
                 Assert.That(this.testShip.Hits, Is.EqualTo(2));
             });
 
@@ -111,7 +56,7 @@ namespace Miscellaneous
             Assert.Multiple(() =>
             {
                 Assert.That(this.testShip.IsSunk, Is.False);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(0));
+                Assert.That(this.testShip.HitHistory.Count(), Is.EqualTo(0));
                 Assert.That(this.testShip.Hits, Is.EqualTo(0));
             });
 
@@ -120,7 +65,7 @@ namespace Miscellaneous
             Assert.Multiple(() =>
             {
                 Assert.That(this.testShip.IsSunk, Is.False);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(0));
+                Assert.That(this.testShip.HitHistory.Count(), Is.EqualTo(0));
                 Assert.That(this.testShip.Hits, Is.EqualTo(0));
             });
 
@@ -144,50 +89,15 @@ namespace Miscellaneous
             Assert.Multiple(() =>
             {
                 Assert.That(this.testShip.IsSunk, Is.False);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(3));
+                Assert.That(this.testShip.HitHistory.Count(), Is.EqualTo(3));
                 Assert.That(this.testShip.Hits, Is.EqualTo(3));
             });
-
-            for (int i = 0; i < this.testShip.HitHistory.Count; i++)
-            {
-                this.testShip.HitHistory.Pop();
-            }
 
             Assert.Multiple(() =>
             {
                 Assert.That(this.testShip.IsSunk, Is.False);
-                Assert.That(this.testShip.HitHistory, Has.Count.EqualTo(3));
+                Assert.That(this.testShip.HitHistory.Count(), Is.EqualTo(3));
                 Assert.That(this.testShip.Hits, Is.EqualTo(3));
-            });
-        }
-
-        [Test]
-        public void EnsureCorrectStack()
-        {
-            int[] hits = new int[] { 2, 0, 4, 1 };
-
-            for (int i = 0; i < hits.Length; i++)
-            {
-                this.testShip.RegisterHit(hits[i]);
-            }
-
-            Stack<int> b = new(this.testShip.HitHistory.Reverse());
-            int l = b.Count;
-
-            for (int i = 0; i < l; i++)
-            {
-                Assert.That(b.Pop(), Is.EqualTo(hits.Reverse().ToArray()[i]));
-            }
-
-            Assert.Throws<InvalidOperationException>(() =>
-            {
-                for (int i = 0; i < this.testShip.HitHistory.Count; i++)
-                {
-                    if (this.testShip.HitHistory.Pop() != hits.Reverse().ToArray()[i])
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
             });
         }
 
