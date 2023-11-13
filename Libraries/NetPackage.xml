@@ -526,6 +526,21 @@
             Retrieve the number of current connected clients.
             </summary>
         </member>
+        <member name="P:NetPackage.TCP.SimpleTcpServer.IpAddress">
+            <summary>
+            The IP address on which the server is configured to listen.
+            </summary>
+        </member>
+        <member name="P:NetPackage.TCP.SimpleTcpServer.Endpoint">
+            <summary>
+            The IPEndPoint on which the server is configured to listen.
+            </summary>
+        </member>
+        <member name="P:NetPackage.TCP.SimpleTcpServer.Port">
+            <summary>
+            The port on which the server is configured to listen.
+            </summary>
+        </member>
         <member name="F:NetPackage.TCP.SimpleTcpServer.Logger">
             <summary>
             Method to invoke to send a log message.
@@ -697,6 +712,13 @@
         <member name="T:NetPackage.TCP.SimpleTcpServerSettings">
             <summary>
             SimpleTcp server settings.
+            </summary>
+        </member>
+        <member name="P:NetPackage.TCP.SimpleTcpServerSettings.NoDelay">
+            <summary>
+            Nagle's algorithm.
+            Gets or sets a value that disables a delay when send or receive buffers are not full.
+            true if the delay is disabled; otherwise, false. The default value is false.
             </summary>
         </member>
         <member name="P:NetPackage.TCP.SimpleTcpServerSettings.StreamBufferSize">
