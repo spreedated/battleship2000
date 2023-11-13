@@ -5,8 +5,11 @@ using Battleship2000.Logic;
 using Serilog;
 using System;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using static Battleship2000.Logic.RuntimeStorage;
 
 namespace Battleship2000
 {
@@ -23,6 +26,9 @@ namespace Battleship2000
 
             RuntimeStorage.ConfigurationHandler = new(new(Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), "config.json")));
             RuntimeStorage.ConfigurationHandler.Load();
+
+            RuntimeStorage.ProjectName = $"{MyAssembly.GetCustomAttribute<AssemblyTitleAttribute>()?.Title}";
+            RuntimeStorage.ProjectBuildAndVersion = $"Built {HelperFunctions.LoadEmbeddedResource("gitid.txt", true)}/{HelperFunctions.LoadEmbeddedResource("builddate.txt", true).Replace(".", "")}/{MyAssembly.GetName().Version.ToNiceString()}";
         }
 
         private void DebugStartup(object sender, StartupEventArgs e)

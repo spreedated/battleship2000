@@ -35,7 +35,9 @@
   <ItemGroup>
     <None Remove="Resources\battleship1-1280x736.png" />
     <None Remove="Resources\blue.png" />
+    <None Remove="Resources\builddate.txt" />
     <None Remove="Resources\floppy.png" />
+    <None Remove="Resources\gitid.txt" />
     <None Remove="Resources\naudio_logo_white.png" />
     <None Remove="Resources\net8_logo.png" />
     <None Remove="Resources\newtonsoft_json_logo_white.png" />
@@ -44,6 +46,11 @@
 
   <ItemGroup>
     <Page Remove="Icons.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\builddate.txt" />
+    <EmbeddedResource Include="Resources\gitid.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,5 +95,9 @@
     <Resource Include="Resources\newtonsoft_json_logo_white.png" />
     <Resource Include="Resources\serilog_logo.png" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="git rev-parse --short HEAD &gt; &quot;$(ProjectDir)\Resources\gitid.txt&quot;&#xD;&#xA;echo %25date%25%25time:~0,2%25%25time:~3,2%25%25time:~6,2%25 &gt; &quot;$(ProjectDir)\Resources\builddate.txt&quot;" />
+  </Target>
 
 </Project>

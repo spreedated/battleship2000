@@ -8,10 +8,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Resources;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using static Battleship2000.Logic.Constants;
+using static Battleship2000.Logic.RuntimeStorage;
 
 namespace Battleship2000.ViewLogic
 {
@@ -21,7 +23,7 @@ namespace Battleship2000.ViewLogic
         {
             List<string> q = new();
 
-            using (Stream ss = typeof(HelperFunctions).Assembly.GetManifestResourceStream(typeof(HelperFunctions).Assembly.GetName().Name + ".g.resources"))
+            using (Stream ss = MyAssembly.GetManifestResourceStream(MyAssembly.GetName().Name + ".g.resources"))
             {
                 using (ResourceReader r = new(ss))
                 {

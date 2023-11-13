@@ -16,6 +16,7 @@
     </Page.DataContext>
 
     <Grid>
+        <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectBuildAndVersion}" d:Text="Built ffffff/1212121212121212/0.1" Margin="0,8,8,0" VerticalAlignment="Top" TextAlignment="Right" Style="{StaticResource TextStyle}" FontSize="12" Foreground="#AAAAAA" />
         <Grid Margin="20,0,20,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="64"/>
@@ -62,9 +63,6 @@
                 <Image Source="../../resources/floppy.png" Height="32" Visibility="{Binding SaveIconVisibility}" />
             </StackPanel>
         </Grid>
-        <StackPanel VerticalAlignment="Bottom" Margin="0,0,20,10">
-            <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" FontSize="16" Style="{StaticResource TextStyle}" />
-        </StackPanel>
     </Grid>
     
 </Page>

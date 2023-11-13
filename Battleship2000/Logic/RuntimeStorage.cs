@@ -12,8 +12,9 @@ namespace Battleship2000.Logic
 {
     internal static class RuntimeStorage
     {
-        public static string ProjectName { get; } = $"{((AssemblyTitleAttribute)typeof(RuntimeStorage).Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false).First()).Title}";
-        public static string ProjectVersion { get; } = $"v{typeof(RuntimeStorage).Assembly.GetName().Version.ToNiceString()}";
+        public static Assembly MyAssembly { get; } = typeof(RuntimeStorage).Assembly;
+        public static string ProjectName { get; set; }
+        public static string ProjectBuildAndVersion { get; set; }
         internal static ConfigurationHandler<Configuration> ConfigurationHandler { get; set; }
         internal static AudioEngine AudioEngine { get; set; }
         internal static List<Page> Pages { get; } = new();

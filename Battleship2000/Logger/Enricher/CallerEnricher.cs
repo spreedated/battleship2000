@@ -3,6 +3,7 @@ using Serilog.Configuration;
 using Serilog.Core;
 using Serilog.Events;
 using System.Diagnostics;
+using static Battleship2000.Logic.RuntimeStorage;
 
 namespace Battleship2000.Logger.Enricher
 {
@@ -21,7 +22,7 @@ namespace Battleship2000.Logger.Enricher
                     return;
                 }
 
-                if (method.DeclaringType.Assembly != typeof(Log).Assembly && method.DeclaringType.Name != "SerilogLogger")
+                if (method.DeclaringType.Assembly != MyAssembly && method.DeclaringType.Name != "SerilogLogger")
                 {
                     var caller = $"{method.DeclaringType.FullName}.{method.Name}";
                     logEvent.AddPropertyIfAbsent(new LogEventProperty("Caller", new ScalarValue(caller)));

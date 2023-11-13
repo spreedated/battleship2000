@@ -9,10 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B82121FF-9DC4-4715-A213-F6DD96F6F70B}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		.github\workflows\dotnet-desktop.yml = .github\workflows\dotnet-desktop.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkLayer", "NetworkLayer\NetworkLayer.csproj", "{B9609444-B15A-47B8-A5DA-B77D0AE1E53A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkLayer", "NetworkLayer\NetworkLayer.csproj", "{B9609444-B15A-47B8-A5DA-B77D0AE1E53A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AiLayer", "AiLayer\AiLayer.csproj", "{D501592D-7CD5-4B71-AE64-A1F766BDD37E}"
 EndProject

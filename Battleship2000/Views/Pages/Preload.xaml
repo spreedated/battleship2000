@@ -12,15 +12,17 @@
     <Page.DataContext>
         <vm:PreloadViewModel/>
     </Page.DataContext>
-    <StackPanel>
-        <StackPanel Margin="0,50,0,50">
-            <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
-            <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectVersion}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
-        </StackPanel>
-        <TextBlock Text="{Binding LoadingText}" d:Text="Loading ..." VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" Margin="0,0,0,20" />
+    <Grid>
         <StackPanel>
-            <ProgressBar x:Name="pbStatus" Minimum="0" Maximum="100" Value="{Binding ProgressbarValue}" Width="400" Height="16" d:Value="22.78" Margin="0,0,0,10" Foreground="#999" BorderThickness="1" BorderBrush="#444"/>
-            <TextBlock d:Text="64 %" Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0} %}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextStyle}" FontSize="16" />
+            <StackPanel Margin="0,50,0,80">
+                <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            </StackPanel>
+            <TextBlock Text="{Binding LoadingText}" d:Text="Loading ..." VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" Margin="0,0,0,20" />
+            <StackPanel>
+                <ProgressBar x:Name="pbStatus" Minimum="0" Maximum="100" Value="{Binding ProgressbarValue}" Width="400" Height="16" d:Value="22.78" Margin="0,0,0,10" Foreground="#999" BorderThickness="1" BorderBrush="#444"/>
+                <TextBlock d:Text="64 %" Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0} %}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextStyle}" FontSize="16" />
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+        <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectBuildAndVersion}" d:Text="Built ffffff/1212121212121212/0.1" Margin="8,0,0,8" VerticalAlignment="Bottom" TextAlignment="Center" Style="{StaticResource TextStyle}" FontSize="12" Foreground="#AAAAAA" />
+    </Grid>
 </Page>

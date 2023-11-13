@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static Battleship2000.Logic.Constants;
+using static Battleship2000.Logic.RuntimeStorage;
 
 namespace Battleship2000.ViewModels
 {
@@ -49,7 +50,7 @@ namespace Battleship2000.ViewModels
             set => base.SetProperty<Page>(ref this._CurrentFramePage, value);
         }
 
-        public string WindowTitle { get; } = $"{typeof(MainWindowViewModel).Assembly.GetCustomAttribute<AssemblyTitleAttribute>().Title} v{typeof(MainWindowViewModel).Assembly.GetName().Version}";
+        public string WindowTitle { get; } = $"{MyAssembly.GetCustomAttribute<AssemblyTitleAttribute>().Title} v{MyAssembly.GetName().Version}";
 
         public static void Navigate(string pagename)
         {
