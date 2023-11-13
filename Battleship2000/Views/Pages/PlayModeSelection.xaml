@@ -1,0 +1,31 @@
+﻿<Page x:Class="Battleship2000.Views.Pages.PlayModeSelection"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Battleship2000.Views.Pages"
+      xmlns:logic="clr-namespace:Battleship2000.Logic"
+      xmlns:vm="clr-namespace:Battleship2000.ViewModels"
+      xmlns:elem="clr-namespace:Battleship2000.ViewElements"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PlayModeSelection">
+
+    <Page.DataContext>
+        <vm:PlayModeSelectionViewModel />
+    </Page.DataContext>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Margin="0,50,0,80">
+                <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectName}" d:Text="Battleship 2000" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <Button Content="Singleplayer" Style="{StaticResource ButtonMenu}" Width="180" Margin="0,0,0,8" Command="{Binding SingleplayerCommand}" IsEnabled="False"/>
+                <Button Content="Network Multiplayer" Style="{StaticResource ButtonMenu}" Width="240" Margin="0,0,0,0" Command="{Binding MultiplayerCommand}"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <elem:ButtonIconText Width="100" Text="Back" Command="{Binding BackCommand}" VaadinIcon="ArrowBackward" Margin="0,0,0,24" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+    </Grid>
+</Page>

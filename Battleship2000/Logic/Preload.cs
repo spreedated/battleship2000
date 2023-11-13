@@ -57,6 +57,7 @@ namespace Battleship2000.Logic
             RuntimeStorage.Pages.Add(new Settings_Audio());
             RuntimeStorage.Pages.Add(new Settings_Credits());
             RuntimeStorage.Pages.Add(new ShipPlacement());
+            RuntimeStorage.Pages.Add(new PlayModeSelection());
             Log.Information("Loading pages finished");
         }
 

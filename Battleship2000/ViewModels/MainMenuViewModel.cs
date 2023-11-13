@@ -12,7 +12,7 @@ namespace Battleship2000.ViewModels
     {
         public ICommand PlayCommand { get; } = new RelayCommand(() =>
         {
-            MainWindowViewModel.Navigate("connecttoserver");
+            MainWindowViewModel.Navigate("playmodeselection");
         });
 
         public ICommand HostServerCommand { get; } = new RelayCommand(() =>

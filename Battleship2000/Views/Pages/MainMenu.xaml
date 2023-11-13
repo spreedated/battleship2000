@@ -16,7 +16,7 @@
     <Grid>
         <StackPanel>
             <StackPanel Margin="0,50,0,50">
-                <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectName}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+                <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectName}" d:Text="Battleship 2000" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Button Style="{StaticResource ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" CommandParameter="{Binding ParentWindow}" />

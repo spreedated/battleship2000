@@ -11,7 +11,7 @@ namespace Battleship2000.ViewModels
 {
     public class ConnectToServerViewModel : ObservableObject
     {
-        public ICommand BackCommand { get; } = new RelayCommand(() => { MainWindowViewModel.Navigate("mainmenu"); });
+        public ICommand BackCommand { get; } = new RelayCommand(() => { MainWindowViewModel.Navigate("playmodeselection"); });
         public ICommand ConnectCommand { get; } = new RelayCommand(async () =>
         {
             ConnectToServer.Vm.ButtonEnabled = false;

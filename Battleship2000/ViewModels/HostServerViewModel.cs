@@ -197,7 +197,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _BackButtonEnabled = value;
-                this.OnPropertyChanged(nameof(BackButtonEnabled));
+                this.OnPropertyChanged(nameof(this.BackButtonEnabled));
             }
         }
         private Visibility _StartButtonVisibility = Visibility.Visible;
@@ -210,7 +210,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _StartButtonVisibility = value;
-                this.OnPropertyChanged(nameof(StartButtonVisibility));
+                this.OnPropertyChanged(nameof(this.StartButtonVisibility));
             }
         }
         private Visibility _StopButtonVisibility = Visibility.Collapsed;
@@ -223,7 +223,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _StopButtonVisibility = value;
-                this.OnPropertyChanged(nameof(StopButtonVisibility));
+                this.OnPropertyChanged(nameof(this.StopButtonVisibility));
             }
         }
         private Visibility _StatusTextVisibility = Visibility.Hidden;
@@ -236,7 +236,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _StatusTextVisibility = value;
-                this.OnPropertyChanged(nameof(StatusTextVisibility));
+                this.OnPropertyChanged(nameof(this.StatusTextVisibility));
             }
         }
         private Brush _StatusColor = Brushes.Green;
@@ -249,7 +249,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _StatusColor = value;
-                this.OnPropertyChanged(nameof(StatusColor));
+                this.OnPropertyChanged(nameof(this.StatusColor));
             }
         }
     }
