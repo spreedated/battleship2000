@@ -23,18 +23,18 @@ namespace EngineLayer.Models.Ships
             }
         }
         private Stack<int> securedHitHistory;
-        public Stack<int> HitHistory
+        public IEnumerable<int> HitHistory
         {
             get
             {
-                return new(this.securedHitHistory.Reverse());
+                return this.securedHitHistory.Reverse();
             }
         }
         public bool IsSunk
         {
             get
             {
-                return Hits >= Width;
+                return this.Hits >= this.Width;
             }
         }
         public Point Coordinate { get; set; }

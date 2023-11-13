@@ -1,8 +1,8 @@
 ﻿using AudioLayer;
 using Battleship2000.Logic;
-using MahApps.Metro.IconPacks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MahApps.Metro.IconPacks;
 using System.Windows;
 using System.Windows.Input;
 

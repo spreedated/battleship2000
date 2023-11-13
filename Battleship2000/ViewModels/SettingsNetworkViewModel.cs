@@ -1,6 +1,5 @@
 ﻿using Battleship2000.Logic;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
 namespace Battleship2000.ViewModels

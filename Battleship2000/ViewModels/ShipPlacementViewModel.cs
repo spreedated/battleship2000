@@ -1,8 +1,8 @@
 ﻿using Battleship2000.ViewElements;
 using Battleship2000.Views.Pages;
-using EngineLayer.Models.Ships;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EngineLayer.Models.Ships;
 using System;
 using System.Collections.Generic;
 using System.Linq;

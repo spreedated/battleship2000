@@ -1,15 +1,15 @@
 ﻿using Battleship2000.Logic;
 using Battleship2000.Views;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Serilog;
 using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using CommunityToolkit.Mvvm.ComponentModel;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
 using static Battleship2000.Logic.Constants;
 
 namespace Battleship2000.ViewModels

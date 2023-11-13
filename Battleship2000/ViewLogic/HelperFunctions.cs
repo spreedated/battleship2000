@@ -2,15 +2,15 @@
 #pragma warning disable IDE0057
 
 using Battleship2000.Logic;
+using Battleship2000.Views;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Resources;
-using System.Windows.Media.Imaging;
 using System.Windows;
-using Battleship2000.Views;
+using System.Windows.Media.Imaging;
 using static Battleship2000.Logic.Constants;
 
 namespace Battleship2000.ViewLogic

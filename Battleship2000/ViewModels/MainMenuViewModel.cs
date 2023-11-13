@@ -1,10 +1,10 @@
 ﻿using Battleship2000.Views;
 using Battleship2000.Views.Pages;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace Battleship2000.ViewModels
 {
