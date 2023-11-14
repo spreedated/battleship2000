@@ -1,4 +1,5 @@
-﻿using Battleship2000.Views;
+﻿using Battleship2000.ViewLogic;
+using Battleship2000.Views;
 using Battleship2000.Views.Pages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,12 +13,7 @@ namespace Battleship2000.ViewModels
     {
         public ICommand PlayCommand { get; } = new RelayCommand(() =>
         {
-            MainWindowViewModel.Navigate("playmodeselection");
-        });
-
-        public ICommand HostServerCommand { get; } = new RelayCommand(() =>
-        {
-            MainWindowViewModel.Navigate("hostserver");
+            HelperFunctions.Navigate("playmodeselection");
         });
 
         public ICommand ExitCommand { get; } = new RelayCommand<Window>((w) =>
@@ -36,13 +32,13 @@ namespace Battleship2000.ViewModels
 
         public ICommand SettingsCommand { get; } = new RelayCommand(() =>
         {
-            MainWindowViewModel.Navigate("settings");
+            HelperFunctions.Navigate("settings");
         });
 
 #if DEBUG
         public ICommand DebugCommand { get; } = new RelayCommand(() =>
         {
-            MainWindowViewModel.Navigate("shipplacement");
+            HelperFunctions.Navigate("shipplacement");
         });
 #endif
 

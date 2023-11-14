@@ -145,7 +145,7 @@ namespace Battleship2000.ViewModels
         });
         public ICommand BackCommand { get; } = new RelayCommand(() =>
         {
-            MainWindowViewModel.Navigate("mainmenu");
+            ViewLogic.HelperFunctions.Navigate("mainmenu");
         });
         public ICommand SaveToDiskCommand { get; } = new RelayCommand(() =>
         {

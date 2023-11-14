@@ -15,15 +15,15 @@ namespace Battleship2000.Views.Pages
         internal static PreloadViewModel Vm { get; private set; }
         public Preload()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             Vm = (PreloadViewModel)this.DataContext;
             Log.Verbose("Page loaded");
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Logic.Preload.PreloadStep += PreloadStepped;
-            Logic.Preload.PreloadComplete += PreloadComplete;
+            Logic.Preload.PreloadStep += this.PreloadStepped;
+            Logic.Preload.PreloadComplete += this.PreloadComplete;
 
             Logic.Preload.Run();
         }
@@ -47,7 +47,7 @@ namespace Battleship2000.Views.Pages
 
             this.Dispatcher.Invoke(() =>
             {
-                MainWindowViewModel.Navigate("mainmenu");
+                ViewLogic.HelperFunctions.Navigate("mainmenu");
                 Log.Verbose("Navigating to main menu");
             });
         }

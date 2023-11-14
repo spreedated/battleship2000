@@ -1,4 +1,4 @@
-﻿<Page x:Class="Battleship2000.Views.Pages.ConnectToServer"
+﻿<Page x:Class="Battleship2000.Views.Pages.Multiplayer"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,9 +9,9 @@
       xmlns:elem="clr-namespace:Battleship2000.ViewElements"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ConnectToServer">
+      Title="Multiplayer">
     <Page.DataContext>
-        <vm:ConnectToServerViewModel />
+        <vm:MultiplayerViewModel />
     </Page.DataContext>
     <Grid>
         <StackPanel Orientation="Vertical">
@@ -24,7 +24,12 @@
                 <Button Style="{StaticResource ButtonMenu}" Content="Connect" Width="160" Margin="0,0,0,0" Command="{Binding ConnectCommand}" IsEnabled="{Binding ButtonEnabled}" />
             </StackPanel>
             <TextBlock Text="{Binding StatusText}" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextStyle}" d:Visibility="Visible" Visibility="{Binding StatusTextVisibility}" />
-            <elem:ButtonIconText Width="100" Text="Back" Command="{Binding BackCommand}" VaadinIcon="ArrowBackward" Margin="0,50,0,0" HorizontalAlignment="Center" IsEnabled="{Binding ButtonEnabled}" />
+
+            <StackPanel Orientation="Vertical">
+                <Button Style="{StaticResource ButtonMenu}" Content="Host Server" Command="{Binding HostServerCommand}" Width="160" IsEnabled="{Binding ButtonHostEnabled}" />
+            </StackPanel>
         </StackPanel>
+
+        <elem:ButtonIconText Width="100" Text="Back" Command="{Binding BackCommand}" VaadinIcon="ArrowBackward" Margin="0,0,0,24" HorizontalAlignment="Center" VerticalAlignment="Bottom" IsEnabled="{Binding ButtonEnabled}" />
     </Grid>
 </Page>

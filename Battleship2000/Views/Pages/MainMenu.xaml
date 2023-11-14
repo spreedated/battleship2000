@@ -20,7 +20,6 @@
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Button Style="{StaticResource ButtonMenu}" Content="Play" Command="{Binding PlayCommand}" CommandParameter="{Binding ParentWindow}" />
-                <Button Style="{StaticResource ButtonMenu}" Content="Host Server" Command="{Binding HostServerCommand}" CommandParameter="{Binding ParentWindow}" />
             </StackPanel>
         </StackPanel>
         

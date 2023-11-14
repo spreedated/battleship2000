@@ -2,7 +2,9 @@
 #pragma warning disable IDE0057
 
 using Battleship2000.Logic;
+using Battleship2000.ViewModels;
 using Battleship2000.Views;
+using Serilog;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Resources;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using static Battleship2000.Logic.Constants;
 using static Battleship2000.Logic.RuntimeStorage;
@@ -66,6 +69,21 @@ namespace Battleship2000.ViewLogic
                     RuntimeStorage.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
                     break;
             }
+        }
+
+        public static void Navigate(string pagename)
+        {
+            Page p = RuntimeStorage.Pages.Find(x => x.GetType().Name.ToLower().Contains(pagename.ToLower(), StringComparison.InvariantCulture));
+
+            if (p == null)
+            {
+                Log.Warning($"Cannot find page \"{pagename}\"");
+                return;
+            }
+
+            ((MainWindowViewModel)Application.Current.MainWindow.DataContext).CurrentFramePage = p;
+
+            Log.Information($"Navigated to \"{pagename}\" page");
         }
     }
 }

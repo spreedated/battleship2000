@@ -18,7 +18,7 @@ namespace Battleship2000.ViewModels
         {
             HostServer.Vm.ResetButtonStates();
             await HostServer.Vm.NetworkServerStop();
-            MainWindowViewModel.Navigate("mainmenu");
+            ViewLogic.HelperFunctions.Navigate("mainmenu");
         });
 
         public string Playername

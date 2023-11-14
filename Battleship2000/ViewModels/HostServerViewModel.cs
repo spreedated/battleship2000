@@ -132,7 +132,7 @@ namespace Battleship2000.ViewModels
 
             MainWindow.Instance.Dispatcher.Invoke(() =>
             {
-                MainWindowViewModel.Navigate("shipplacement");
+                ViewLogic.HelperFunctions.Navigate("shipplacement");
             });
         }
 
@@ -171,7 +171,7 @@ namespace Battleship2000.ViewModels
                 });
             });
         });
-        public ICommand BackCommand { get; } = new RelayCommand(() => { MainWindowViewModel.Navigate("mainmenu"); });
+        public ICommand BackCommand { get; } = new RelayCommand(() => { ViewLogic.HelperFunctions.Navigate("multiplayer"); });
 
         private string _StatusText = "Starting ...";
         public string StatusText

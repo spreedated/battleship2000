@@ -51,20 +51,5 @@ namespace Battleship2000.ViewModels
         }
 
         public string WindowTitle { get; } = $"{MyAssembly.GetCustomAttribute<AssemblyTitleAttribute>().Title} v{MyAssembly.GetName().Version}";
-
-        public static void Navigate(string pagename)
-        {
-            Page p = RuntimeStorage.Pages.Find(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
-
-            if (p == null)
-            {
-                Log.Warning($"Cannot find page \"{pagename}\"");
-                return;
-            }
-
-            ((MainWindowViewModel)Application.Current.MainWindow.DataContext).CurrentFramePage = p;
-
-            Log.Information($"Navigated to \"{pagename}\" page");
-        }
     }
 }
