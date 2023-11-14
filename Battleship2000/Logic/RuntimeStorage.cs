@@ -2,7 +2,6 @@
 using Battleship2000.Models;
 using neXn.Lib.ConfigurationHandler;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;

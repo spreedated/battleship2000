@@ -2,7 +2,6 @@
 using Battleship2000.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Serilog;
 using System;
 using System.Reflection;
 using System.Windows;

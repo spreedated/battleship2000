@@ -53,7 +53,7 @@ namespace Battleship2000.Logic
             foreach (Type typePage in MyAssembly.GetTypes().Where(x => x.Namespace.Contains("Pages") && x.IsSubclassOf(typeof(Page))).Where(x => x.Name != "Preload"))
             {
                 RuntimeStorage.Pages.Add((Page)Activator.CreateInstance(typePage));
-                Log.Information($"Loaded page \"{RuntimeStorage.Pages[RuntimeStorage.Pages.Count-1].Name}\"");
+                Log.Information($"Loaded page \"{RuntimeStorage.Pages[RuntimeStorage.Pages.Count - 1].Name}\"");
             }
 
             Log.Information("Loading pages finished");
