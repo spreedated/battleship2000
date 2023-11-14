@@ -1,11 +1,11 @@
 ﻿using System.IO;
-using static Battleship2000.Logic.RuntimeStorage;
+using System.Reflection;
 
-namespace Battleship2000.Logic
+namespace EngineLayer
 {
-    internal static class HelperFunctions
+    public static class HelperFunctions
     {
-        public static string LoadEmbeddedResource(string resourceName, bool singleLine = false)
+        public static string LoadEmbeddedResourceString(Assembly assembly,string resourceName, bool singleLine = false)
         {
             if (string.IsNullOrEmpty(resourceName))
             {
@@ -14,7 +14,7 @@ namespace Battleship2000.Logic
 
             string content = null;
 
-            using (Stream stream = MyAssembly.GetManifestResourceStream($"{MyAssembly.GetName().Name}.Resources.{resourceName}"))
+            using (Stream stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Resources.{resourceName}"))
             {
                 using (StreamReader reader = new(stream))
                 {

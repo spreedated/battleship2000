@@ -2,6 +2,7 @@
 #pragma warning disable IDE0079
 
 using Battleship2000.Logic;
+using EngineLayer;
 using Serilog;
 using System;
 using System.IO;
@@ -27,7 +28,7 @@ namespace Battleship2000
             RuntimeStorage.ConfigurationHandler.Load();
 
             RuntimeStorage.ProjectName = $"{MyAssembly.GetCustomAttribute<AssemblyTitleAttribute>()?.Title}";
-            RuntimeStorage.ProjectBuildAndVersion = $"Built {HelperFunctions.LoadEmbeddedResource("gitid.txt", true)}/{HelperFunctions.LoadEmbeddedResource("builddate.txt", true).Replace(".", "")}/{MyAssembly.GetName().Version.ToNiceString()}";
+            RuntimeStorage.ProjectBuildAndVersion = $"Built {HelperFunctions.LoadEmbeddedResourceString(MyAssembly, "gitid.txt", true)}/{HelperFunctions.LoadEmbeddedResourceString(MyAssembly, "builddate.txt", true).Replace(".", "")}/{MyAssembly.GetName().Version.ToNiceString()}";
         }
 
         private void DebugStartup(object sender, StartupEventArgs e)
