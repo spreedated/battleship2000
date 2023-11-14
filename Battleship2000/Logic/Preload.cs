@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using static Battleship2000.Logic.RuntimeStorage;
 
 namespace Battleship2000.Logic
 {
@@ -47,17 +49,13 @@ namespace Battleship2000.Logic
         private static void LoadPages()
         {
             Log.Information("Loading pages...");
-            RuntimeStorage.Pages.Add(new ConnectToServer());
-            RuntimeStorage.Pages.Add(new MainMenu());
-            RuntimeStorage.Pages.Add(new HostServer());
-            RuntimeStorage.Pages.Add(new Settings());
-            RuntimeStorage.Pages.Add(new Settings_Player());
-            RuntimeStorage.Pages.Add(new Settings_Network());
-            RuntimeStorage.Pages.Add(new Settings_Visual());
-            RuntimeStorage.Pages.Add(new Settings_Audio());
-            RuntimeStorage.Pages.Add(new Settings_Credits());
-            RuntimeStorage.Pages.Add(new ShipPlacement());
-            RuntimeStorage.Pages.Add(new PlayModeSelection());
+
+            foreach (Type typePage in MyAssembly.GetTypes().Where(x => x.Namespace.Contains("Pages") && x.IsSubclassOf(typeof(Page))).Where(x => x.Name != "Preload"))
+            {
+                RuntimeStorage.Pages.Add((Page)Activator.CreateInstance(typePage));
+                Log.Information($"Loaded page \"{RuntimeStorage.Pages[RuntimeStorage.Pages.Count-1].Name}\"");
+            }
+
             Log.Information("Loading pages finished");
         }
 
