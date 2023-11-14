@@ -3,6 +3,7 @@ using Battleship2000.Views.Pages;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Serilog;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
@@ -105,7 +106,7 @@ namespace Battleship2000.ViewModels
 
         public static void Navigate(Settings settingsInstance, string pagename)
         {
-            Page p = RuntimeStorage.Pages.FirstOrDefault(x => x.GetType().Name.ToLower().Contains(pagename.ToLower()));
+            Page p = RuntimeStorage.Pages.Find(x => x.GetType().Name.ToLower().Contains(pagename.ToLower(), StringComparison.InvariantCulture));
 
             if (p == null)
             {
@@ -179,7 +180,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _PlayerArrowVisibility = value;
-                base.OnPropertyChanged(nameof(PlayerArrowVisibility));
+                base.OnPropertyChanged(nameof(this.PlayerArrowVisibility));
             }
         }
 
@@ -193,7 +194,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _NetworkArrowVisibility = value;
-                base.OnPropertyChanged(nameof(NetworkArrowVisibility));
+                base.OnPropertyChanged(nameof(this.NetworkArrowVisibility));
             }
         }
 
@@ -207,7 +208,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _VisualArrowVisibility = value;
-                base.OnPropertyChanged(nameof(VisualArrowVisibility));
+                base.OnPropertyChanged(nameof(this.VisualArrowVisibility));
             }
         }
 
@@ -221,7 +222,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _AudioArrowVisibility = value;
-                base.OnPropertyChanged(nameof(AudioArrowVisibility));
+                base.OnPropertyChanged(nameof(this.AudioArrowVisibility));
             }
         }
 
@@ -235,7 +236,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _CreditsArrowVisibility = value;
-                base.OnPropertyChanged(nameof(CreditsArrowVisibility));
+                base.OnPropertyChanged(nameof(this.CreditsArrowVisibility));
             }
         }
 
@@ -249,7 +250,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _SaveIconVisibility = value;
-                base.OnPropertyChanged(nameof(SaveIconVisibility));
+                base.OnPropertyChanged(nameof(this.SaveIconVisibility));
             }
         }
 
@@ -263,7 +264,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 _ButtonSaveToDiskEnabled = value;
-                base.OnPropertyChanged(nameof(ButtonSaveToDiskEnabled));
+                base.OnPropertyChanged(nameof(this.ButtonSaveToDiskEnabled));
             }
         }
 

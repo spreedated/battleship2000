@@ -54,7 +54,7 @@
         set
         {
             ObjectStorage.Config.Something.MyOption = value;
-            base.OnPropertyChanged(nameof(MyOption));
+            base.OnPropertyChanged(nameof(this.MyOption));
         }
     }
     ```
@@ -102,7 +102,7 @@
         set
         {
             _SomethingArrowVisibility = value;
-            base.OnPropertyChanged(nameof(SomethingArrowVisibility));
+            base.OnPropertyChanged(nameof(this.SomethingArrowVisibility));
         }
     }
     ```

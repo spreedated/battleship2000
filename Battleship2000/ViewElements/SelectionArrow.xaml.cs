@@ -4,9 +4,6 @@ using System.Windows.Media;
 
 namespace Battleship2000.ViewElements
 {
-    /// <summary>
-    /// Interaction logic for SelectionArrow.xaml
-    /// </summary>
     public partial class SelectionArrow : UserControl
     {
         public enum Rotations
@@ -22,12 +19,12 @@ namespace Battleship2000.ViewElements
         {
             get
             {
-                return (Rotations)GetValue(RotationProperty);
+                return (Rotations)this.GetValue(RotationProperty);
             }
 
             set
             {
-                SetValue(RotationProperty, value);
+                this.SetValue(RotationProperty, value);
             }
         }
 
@@ -54,8 +51,7 @@ namespace Battleship2000.ViewElements
 
         public SelectionArrow()
         {
-            InitializeComponent();
-
+            this.InitializeComponent();
         }
     }
 }

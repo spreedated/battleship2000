@@ -18,15 +18,7 @@ namespace Battleship2000.Logic
 
         internal static void ConfigureLogger()
         {
-#pragma warning disable IL3000
-            string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-#pragma warning restore IL3000
-
-            if (assemblyLocation == null)
-            {
-                assemblyLocation = Environment.ProcessPath;
-            }
-
+            string assemblyLocation = Assembly.GetExecutingAssembly().Location ?? Environment.ProcessPath;
             string logfilepath = Path.Combine(Path.GetDirectoryName(assemblyLocation), "logs", "logfile.log");
 
             Log.Logger = new LoggerConfiguration()

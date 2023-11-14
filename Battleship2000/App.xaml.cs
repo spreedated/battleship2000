@@ -47,7 +47,9 @@ namespace Battleship2000
             base.OnExit(e);
 
             Log.Information($"Shuttung down application ... good bye!");
+#pragma warning disable S6561
             Log.Information($"You've wasted {DateTime.Now - ApplicationStartupDate}");
+#pragma warning restore S6561
             Log.CloseAndFlush();
         }
 

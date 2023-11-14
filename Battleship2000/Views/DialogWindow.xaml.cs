@@ -6,9 +6,6 @@ using System.Windows.Input;
 
 namespace Battleship2000.Views
 {
-    /// <summary>
-    /// Interaction logic for DialogWindow.xaml
-    /// </summary>
     public partial class DialogWindow : Window
     {
         [Flags]
@@ -37,7 +34,7 @@ namespace Battleship2000.Views
 
         public DialogWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public DialogWindow(string headlinetext, string contenttext, DialogButtons dialogstyle = DialogButtons.Cancel) : this()

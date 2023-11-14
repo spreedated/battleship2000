@@ -10,8 +10,8 @@ namespace Battleship2000.ViewElements
 
         public Brush BackgroundCell
         {
-            get => (Brush)GetValue(BackgroundCellProperty);
-            set => SetValue(BackgroundCellProperty, value);
+            get => (Brush)this.GetValue(BackgroundCellProperty);
+            set => this.SetValue(BackgroundCellProperty, value);
         }
     }
 }

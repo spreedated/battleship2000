@@ -1,7 +1,4 @@
-﻿#pragma warning disable CA1845
-#pragma warning disable IDE0057
-
-using Battleship2000.Logic;
+﻿using Battleship2000.Logic;
 using Battleship2000.ViewModels;
 using Battleship2000.Views;
 using Serilog;
@@ -32,16 +29,16 @@ namespace Battleship2000.ViewLogic
                     foreach (DictionaryEntry d in r.OfType<DictionaryEntry>().Where(x => x.Key.ToString().ToLower().EndsWith("baml")))
                     {
                         string xx = (string)d.Key;
-                        xx = xx.Substring(0, xx.LastIndexOf('.')) + ".xaml";
+                        xx = string.Concat(xx.AsSpan(0, xx.LastIndexOf('.')), ".xaml");
 
                         q.Add(xx.ToLower());
                     }
                 }
             }
 
-            if (q.Any(x => x.Contains(xaml.ToLower())))
+            if (q.Exists(x => x.Contains(xaml.ToLower(), StringComparison.InvariantCulture)))
             {
-                return "pack://application:,,,/" + q.First(x => x.Contains(xaml.ToLower()));
+                return "pack://application:,,,/" + q.First(x => x.Contains(xaml.ToLower(), StringComparison.InvariantCulture));
             }
 
             return null;

@@ -1,4 +1,6 @@
-﻿using Battleship2000.Logic;
+﻿#pragma warning disable CA1822
+
+using Battleship2000.Logic;
 using Battleship2000.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

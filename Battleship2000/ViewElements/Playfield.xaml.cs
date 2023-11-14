@@ -14,9 +14,6 @@ using System.Windows.Media;
 
 namespace Battleship2000.ViewElements
 {
-    /// <summary>
-    /// Interaction logic for Playfield.xaml
-    /// </summary>
     public partial class Playfield : UserControl
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -28,8 +25,8 @@ namespace Battleship2000.ViewElements
         public static readonly DependencyProperty ParentPageProperty = DependencyProperty.Register("ParentPage", typeof(Page), typeof(Playfield), new PropertyMetadata(null));
         public Page ParentPage
         {
-            get => (Page)GetValue(ParentPageProperty);
-            set => SetValue(ParentPageProperty, value);
+            get => (Page)this.GetValue(ParentPageProperty);
+            set => this.SetValue(ParentPageProperty, value);
         }
 
         private ICommand _FieldLeftClickOverride;
@@ -52,11 +49,7 @@ namespace Battleship2000.ViewElements
 
             args.Coords = CellnameToCoordinates(args.ButtonCell.Name);
 
-            if (args.PlayfieldInstance.FieldLeftClickOverride != null)
-            {
-                args.PlayfieldInstance.FieldLeftClickOverride.Execute(args);
-            }
-
+            args.PlayfieldInstance.FieldLeftClickOverride?.Execute(args);
             args.PlayfieldInstance.RefreshPlayfieldGui();
         });
 
@@ -95,7 +88,7 @@ namespace Battleship2000.ViewElements
 
         public Playfield()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.DataContext = this;
 
             this.PlayfieldLogic = new();
@@ -137,7 +130,7 @@ namespace Battleship2000.ViewElements
         {
             string alpha = "ABCDEFGHIJ";
             int xCoord = Array.IndexOf<char>(alpha.ToCharArray(), cellname.Substring(cellname.IndexOf('_') + 1, 1)[0]);
-            int yCoord = Convert.ToInt32(cellname.Substring(cellname.LastIndexOf('_') + 1)) - 1;
+            int yCoord = Convert.ToInt32(cellname[(cellname.LastIndexOf('_') + 1)..]) - 1;
 
             return new Point(xCoord, yCoord);
         }
