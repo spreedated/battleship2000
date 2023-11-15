@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "NetPackage/3.0.1": {
+      "NetPackage/8.0.0": {
         "runtime": {
           "NetPackage.dll": {}
         }
@@ -14,7 +14,7 @@
     }
   },
   "libraries": {
-    "NetPackage/3.0.1": {
+    "NetPackage/8.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
