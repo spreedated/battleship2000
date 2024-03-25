@@ -5,7 +5,7 @@ namespace EngineLayer
 {
     public static class HelperFunctions
     {
-        public static string LoadEmbeddedResourceString(Assembly assembly,string resourceName, bool singleLine = false)
+        public static string LoadEmbeddedResourceString(Assembly assembly, string resourceName, bool singleLine = false)
         {
             if (string.IsNullOrEmpty(resourceName))
             {

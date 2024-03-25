@@ -1,5 +1,4 @@
-﻿using Battleship2000.Logger.Enricher;
-using Serilog;
+﻿using Serilog;
 using Serilog.Events;
 using System;
 using System.IO;
@@ -14,8 +13,6 @@ namespace Battleship2000.Logic
 #else
         private static readonly LogEventLevel level = LogEventLevel.Information;
 #endif
-        private const string logOutputTemplate = "[{Timestamp:HH:mm:ss} {Level:u3}][{Caller}] {Message}{NewLine}{Exception}";
-
         internal static void ConfigureLogger()
         {
             string assemblyLocation = Assembly.GetExecutingAssembly().Location ?? Environment.ProcessPath;
@@ -24,12 +21,11 @@ namespace Battleship2000.Logic
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .Enrich.FromLogContext()
-                .Enrich.WithCaller()
                 .WriteTo.SQLite(Path.Combine(Path.GetDirectoryName(logfilepath), "log.db"), tableName: "logs", restrictedToMinimumLevel: level)
 #if DEBUG
-                .WriteTo.Debug(restrictedToMinimumLevel: level, outputTemplate: logOutputTemplate)
+                .WriteTo.Debug(restrictedToMinimumLevel: level)
 #endif
-                .WriteTo.File(logfilepath, restrictedToMinimumLevel: level, rollOnFileSizeLimit: true, fileSizeLimitBytes: 1048576, outputTemplate: logOutputTemplate)
+                .WriteTo.File(logfilepath, restrictedToMinimumLevel: level, rollOnFileSizeLimit: true, fileSizeLimitBytes: 1048576)
                 .CreateLogger();
 
             Log.Debug("Logger initialize");
