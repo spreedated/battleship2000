@@ -74,7 +74,7 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return RuntimeStorage.BackgroundVis;
+                return Globals.BackgroundVis;
             }
         }
 
@@ -96,7 +96,7 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return RuntimeStorage.BackgroundImage;
+                return Globals.BackgroundImage;
             }
         }
 

@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using static Battleship2000.Logic.Constants;
-using static Battleship2000.Logic.RuntimeStorage;
+using static Battleship2000.Logic.Globals;
 
 namespace Battleship2000.ViewLogic
 {
@@ -46,30 +46,30 @@ namespace Battleship2000.ViewLogic
 
         public static void RefreshBackground()
         {
-            if (RuntimeStorage.BackgroundImage == null)
+            if (Globals.BackgroundImage == null)
             {
-                RuntimeStorage.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
-                RuntimeStorage.BackgroundVis = Visibility.Collapsed;
+                Globals.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
+                Globals.BackgroundVis = Visibility.Collapsed;
             }
 
-            switch (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background.ToLower())
+            switch (Globals.ConfigurationHandler.RuntimeConfiguration.Visual.Background.ToLower())
             {
                 case "oldschool":
                     MainWindow.InstanceVM.BackgroundVis = Visibility.Hidden;
-                    RuntimeStorage.BackgroundVis = Visibility.Hidden;
+                    Globals.BackgroundVis = Visibility.Hidden;
                     break;
                 case "blue":
                     MainWindow.InstanceVM.BackgroundVis = Visibility.Visible;
                     MainWindow.InstanceVM.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
-                    RuntimeStorage.BackgroundVis = Visibility.Visible;
-                    RuntimeStorage.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
+                    Globals.BackgroundVis = Visibility.Visible;
+                    Globals.BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));
                     break;
             }
         }
 
         public static void Navigate(string pagename)
         {
-            Page p = RuntimeStorage.Pages.Find(x => x.GetType().Name.ToLower().Contains(pagename.ToLower(), StringComparison.InvariantCulture));
+            Page p = Globals.Pages.Find(x => x.GetType().Name.ToLower().Contains(pagename.ToLower(), StringComparison.InvariantCulture));
 
             if (p == null)
             {

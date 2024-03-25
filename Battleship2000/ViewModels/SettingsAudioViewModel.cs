@@ -12,12 +12,12 @@ namespace Battleship2000.ViewModels
     {
         public ICommand TestSoundCommand { get; } = new RelayCommand(() =>
         {
-            RuntimeStorage.AudioEngine.PlaySoundEffect(AudioBanks.GetEffectNames().GetRandomElement());
+            Globals.AudioEngine.PlaySoundEffect(AudioBanks.GetEffectNames().GetRandomElement());
         });
 
         public ICommand PlayNextCommand { get; } = new RelayCommand(() =>
         {
-            RuntimeStorage.AudioEngine.NextTrack();
+            Globals.AudioEngine.NextTrack();
         });
 
         private float musicVolumeOldValue;
@@ -26,21 +26,21 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return RuntimeStorage.AudioEngine.MusicVolume;
+                return Globals.AudioEngine.MusicVolume;
             }
             set
             {
-                if (!RuntimeStorage.AudioEngine.IsMusicPlaying && this.MusicVolume <= 0.0d && value != this.musicVolumeOldValue)
+                if (!Globals.AudioEngine.IsMusicPlaying && this.MusicVolume <= 0.0d && value != this.musicVolumeOldValue)
                 {
-                    RuntimeStorage.AudioEngine.NextTrack();
+                    Globals.AudioEngine.NextTrack();
                 }
-                RuntimeStorage.AudioEngine.MusicVolume = value;
-                RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Music = value;
+                Globals.AudioEngine.MusicVolume = value;
+                Globals.ConfigurationHandler.RuntimeConfiguration.Audio.Music = value;
 
                 base.OnPropertyChanged(nameof(this.MusicVolume));
-                if (RuntimeStorage.AudioEngine.IsMusicPlaying && this.MusicVolume <= 0.0d && this.MusicVolume != this.musicVolumeOldValue)
+                if (Globals.AudioEngine.IsMusicPlaying && this.MusicVolume <= 0.0d && this.MusicVolume != this.musicVolumeOldValue)
                 {
-                    RuntimeStorage.AudioEngine.StopMusic();
+                    Globals.AudioEngine.StopMusic();
                 }
                 if (this.MusicVolume <= 0.0d)
                 {
@@ -65,12 +65,12 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return RuntimeStorage.AudioEngine.EffectVolume;
+                return Globals.AudioEngine.EffectVolume;
             }
             set
             {
-                RuntimeStorage.AudioEngine.EffectVolume = value;
-                RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Effect = value;
+                Globals.AudioEngine.EffectVolume = value;
+                Globals.ConfigurationHandler.RuntimeConfiguration.Audio.Effect = value;
 
                 base.OnPropertyChanged(nameof(this.EffectVolume));
                 if (this.EffectVolume <= 0.0d)

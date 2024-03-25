@@ -9,9 +9,9 @@ using System.Windows.Media;
 
 namespace Battleship2000.Logic
 {
-    internal static class RuntimeStorage
+    internal static class Globals
     {
-        public static Assembly MyAssembly { get; } = typeof(RuntimeStorage).Assembly;
+        public static Assembly MyAssembly { get; } = typeof(Globals).Assembly;
         public static string ProjectName { get; set; }
         public static string ProjectBuildAndVersion { get; set; }
         internal static ConfigurationHandler<Configuration> ConfigurationHandler { get; set; }

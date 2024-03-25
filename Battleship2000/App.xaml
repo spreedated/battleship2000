@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Battleship2000"
              xmlns:ve="clr-namespace:Battleship2000.ViewElements"
-             Startup="DebugStartup">
+             StartupUri="views/MainWindow.xaml">
     <Application.Resources>
 
         <ResourceDictionary>

@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using static Battleship2000.Logic.RuntimeStorage;
+using static Battleship2000.Logic.Globals;
 
 namespace Battleship2000.Logic
 {
@@ -37,9 +37,9 @@ namespace Battleship2000.Logic
                 LoadBackgrounds();
                 PreloadStep?.Invoke(null, EventArgs.Empty);
 
-                if (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Music > 0.0f)
+                if (Globals.ConfigurationHandler.RuntimeConfiguration.Audio.Music > 0.0f)
                 {
-                    RuntimeStorage.AudioEngine.PlayMusic();
+                    Globals.AudioEngine.PlayMusic();
                 }
 
                 PreloadComplete?.Invoke(null, EventArgs.Empty);
@@ -52,8 +52,8 @@ namespace Battleship2000.Logic
 
             foreach (Type typePage in MyAssembly.GetTypes().Where(x => x.Namespace.Contains("Pages") && x.IsSubclassOf(typeof(Page))).Where(x => x.Name != "Preload"))
             {
-                RuntimeStorage.Pages.Add((Page)Activator.CreateInstance(typePage));
-                Log.Information($"Loaded page \"{RuntimeStorage.Pages[RuntimeStorage.Pages.Count - 1].Name}\"");
+                Globals.Pages.Add((Page)Activator.CreateInstance(typePage));
+                Log.Information($"Loaded page \"{Globals.Pages[Globals.Pages.Count - 1].Name}\"");
             }
 
             Log.Information("Loading pages finished");
@@ -64,14 +64,14 @@ namespace Battleship2000.Logic
             AudioBanks.SoundLoaded += (s, e) => Log.Information($"Sound \"{e.Soundname}\" loaded");
             AudioBanks.AudioBanksLoadedFinished += (s, e) => Log.Information($"All audiobanks loaded");
             AudioBanks.LoadAudioBanks();
-            RuntimeStorage.AudioEngine = new()
+            Globals.AudioEngine = new()
             {
-                EffectVolume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Effect,
-                MusicVolume = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Audio.Music
+                EffectVolume = Globals.ConfigurationHandler.RuntimeConfiguration.Audio.Effect,
+                MusicVolume = Globals.ConfigurationHandler.RuntimeConfiguration.Audio.Music
             };
-            RuntimeStorage.AudioEngine.PlayingSound += (s, e) => Log.Information($"Playing \"{e.Soundname}\" sound");
-            RuntimeStorage.AudioEngine.PlayingMusic += (s, e) => Log.Information($"Playing \"{e.Soundname}\" music");
-            RuntimeStorage.AudioEngine.StoppedMusic += (s, e) => Log.Information("Music stopped");
+            Globals.AudioEngine.PlayingSound += (s, e) => Log.Information($"Playing \"{e.Soundname}\" sound");
+            Globals.AudioEngine.PlayingMusic += (s, e) => Log.Information($"Playing \"{e.Soundname}\" music");
+            Globals.AudioEngine.StoppedMusic += (s, e) => Log.Information("Music stopped");
 
             Log.Information($"Loaded successfully {AudioBanks.GetEffectCount} soundfiles. {AudioBanks.GetMusicCount} Music files, {AudioBanks.GetEffectCount} Effect files.");
         }
@@ -100,9 +100,9 @@ namespace Battleship2000.Logic
 
             Settings_Network.Instance.Dispatcher.Invoke(() =>
             {
-                if (Settings_Network.Vm.NetworkInterfaces.Any(x => x.IPAddress.ToString() == RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Interface))
+                if (Settings_Network.Vm.NetworkInterfaces.Any(x => x.IPAddress.ToString() == Globals.ConfigurationHandler.RuntimeConfiguration.Network.Interface))
                 {
-                    Settings_Network.Instance.CMB_Interface.SelectedItem = Settings_Network.Vm.NetworkInterfaces.First(x => x.IPAddress.ToString() == RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Network.Interface);
+                    Settings_Network.Instance.CMB_Interface.SelectedItem = Settings_Network.Vm.NetworkInterfaces.First(x => x.IPAddress.ToString() == Globals.ConfigurationHandler.RuntimeConfiguration.Network.Interface);
                 }
             });
         }
@@ -113,9 +113,9 @@ namespace Battleship2000.Logic
             {
                 Settings_Visual.Vm.Backgrounds.Add(new() { Name = "Oldschool", Filename = "battleship1-1280x736.png" });
                 Settings_Visual.Vm.Backgrounds.Add(new() { Name = "Blue", Filename = "blue.png" });
-                if (Settings_Visual.Vm.Backgrounds.Any(x => x.Name == RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background))
+                if (Settings_Visual.Vm.Backgrounds.Any(x => x.Name == Globals.ConfigurationHandler.RuntimeConfiguration.Visual.Background))
                 {
-                    Settings_Visual.Instance.CMB_Background.SelectedItem = Settings_Visual.Vm.Backgrounds.First(x => x.Name == RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background);
+                    Settings_Visual.Instance.CMB_Background.SelectedItem = Settings_Visual.Vm.Backgrounds.First(x => x.Name == Globals.ConfigurationHandler.RuntimeConfiguration.Visual.Background);
                 }
             });
         }

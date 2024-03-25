@@ -106,7 +106,7 @@ namespace Battleship2000.ViewModels
 
         public static void Navigate(Settings settingsInstance, string pagename)
         {
-            Page p = RuntimeStorage.Pages.Find(x => x.GetType().Name.ToLower().Contains(pagename.ToLower(), StringComparison.InvariantCulture));
+            Page p = Globals.Pages.Find(x => x.GetType().Name.ToLower().Contains(pagename.ToLower(), StringComparison.InvariantCulture));
 
             if (p == null)
             {
@@ -158,7 +158,7 @@ namespace Battleship2000.ViewModels
                     Settings.Vm.SaveIconAnimationStart();
                 });
 
-                RuntimeStorage.ConfigurationHandler.Save();
+                Globals.ConfigurationHandler.Save();
                 await Task.Delay(2500);
 
                 Settings.Instance.Dispatcher.Invoke(() =>

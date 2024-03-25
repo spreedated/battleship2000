@@ -15,7 +15,7 @@
     </Page.DataContext>
     <StackPanel>
         <StackPanel Margin="0,50,0,40">
-            <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectName}" d:Text="Battleship 2000" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+            <TextBlock Text="{x:Static logic:Globals.ProjectName}" d:Text="Battleship 2000" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
         </StackPanel>
         <StackPanel>
             <TextBlock Text="Host Server" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" Margin="0,0,0,10" FontSize="32" />

@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using static Battleship2000.Logic.Constants;
-using static Battleship2000.Logic.RuntimeStorage;
+using static Battleship2000.Logic.Globals;
 
 namespace Battleship2000.ViewModels
 {
@@ -18,7 +18,7 @@ namespace Battleship2000.ViewModels
     {
         public ICommand ResizeCommand { get; } = new RelayCommand<SizeChangedEventArgs>((o) =>
         {
-            RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize = o.NewSize;
+            Globals.ConfigurationHandler.RuntimeConfiguration.WindowsSize = o.NewSize;
         });
 
         private ImageSource _BackgroundImage = new BitmapImage(new Uri(URI_BACKGROUND_BLUE));

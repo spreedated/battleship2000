@@ -17,7 +17,7 @@ namespace Battleship2000.ViewModels
             set
             {
                 base.SetProperty<Background>(ref this._SelectedBackground, value);
-                RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Visual.Background = this._SelectedBackground.Name;
+                Globals.ConfigurationHandler.RuntimeConfiguration.Visual.Background = this._SelectedBackground.Name;
                 RefreshBackground();
             }
         }

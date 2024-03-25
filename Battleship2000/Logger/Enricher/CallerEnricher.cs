@@ -3,7 +3,7 @@ using Serilog.Configuration;
 using Serilog.Core;
 using Serilog.Events;
 using System.Diagnostics;
-using static Battleship2000.Logic.RuntimeStorage;
+using static Battleship2000.Logic.Globals;
 
 namespace Battleship2000.Logger.Enricher
 {

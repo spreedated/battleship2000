@@ -17,7 +17,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Margin="0,50,0,80">
-                <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectName}" d:Text="Battleship 2000" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+                <TextBlock Text="{x:Static logic:Globals.ProjectName}" d:Text="Battleship 2000" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
             </StackPanel>
             
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,0,10">

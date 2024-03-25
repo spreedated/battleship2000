@@ -16,7 +16,7 @@
     </Page.DataContext>
 
     <Grid>
-        <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectBuildAndVersion}" d:Text="Built ffffff/1212121212121212/0.1" Margin="0,8,8,0" VerticalAlignment="Top" TextAlignment="Right" Style="{StaticResource TextStyle}" FontSize="12" Foreground="#AAAAAA" />
+        <TextBlock Text="{x:Static logic:Globals.ProjectBuildAndVersion}" d:Text="Built ffffff/1212121212121212/0.1" Margin="0,8,8,0" VerticalAlignment="Top" TextAlignment="Right" Style="{StaticResource TextStyle}" FontSize="12" Foreground="#AAAAAA" />
         <Grid Margin="20,0,20,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="64"/>

@@ -1,5 +1,4 @@
-﻿#pragma warning disable S1075
-#pragma warning disable IDE0079
+﻿#pragma warning disable IDE0079
 
 using Battleship2000.Logic;
 using EngineLayer;
@@ -9,13 +8,10 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using static Battleship2000.Logic.RuntimeStorage;
+using static Battleship2000.Logic.Globals;
 
 namespace Battleship2000
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private readonly DateTime ApplicationStartupDate = DateTime.Now;
@@ -24,23 +20,11 @@ namespace Battleship2000
             base.OnStartup(e);
             LoggerConfigurator.ConfigureLogger();
 
-            RuntimeStorage.ConfigurationHandler = new(new(Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), "config.json")));
-            RuntimeStorage.ConfigurationHandler.Load();
+            Globals.ConfigurationHandler = new(new(Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), "config.json")));
+            Globals.ConfigurationHandler.Load();
 
-            RuntimeStorage.ProjectName = $"{MyAssembly.GetCustomAttribute<AssemblyTitleAttribute>()?.Title}";
-            RuntimeStorage.ProjectBuildAndVersion = $"Built {HelperFunctions.LoadEmbeddedResourceString(MyAssembly, "gitid.txt", true)}/{HelperFunctions.LoadEmbeddedResourceString(MyAssembly, "builddate.txt", true).Replace(".", "")}/{MyAssembly.GetName().Version.ToNiceString()}";
-        }
-
-        private void DebugStartup(object sender, StartupEventArgs e)
-        {
-#if DEBUG
-#pragma warning disable S125
-            //base.StartupUri = new Uri("pack://application:,,,/views/dialogwindow.xaml", UriKind.Absolute);
-            base.StartupUri = new Uri("pack://application:,,,/views/MainWindow.xaml", UriKind.Absolute);
-#pragma warning restore S125
-#else
-            base.StartupUri = new Uri("pack://application:,,,/views/MainWindow.xaml", UriKind.Absolute);
-#endif
+            Globals.ProjectName = $"{MyAssembly.GetCustomAttribute<AssemblyTitleAttribute>()?.Title}";
+            Globals.ProjectBuildAndVersion = $"Built {HelperFunctions.LoadEmbeddedResourceString(MyAssembly, "gitid.txt", true)}/{HelperFunctions.LoadEmbeddedResourceString(MyAssembly, "builddate.txt", true).Replace(".", "")}/{MyAssembly.GetName().Version.ToNiceString()}";
         }
 
         protected override void OnExit(ExitEventArgs e)
@@ -60,7 +44,7 @@ namespace Battleship2000
             {
                 return;
             }
-            RuntimeStorage.AudioEngine.PlaySoundEffect("button-pressed");
+            Globals.AudioEngine.PlaySoundEffect("button-pressed");
         }
     }
 }

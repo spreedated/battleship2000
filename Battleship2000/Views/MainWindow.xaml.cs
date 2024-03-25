@@ -18,10 +18,10 @@ namespace Battleship2000.Views
             Instance = this;
             InstanceVM = (MainWindowViewModel)this.DataContext;
 
-            if (RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize != default)
+            if (Globals.ConfigurationHandler.RuntimeConfiguration.WindowsSize != default)
             {
-                this.Width = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize.Width;
-                this.Height = RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.WindowsSize.Height;
+                this.Width = Globals.ConfigurationHandler.RuntimeConfiguration.WindowsSize.Width;
+                this.Height = Globals.ConfigurationHandler.RuntimeConfiguration.WindowsSize.Height;
             }
 
             RefreshBackground();

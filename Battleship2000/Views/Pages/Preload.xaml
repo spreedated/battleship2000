@@ -15,7 +15,7 @@
     <Grid>
         <StackPanel>
             <StackPanel Margin="0,50,0,80">
-                <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectName}" d:Text="Battleship 2000" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
+                <TextBlock Text="{x:Static logic:Globals.ProjectName}" d:Text="Battleship 2000" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" />
             </StackPanel>
             <TextBlock Text="{Binding LoadingText}" d:Text="Loading ..." VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource TextHeadline}" Margin="0,0,0,20" />
             <StackPanel>
@@ -23,6 +23,6 @@
                 <TextBlock d:Text="64 %" Text="{Binding ElementName=pbStatus, Path=Value, StringFormat={}{0:0} %}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextStyle}" FontSize="16" />
             </StackPanel>
         </StackPanel>
-        <TextBlock Text="{x:Static logic:RuntimeStorage.ProjectBuildAndVersion}" d:Text="Built ffffff/1212121212121212/0.1" Margin="8,0,0,8" VerticalAlignment="Bottom" TextAlignment="Center" Style="{StaticResource TextStyle}" FontSize="12" Foreground="#AAAAAA" />
+        <TextBlock Text="{x:Static logic:Globals.ProjectBuildAndVersion}" d:Text="Built ffffff/1212121212121212/0.1" Margin="8,0,0,8" VerticalAlignment="Bottom" TextAlignment="Center" Style="{StaticResource TextStyle}" FontSize="12" Foreground="#AAAAAA" />
     </Grid>
 </Page>

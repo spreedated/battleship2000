@@ -9,11 +9,11 @@ namespace Battleship2000.ViewModels
         {
             get
             {
-                return RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Player.Playername;
+                return Globals.ConfigurationHandler.RuntimeConfiguration.Player.Playername;
             }
             set
             {
-                RuntimeStorage.ConfigurationHandler.RuntimeConfiguration.Player.Playername = value;
+                Globals.ConfigurationHandler.RuntimeConfiguration.Player.Playername = value;
                 base.OnPropertyChanged(nameof(this.Playername));
             }
         }
